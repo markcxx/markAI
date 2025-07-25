@@ -1,9 +1,10 @@
 import { ActionIcon, ActionIconProps } from '@lobehub/ui';
-import { Github } from 'lucide-react';
+import { Github, User } from 'lucide-react';
 import Link from 'next/link';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
+import DeveloperPanel from '@/components/DeveloperPanel';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 const ICON_SIZE: ActionIconProps['size'] = {
@@ -14,20 +15,31 @@ const ICON_SIZE: ActionIconProps['size'] = {
 
 const BottomActions = memo(() => {
   const { hideGitHub } = useServerConfigStore(featureFlagsSelectors);
+  const [showDeveloperPanel, setShowDeveloperPanel] = useState(false);
 
   return (
-    <Flexbox gap={8}>
-      {!hideGitHub && (
-        <Link aria-label={'GitHub'} href={'https://github.com/markcxx'} target={'_blank'}>
-          <ActionIcon
-            icon={Github}
-            size={ICON_SIZE}
-            title={'GitHub'}
-            tooltipProps={{ placement: 'right' }}
-          />
-        </Link>
-      )}
-    </Flexbox>
+    <>
+      <Flexbox gap={8}>
+        {!hideGitHub && (
+          <Link aria-label={'GitHub'} href={'https://github.com/markcxx'} target={'_blank'}>
+            <ActionIcon
+              icon={Github}
+              size={ICON_SIZE}
+              title={'GitHub'}
+              tooltipProps={{ placement: 'right' }}
+            />
+          </Link>
+        )}
+        <ActionIcon
+          icon={User}
+          onClick={() => setShowDeveloperPanel(true)}
+          size={ICON_SIZE}
+          title={'开发者信息'}
+          tooltipProps={{ placement: 'right' }}
+        />
+      </Flexbox>
+      <DeveloperPanel onClose={() => setShowDeveloperPanel(false)} open={showDeveloperPanel} />
+    </>
   );
 });
 
