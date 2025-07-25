@@ -1,14 +1,4 @@
 {
-  "build": {
-    "env": {
-      "NODE_OPTIONS": "--max-old-space-size=8192"
-    }
-  },
   "buildCommand": "bun run build",
-  "functions": {
-    "src/app/**/*.{js,ts,tsx}": {
-      "maxDuration": 60
-    }
-  },
   "installCommand": "bun install"
 }
