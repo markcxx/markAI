@@ -2,10 +2,11 @@ import { TRPCError } from '@trpc/server';
 import debug from 'debug';
 import urlJoin from 'url-join';
 
+import apiKeyManager from '@/server/modules/AgentRuntime/apiKeyManager';
 import { SearchParams, UniformSearchResponse, UniformSearchResult } from '@/types/tool/search';
 
 import { SearchServiceImpl } from '../type';
-import { TavilySearchParameters, TavilyResponse } from './type';
+import { TavilyResponse, TavilySearchParameters } from './type';
 
 const log = debug('lobe-search:Tavily');
 
@@ -15,7 +16,14 @@ const log = debug('lobe-search:Tavily');
  */
 export class TavilyImpl implements SearchServiceImpl {
   private get apiKey(): string | undefined {
-    return process.env.TAVILY_API_KEY;
+    const apiKey = apiKeyManager.pick(process.env.TAVILY_API_KEY);
+    // Log masked API key for debugging
+    if (apiKey) {
+      console.log(`[Tavily Search] Using API key: ${apiKey.slice(0, 4)}...${apiKey.slice(-4)}`);
+    } else {
+      console.log('[Tavily Search] No API key found');
+    }
+    return apiKey;
   }
 
   private get baseUrl(): string {
@@ -34,7 +42,7 @@ export class TavilyImpl implements SearchServiceImpl {
       include_raw_content: false,
       max_results: 15,
       query,
-      search_depth: process.env.TAVILY_SEARCH_DEPTH || 'basic' // basic or advanced
+      search_depth: process.env.TAVILY_SEARCH_DEPTH || 'basic', // basic or advanced
     };
 
     let body: TavilySearchParameters = {
@@ -43,9 +51,8 @@ export class TavilyImpl implements SearchServiceImpl {
         params?.searchTimeRange && params.searchTimeRange !== 'anytime'
           ? params.searchTimeRange
           : undefined,
-      topic:
-        // Tavily 只支持 news 和 general 两种类型
-        params?.searchCategories?.filter(cat => ['news', 'general'].includes(cat))?.[0],
+      topic: // Tavily 只支持 news 和 general 两种类型
+      params?.searchCategories?.filter((cat) => ['news', 'general'].includes(cat))?.[0],
     };
 
     log('Constructed request body: %o', body);
