@@ -1,3 +1,4 @@
+import apiKeyManager from '../../../../src/server/modules/AgentRuntime/apiKeyManager';
 import { CrawlImpl, CrawlSuccessResult } from '../type';
 import { NetworkConnectionError, PageNotFoundError, TimeoutError } from '../utils/errorType';
 import { DEFAULT_TIMEOUT, withTimeout } from '../utils/withTimeout';
@@ -21,8 +22,8 @@ interface TavilyResponse {
 }
 
 export const tavily: CrawlImpl = async (url) => {
-  // Get API key from environment variable
-  const apiKey = process.env.TAVILY_API_KEY;
+  // Get API key from environment variable with multi-key support
+  const apiKey = apiKeyManager.pick(process.env.TAVILY_API_KEY);
 
   let res: Response;
 
@@ -67,8 +68,8 @@ export const tavily: CrawlImpl = async (url) => {
     const data = (await res.json()) as TavilyResponse;
 
     if (!data.results || data.results.length === 0) {
-      console.warn( 'Tavily API returned no results for URL:', url )
-      return
+      console.warn('Tavily API returned no results for URL:', url);
+      return;
     }
 
     const firstResult = data.results[0];
