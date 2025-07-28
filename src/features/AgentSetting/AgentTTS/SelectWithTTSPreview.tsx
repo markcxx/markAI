@@ -21,7 +21,7 @@ const SelectWithTTSPreview = forwardRef<RefSelectProps, SelectWithTTSPreviewProp
     const [voice, setVoice] = useState<string>(value);
     const { t } = useTranslation('welcome');
     const theme = useTheme();
-    const PREVIEW_TEXT = ['Lobe Chat', t('slogan.title'), t('slogan.desc1')].join('. ');
+    const PREVIEW_TEXT = '你好，我是怪兽马尔克，欢迎使用MarkAI';
 
     const setDefaultError = useCallback(
       (err?: any) => {
