@@ -34,8 +34,9 @@ export const UserGuideSchema = z.object({
 export type UserGuide = z.infer<typeof UserGuideSchema>;
 
 export interface UserPreference {
+  customNickname?: string;
   guide?: UserGuide;
-  hideSyncAlert?: boolean;
+  hideSyncAlert?: boolean; // 自定义用户名
   telemetry: boolean | null;
   topicDisplayMode?: TopicDisplayMode;
   /**

@@ -5,7 +5,7 @@
 export const LOBE_CHAT_CLOUD = 'MarkAI Cloud';
 
 export const BRANDING_NAME = 'MarkAI';
-export const BRANDING_LOGO_URL = '';
+export const BRANDING_LOGO_URL = '/icons/LOGO.png';
 
 export const ORG_NAME = 'MarkAI';
 

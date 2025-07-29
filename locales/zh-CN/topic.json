@@ -9,7 +9,7 @@
     "removeAll": "删除全部话题",
     "removeUnstarred": "删除未收藏话题"
   },
-  "defaultTitle": "默认话题",
+  "defaultTitle": "开启新话题",
   "duplicateLoading": "话题复制中...",
   "duplicateSuccess": "话题复制成功",
   "favorite": "收藏",

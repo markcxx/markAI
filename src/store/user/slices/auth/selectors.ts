@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 
 import { enableAuth, enableClerk, enableNextAuth } from '@/const/auth';
 import { BRANDING_NAME } from '@/const/branding';
@@ -9,17 +8,21 @@ import { LobeUser } from '@/types/user';
 const DEFAULT_USERNAME = BRANDING_NAME;
 
 const nickName = (s: UserStore) => {
+  // 优先使用自定义用户名
+  const customNickname = s.preference?.customNickname;
+  if (customNickname) return customNickname;
+
   const defaultNickName = s.user?.fullName || s.user?.username;
   if (!enableAuth) {
     if (isDesktop) {
-      return defaultNickName;
+      return defaultNickName || 'MarkAI';
     }
-    return t('userPanel.defaultNickname', { ns: 'common' });
+    return 'MarkAI';
   }
 
-  if (s.isSignedIn) return defaultNickName;
+  if (s.isSignedIn) return defaultNickName || 'MarkAI';
 
-  return t('userPanel.anonymousNickName', { ns: 'common' });
+  return 'MarkAI';
 };
 
 const username = (s: UserStore) => {

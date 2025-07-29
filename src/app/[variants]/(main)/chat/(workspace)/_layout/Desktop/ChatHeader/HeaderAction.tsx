@@ -6,6 +6,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
+import ThemeToggleSwitch from '@/components/ThemeToggleSwitch';
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
@@ -29,6 +30,7 @@ const HeaderAction = memo<{ className?: string }>(({ className }) => {
 
   return (
     <Flexbox className={className} gap={4} horizontal>
+      <ThemeToggleSwitch />
       <ShareButton />
       <ActionIcon
         icon={showAgentSettings ? PanelRightClose : PanelRightOpen}

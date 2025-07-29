@@ -1,8 +1,8 @@
 'use client';
 
 import { Form, type FormGroupItemType, Input } from '@lobehub/ui';
-import { Skeleton } from 'antd';
-import { memo } from 'react';
+import { Button, Skeleton, message } from 'antd';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { enableAuth } from '@/const/auth';
@@ -19,15 +19,30 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
     authSelectors.isLoginWithNextAuth(s),
     authSelectors.isLogin(s),
   ]);
-  const [nickname, username, userProfile, loading] = useUserStore((s) => [
+  const [nickname, , userProfile, loading, updatePreference] = useUserStore((s) => [
     userProfileSelectors.nickName(s),
     userProfileSelectors.username(s),
     userProfileSelectors.userProfile(s),
     !s.isLoaded,
+    s.updatePreference,
   ]);
 
   const [form] = Form.useForm();
   const { t } = useTranslation('auth');
+
+  const handleSubmit = useCallback(
+    async (values: any) => {
+      try {
+        await updatePreference({
+          customNickname: values.customNickname || 'MarkAI',
+        });
+        message.success('用户名已保存');
+      } catch {
+        message.error('保存失败，请重试');
+      }
+    },
+    [updatePreference],
+  );
 
   if (loading)
     return (
@@ -48,9 +63,9 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
         minWidth: undefined,
       },
       {
-        children: <Input disabled />,
-        label: t('profile.username'),
-        name: 'username',
+        children: <Input placeholder="请输入用户名" />,
+        label: '用户名',
+        name: 'customNickname',
       },
       {
         children: <Input disabled />,
@@ -68,17 +83,26 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
     ],
     title: t('tab.profile'),
   };
+
   return (
     <Form
       form={form}
       initialValues={{
+        customNickname: nickname || 'MarkAI',
         email: userProfile?.email || '--',
-        username: nickname || username,
       }}
       items={[profile]}
       itemsType={'group'}
+      onFinish={handleSubmit}
       variant={'borderless'}
       {...FORM_STYLE}
+      footer={
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 24 }}>
+          <Button htmlType="submit" type="primary">
+            保存用户名
+          </Button>
+        </div>
+      }
     />
   );
 });
