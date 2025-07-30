@@ -252,7 +252,9 @@ export class MessageModel {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             .map<ChatImageItem>(({ id, url, name }) => ({ alt: name!, id, url })),
 
-          meta: {},
+          meta: {
+            avatar: model ? `model:${model}` : undefined,
+          },
           ragQuery: messageQuery?.rewriteQuery,
           ragQueryId: messageQuery?.id,
           ragRawQuery: messageQuery?.userQuery,
@@ -465,6 +467,7 @@ export class MessageModel {
     id: string = this.genId(),
   ): Promise<MessageItem> => {
     return this.db.transaction(async (trx) => {
+      console.log('Creating message with model info:', { fromModel, fromProvider, id });
       const [item] = (await trx
         .insert(messages)
         .values({

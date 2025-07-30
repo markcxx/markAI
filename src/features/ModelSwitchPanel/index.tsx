@@ -1,10 +1,10 @@
 import { ActionIcon, Icon } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
 import type { ItemType } from 'antd/es/menu/interface';
-import { LucideArrowRight, LucideBolt } from 'lucide-react';
+import { LucideArrowRight, LucideBolt, LucideChevronDown, LucideChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { type ReactNode, memo, useMemo } from 'react';
+import { type ReactNode, memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
@@ -18,6 +18,13 @@ import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfi
 import { EnabledProviderWithModels } from '@/types/aiProvider';
 
 const useStyles = createStyles(({ css, prefixCls }) => ({
+  collapseIcon: css`
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  `,
   menu: css`
     .${prefixCls}-dropdown-menu-item {
       display: flex;
@@ -29,7 +36,9 @@ const useStyles = createStyles(({ css, prefixCls }) => ({
       }
 
       &-item-group-list {
+        overflow: hidden;
         margin: 0 !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
     }
   `,
@@ -58,6 +67,37 @@ const ModelSwitchPanel = memo<IProps>(({ children, onOpenChange, open }) => {
   const { showLLM } = useServerConfigStore(featureFlagsSelectors);
   const router = useRouter();
   const enabledList = useEnabledChatModels();
+
+  // 管理每个provider的折叠状态，默认只展开当前选择模型的服务商
+  const [collapsedProviders, setCollapsedProviders] = useState<Set<string>>(() => {
+    const allProviders = new Set(enabledList.map((p) => p.id));
+    // 移除当前选择的provider，让它保持展开状态
+    if (provider) {
+      allProviders.delete(provider);
+    }
+    return allProviders;
+  });
+
+  const toggleProviderCollapse = (providerId: string) => {
+    setCollapsedProviders((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(providerId)) {
+        newSet.delete(providerId);
+      } else {
+        newSet.add(providerId);
+      }
+      return newSet;
+    });
+  };
+
+  // 当provider变化时，更新折叠状态
+  useEffect(() => {
+    if (provider) {
+      const newSet = new Set(enabledList.map((p) => p.id));
+      newSet.delete(provider);
+      setCollapsedProviders(newSet);
+    }
+  }, [provider, enabledList]);
 
   const items = useMemo<ItemType[]>(() => {
     const getModelItems = (provider: EnabledProviderWithModels) => {
@@ -108,33 +148,56 @@ const ModelSwitchPanel = memo<IProps>(({ children, onOpenChange, open }) => {
       ];
 
     // otherwise show with provider group
-    return enabledList.map((provider) => ({
-      children: getModelItems(provider),
-      key: provider.id,
-      label: (
-        <Flexbox horizontal justify="space-between">
-          <ProviderItemRender
-            logo={provider.logo}
-            name={provider.name}
-            provider={provider.id}
-            source={provider.source}
-          />
-          {showLLM && (
-            <Link
-              href={isDeprecatedEdition ? '/settings/llm' : `/settings/provider/${provider.id}`}
-            >
+    return enabledList.map((provider) => {
+      const isCollapsed = collapsedProviders.has(provider.id);
+      return {
+        children: isCollapsed ? [] : getModelItems(provider),
+        key: provider.id,
+        label: (
+          <Flexbox horizontal justify="space-between">
+            <Flexbox align="center" gap={4} horizontal>
               <ActionIcon
-                icon={LucideBolt}
+                className={styles.collapseIcon}
+                icon={isCollapsed ? LucideChevronRight : LucideChevronDown}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleProviderCollapse(provider.id);
+                }}
                 size={'small'}
-                title={t('ModelSwitchPanel.goToSettings')}
+                title={isCollapsed ? t('ModelSwitchPanel.expand') : t('ModelSwitchPanel.collapse')}
               />
-            </Link>
-          )}
-        </Flexbox>
-      ),
-      type: 'group',
-    }));
-  }, [enabledList]);
+              <ProviderItemRender
+                logo={provider.logo}
+                name={provider.name}
+                provider={provider.id}
+                source={provider.source}
+              />
+            </Flexbox>
+            {showLLM && (
+              <Link
+                href={isDeprecatedEdition ? '/settings/llm' : `/settings/provider/${provider.id}`}
+              >
+                <ActionIcon
+                  icon={LucideBolt}
+                  size={'small'}
+                  title={t('ModelSwitchPanel.goToSettings')}
+                />
+              </Link>
+            )}
+          </Flexbox>
+        ),
+        type: 'group',
+      };
+    });
+  }, [
+    enabledList,
+    collapsedProviders,
+    t,
+    showLLM,
+    router,
+    theme.colorTextTertiary,
+    updateAgentConfig,
+  ]);
 
   const icon = <div className={styles.tag}>{children}</div>;
 

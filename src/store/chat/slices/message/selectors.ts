@@ -25,7 +25,18 @@ const getMeta = (message: ChatMessage) => {
     }
 
     default: {
-      return sessionMetaSelectors.currentAgentMeta(useSessionStore.getState());
+      // 对于assistant消息，检查是否有fromModel信息
+      const sessionMeta = sessionMetaSelectors.currentAgentMeta(useSessionStore.getState());
+
+      if (message.extra?.fromModel) {
+        // 使用消息的模型信息生成头像
+        return {
+          ...sessionMeta,
+          avatar: `model-icon:${message.extra.fromModel}`,
+        };
+      }
+
+      return sessionMeta;
     }
   }
 };
