@@ -17,13 +17,13 @@ const links = [
       if (isDesktop) {
         const { desktopRemoteRPCFetch } = await import('@/utils/electron/desktopRemoteRPCFetch');
 
-        const res = await desktopRemoteRPCFetch(input as string, init);
-
+        // eslint-disable-next-line no-undef
+        const res = await desktopRemoteRPCFetch(input as string, init as RequestInit);
         if (res) return res;
       }
 
-      const response = await fetch(input, init);
-
+      // eslint-disable-next-line no-undef
+      const response = await fetch(input, init as RequestInit);
       if (response.ok) return response;
 
       const errorRes: ErrorResponse = await response.clone().json();
