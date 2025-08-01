@@ -32,7 +32,9 @@ export const LobeHuggingFaceAI = createOpenAICompatibleRuntime({
     createChatCompletionStream: (client: HfInference, payload, instance) => {
       const { max_tokens = 4096 } = payload;
       const hfRes = client.chatCompletionStream({
-        endpointUrl: instance.baseURL ? urlJoin(instance.baseURL, payload.model) : instance.baseURL,
+        endpointUrl: instance.baseURL
+          ? urlJoin(instance.baseURL, 'chat/completions')
+          : instance.baseURL,
         max_tokens: max_tokens,
         messages: payload.messages,
         model: payload.model,
