@@ -65,7 +65,10 @@ const HuggingFace: ModelProviderCard = {
   name: 'HuggingFace',
   settings: {
     disableBrowserRequest: true,
-    sdkType: 'huggingface',
+    proxyUrl: {
+      placeholder: 'https://router.huggingface.co/v1',
+    },
+    sdkType: 'openai',
     showModelFetcher: true,
   },
   url: 'https://huggingface.co',

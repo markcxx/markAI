@@ -14,6 +14,7 @@ export interface HuggingFaceModelCard {
 }
 
 export const LobeHuggingFaceAI = createOpenAICompatibleRuntime({
+  baseURL: 'https://router.huggingface.co/v1',
   chatCompletion: {
     handleStreamBizErrorType: (error) => {
       // e.g.: Server meta-llama/Meta-Llama-3.1-8B-Instruct does not seem to support chat completion. Error: Model requires a Pro subscription; check out hf.co/pricing to learn more. Make sure to include your HF token in your query.
