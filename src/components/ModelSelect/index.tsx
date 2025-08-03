@@ -1,6 +1,6 @@
 import { IconAvatarProps, ModelIcon, ProviderIcon } from '@lobehub/icons';
 import { Avatar, Icon, Tag, Text, Tooltip } from '@lobehub/ui';
-import { createStyles, useResponsive } from 'antd-style';
+import { createStyles, useResponsive, useThemeMode } from 'antd-style';
 import {
   Infinity,
   AtomIcon,
@@ -203,8 +203,98 @@ interface ProviderItemRenderProps {
   source?: AiProviderSourceType;
 }
 
+// 提供商标签映射
+type ProviderTagInfo = {
+  bgColor: string;
+  label: string;
+  labelColor: {
+    dark: string;
+    light: string;
+  };
+  modelColor: string;
+  modelName: string;
+};
+
+const providerTagMap: Record<string, ProviderTagInfo> = {
+  deepseek: {
+    bgColor: 'rgba(24, 144, 255, 0.5)',
+    label: '深度求索官方',
+    labelColor: { dark: '#ffffff', light: '#1677ff' },
+    modelColor: '#1677ff',
+    modelName: 'deepseek R1',
+  },
+  google: {
+    bgColor: 'rgba(19, 194, 194, 0.4)',
+    label: '谷歌gemini大模型',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#40a9ff',
+    modelName: 'gemini',
+  },
+  huggingface: {
+    bgColor: 'rgba(82, 196, 26, 0.4)',
+    label: 'Hugging Face 永久可用',
+    labelColor: { dark: '#ffffff', light: '#D92C54' },
+    modelColor: '#1677ff',
+    modelName: 'deepseek',
+  },
+  infiniai: {
+    bgColor: 'rgba(114, 46, 209, 0.4)',
+    label: '无问芯穹多模型聚合平台',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#ffffff',
+    modelName: 'Claude Sonnet 4',
+  },
+  modelscope: {
+    bgColor: 'rgba(82, 196, 26, 0.4)',
+    label: '魔搭社区 永久可用',
+    labelColor: { dark: '#ffffff', light: '#D92C54' },
+    modelColor: '#1677ff',
+    modelName: 'deepseek',
+  },
+  moonshot: {
+    bgColor: 'rgba(24, 144, 255, 0.7)',
+    label: '月之暗面',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#ffffff',
+    modelName: 'kimi K2',
+  },
+  openai: {
+    bgColor: 'rgba(255, 77, 79, 0.5)',
+    label: 'ChatGPT多模型',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#000000',
+    modelName: 'o1 mini',
+  },
+  qwen: {
+    bgColor: 'rgba(250, 173, 20, 0.4)',
+    label: '阿里云通义千问',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#1677ff',
+    modelName: 'Qwen Plus',
+  },
+  spark: {
+    bgColor: 'rgba(250, 140, 22, 0.4)',
+    label: '讯飞星火大模型',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#1677ff',
+    modelName: 'Spark 4.0 Ultra',
+  },
+  zhipu: {
+    bgColor: 'rgba(24, 144, 255, 0.4)',
+    label: '智谱清言',
+    labelColor: { dark: '#ffffff', light: '#1677ff' },
+    modelColor: '#1677ff',
+    modelName: 'glm-4.5',
+  },
+};
+
 export const ProviderItemRender = memo<ProviderItemRenderProps>(
   ({ provider, name, source, logo }) => {
+    // 获取提供商对应的标签信息
+    const tagInfo = providerTagMap[provider];
+    // 使用 useThemeMode 获取当前主题模式
+    const { isDarkMode } = useThemeMode();
+
     return (
       <Flexbox align={'center'} gap={4} horizontal>
         {source === 'custom' && !!logo ? (
@@ -212,7 +302,35 @@ export const ProviderItemRender = memo<ProviderItemRenderProps>(
         ) : (
           <ProviderIcon provider={provider} size={20} type={'mono'} />
         )}
-        {name}
+        <Flexbox align={'center'} gap={4} horizontal>
+          {name}
+          {tagInfo && (
+            <Tag
+              size={'small'}
+              style={{
+                alignItems: 'center',
+                background: tagInfo.bgColor,
+                border: 'none',
+                borderRadius: '12px',
+                display: 'flex',
+                gap: '4px',
+                padding: '2px 8px',
+              }}
+            >
+              <span style={{ color: tagInfo.modelColor, fontWeight: 500 }}>
+                {tagInfo.modelName}
+              </span>
+              <span
+                style={{
+                  color: isDarkMode ? tagInfo.labelColor.dark : tagInfo.labelColor.light,
+                  fontWeight: 800,
+                }}
+              >
+                {tagInfo.label}
+              </span>
+            </Tag>
+          )}
+        </Flexbox>
       </Flexbox>
     );
   },
