@@ -216,6 +216,13 @@ type ProviderTagInfo = {
 };
 
 const providerTagMap: Record<string, ProviderTagInfo> = {
+  cloudflare: {
+    bgColor: 'rgba(255, 165, 0, 0.4)',
+    label: '轻量模型开发者可用',
+    labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    modelColor: '#ff8c00',
+    modelName: 'Qwen2.5 Coder 32B',
+  },
   deepseek: {
     bgColor: 'rgba(24, 144, 255, 0.5)',
     label: '深度求索官方',
