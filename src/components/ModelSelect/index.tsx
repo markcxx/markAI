@@ -286,6 +286,13 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
     modelColor: '#1677ff',
     modelName: 'Spark 4.0 Ultra',
   },
+  volcengine: {
+    bgColor: 'rgba(71, 172, 255, 0.4)',
+    label: '火山引擎 你熟悉的豆包',
+    labelColor: { dark: '#ffffff', light: '#333333' },
+    modelColor: '#ff4500',
+    modelName: 'doubao-seed-1.6-thinking',
+  },
   zhipu: {
     bgColor: 'rgba(24, 144, 255, 0.4)',
     label: '智谱清言',
