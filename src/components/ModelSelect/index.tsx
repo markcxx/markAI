@@ -267,7 +267,7 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
   },
   openai: {
     bgColor: 'rgba(255, 77, 79, 0.5)',
-    label: 'ChatGPT多模型',
+    label: 'OpenAI',
     labelColor: { dark: '#ffffff', light: '#333333' },
     modelColor: '#000000',
     modelName: 'o1 mini',
