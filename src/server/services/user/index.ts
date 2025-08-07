@@ -126,7 +126,7 @@ export class UserService {
       const fileBuffer = Buffer.from(file);
       return fileBuffer;
     } catch (error) {
-      pino.error('Failed to get user avatar:', error);
+      pino.error('Failed to get user avatar:', error as Error);
     }
   };
 }
