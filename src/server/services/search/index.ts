@@ -25,10 +25,7 @@ export class SearchService {
 
   constructor() {
     const impls = this.searchImpls;
-    // Randomly select a search engine if multiple are available
-    const randomImpl =
-      impls.length > 0 ? impls[Math.floor(Math.random() * impls.length)] : undefined;
-    this.searchImpl = createSearchServiceImpl(randomImpl);
+    this.searchImpl = createSearchServiceImpl(impls.length > 0 ? impls[0] : undefined);
   }
 
   async crawlPages(input: { impls?: CrawlImplType[]; urls: string[] }) {
