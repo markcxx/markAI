@@ -414,10 +414,10 @@ const zhipuImageModels: AIImageModelCard[] = [
   // https://bigmodel.cn/dev/api/image-model/cogview
   {
     description:
-      'CogView-4 是智谱首个支持生成汉字的开源文生图模型，在语义理解、图像生成质量、中英文字生成能力等方面全面提升，支持任意长度的中英双语输入，能够生成在给定范围内的任意分辨率图像。',
-    displayName: 'CogView-4',
+      'CogView-3-Flash是智谱AI推出的免费图像生成模型，能够根据用户指令生成符合要求且美学评分更高的图像。CogView-3-Flash主要应用于艺术创作、设计参考、游戏开发、虚拟现实等领域，帮助用户快速实现从文本到图像的转换需求。',
+    displayName: 'Cogview-3-flash',
     enabled: true,
-    id: 'cogview-4',
+    id: 'cogview-3-flash',
     parameters: {
       prompt: {
         default: '',

@@ -62,7 +62,7 @@ export const DEFAULT_FEATURE_FLAGS: IFeatureFlags = {
   plugins: true,
   dalle: true,
 
-  check_updates: true,
+  check_updates: false,
   welcome_suggest: true,
   token_counter: true,
 

@@ -15,7 +15,7 @@ export const updaterConfig = {
   },
 
   // 是否启用应用更新
-  enableAppUpdate: !isDev,
+  enableAppUpdate: true,
 
   // 是否启用渲染层热更新
   enableRenderHotUpdate: !isDev,

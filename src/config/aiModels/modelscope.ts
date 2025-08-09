@@ -1,4 +1,4 @@
-import { AIChatModelCard } from '@/types/aiModel';
+import { AIChatModelCard, AIImageModelCard } from '@/types/aiModel';
 
 const modelscopeChatModels: AIChatModelCard[] = [
   {
@@ -60,7 +60,59 @@ const modelscopeChatModels: AIChatModelCard[] = [
     type: 'chat',
   },
 ];
+const modelscopeImageModels: AIImageModelCard[] = [
+  {
+    description:
+      '麦橘超然 MajicFlus 是一款基于 flux.dev 微调融合的模型，专注于高质量人像生成，尤其擅长表现 亚洲女性 的细腻与美感。模型以 唯美、写实、易用 为核心特色，能够通过简单的提示词生成优质效果，同时对复杂提示词也有出色的响应能力。',
+    displayName: 'MAILAND/majicflus_v1',
+    enabled: true,
+    id: 'MAILAND/majicflus_v1',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      'FLUX.1 Krea [dev] 是一个具有 120 亿参数的修正流变换器，能够根据文本描述生成图像。',
+    displayName: 'black-forest-labs/FLUX.1-Krea-dev',
+    enabled: true,
+    id: 'black-forest-labs/FLUX.1-Krea-dev',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description: 'FLUX.1 [dev] 是一个具有 120 亿参数的修正流变换器，能够根据文本描述生成图像。',
+    displayName: 'MusePublic/489_ckpt_FLUX_1',
+    enabled: true,
+    id: 'MusePublic/489_ckpt_FLUX_1',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+];
 
-export const allModels = [...modelscopeChatModels];
+export const allModels = [...modelscopeChatModels, ...modelscopeImageModels];
 
 export default allModels;

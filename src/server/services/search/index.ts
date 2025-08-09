@@ -25,8 +25,10 @@ export class SearchService {
 
   constructor() {
     const impls = this.searchImpls;
-    // TODO: need use turn mode
-    this.searchImpl = createSearchServiceImpl(impls.length > 0 ? impls[0] : undefined);
+    // Randomly select a search engine if multiple are available
+    const randomImpl =
+      impls.length > 0 ? impls[Math.floor(Math.random() * impls.length)] : undefined;
+    this.searchImpl = createSearchServiceImpl(randomImpl);
   }
 
   async crawlPages(input: { impls?: CrawlImplType[]; urls: string[] }) {
@@ -49,6 +51,7 @@ export class SearchService {
 
   /**
    * Query for search results
+   * Uses the search engine selected during initialization
    */
   async query(query: string, params?: SearchParams) {
     return this.searchImpl.query(query, params);

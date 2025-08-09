@@ -40,7 +40,7 @@ export class TavilyImpl implements SearchServiceImpl {
       include_image_descriptions: true,
       include_images: false,
       include_raw_content: false,
-      max_results: 15,
+      max_results: 30,
       query,
       search_depth: process.env.TAVILY_SEARCH_DEPTH || 'basic', // basic or advanced
     };
@@ -51,8 +51,8 @@ export class TavilyImpl implements SearchServiceImpl {
         params?.searchTimeRange && params.searchTimeRange !== 'anytime'
           ? params.searchTimeRange
           : undefined,
-      topic: // Tavily 只支持 news 和 general 两种类型
-      params?.searchCategories?.filter((cat) => ['news', 'general'].includes(cat))?.[0],
+      // Tavily 只支持 news 和 general 两种类型
+      topic: params?.searchCategories?.filter((cat) => ['news', 'general'].includes(cat))?.[0],
     };
 
     log('Constructed request body: %o', body);
