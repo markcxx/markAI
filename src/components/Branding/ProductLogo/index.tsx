@@ -15,11 +15,11 @@ interface ProductLogoProps extends LobeHubProps {
 export const ProductLogo = memo<ProductLogoProps>((props) => {
   const { type, size = 32, ...rest } = props;
 
-  // 如果是 combine 类型，显示 LobeHub logo + MarkAI 文本
+  // 如果是 combine 类型，根据是否自定义品牌显示不同的 logo + 文本
   if (type === 'combine') {
     return (
       <Flexbox align={'center'} flex={'none'} horizontal {...rest}>
-        <LobeHub size={size} />
+        {isCustomBranding ? <CustomLogo size={size} type="flat" /> : <LobeHub size={size} />}
         <div
           style={{
             fontSize: size / 1.5,

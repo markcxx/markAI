@@ -3,10 +3,18 @@ import { Center } from 'react-layout-kit';
 
 import { isCustomBranding } from '@/const/version';
 
-import CircleLoading from '../CircleLoading';
+import MarkAIText from './MarkAIText';
 
 export default () => {
-  if (isCustomBranding) return <CircleLoading />;
+  if (isCustomBranding) {
+    return (
+      <Center height={'100%'} width={'100%'}>
+        <div style={{ height: 40, opacity: 0.6, width: 120 }}>
+          <MarkAIText />
+        </div>
+      </Center>
+    );
+  }
 
   return (
     <Center height={'100%'} width={'100%'}>
