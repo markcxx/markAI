@@ -216,6 +216,13 @@ type ProviderTagInfo = {
 };
 
 const providerTagMap: Record<string, ProviderTagInfo> = {
+  anthropic: {
+    bgColor: 'rgba(255, 165, 0, 0.4)',
+    label: 'Anthropic',
+    labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    modelColor: '#ff8c00',
+    modelName: 'claude-4-sonnet',
+  },
   cloudflare: {
     bgColor: 'rgba(255, 165, 0, 0.4)',
     label: '轻量模型开发者可用',
