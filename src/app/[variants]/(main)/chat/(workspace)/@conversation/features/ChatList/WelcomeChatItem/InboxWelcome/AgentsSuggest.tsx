@@ -13,6 +13,25 @@ import urlJoin from 'url-join';
 import { useDiscoverStore } from '@/store/discover';
 import { DiscoverAssistantItem } from '@/types/discover';
 
+// 使用种子创建伪随机数生成器
+const createSeededRandom = (seed: number) => {
+  const x = Math.sin(seed) * 10_000;
+  return x - Math.floor(x);
+};
+
+// 随机选择助手的函数
+const getRandomAssistants = (list: any[], count: number, seed: number) => {
+  if (!list || list.length === 0) return [];
+
+  const shuffled = [...list];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(createSeededRandom(seed + i) * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled.slice(0, count);
+};
+
 const useStyles = createStyles(({ css, token, responsive }) => ({
   card: css`
     position: relative;
@@ -49,13 +68,18 @@ const useStyles = createStyles(({ css, token, responsive }) => ({
 
 const AgentsSuggest = memo<{ mobile?: boolean }>(({ mobile }) => {
   const { t } = useTranslation('welcome');
-  const [page, setPage] = useState(1);
+  const [randomSeed, setRandomSeed] = useState(1);
   const useAssistantList = useDiscoverStore((s) => s.useAssistantList);
 
   const { data: assistantList, isLoading } = useAssistantList({
-    page,
-    pageSize: mobile ? 2 : 4,
+    page: 1,
+    pageSize: 100, // 获取更多数据用于随机选择
   });
+
+  // 获取随机选择的助手
+  const randomAssistants = assistantList?.items
+    ? getRandomAssistants(assistantList.items, mobile ? 2 : 4, randomSeed)
+    : [];
 
   const { styles } = useStyles();
 
@@ -66,12 +90,12 @@ const AgentsSuggest = memo<{ mobile?: boolean }>(({ mobile }) => {
   ));
 
   const handleRefresh = () => {
-    if (!assistantList) return;
-    setPage(page + 1);
+    if (!assistantList?.items?.length) return;
+    setRandomSeed(Math.floor(Math.random() * 10_000));
   };
 
   // if no assistant data, just hide the component
-  if (!isLoading && !assistantList?.items?.length) return null;
+  if (!isLoading && !randomAssistants.length) return null;
 
   return (
     <Flexbox gap={8} width={'100%'}>
@@ -85,9 +109,9 @@ const AgentsSuggest = memo<{ mobile?: boolean }>(({ mobile }) => {
         />
       </Flexbox>
       <Grid gap={8} rows={2}>
-        {isLoading || !assistantList
+        {isLoading || !randomAssistants.length
           ? loadingCards
-          : assistantList.items.map((item: DiscoverAssistantItem) => (
+          : randomAssistants.map((item: DiscoverAssistantItem) => (
               <Link
                 href={urlJoin('/discover/assistant', item.identifier)}
                 key={item.identifier}
