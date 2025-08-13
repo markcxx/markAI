@@ -212,6 +212,40 @@ const modelscopeImageModels: AIImageModelCard[] = [
     },
     type: 'image',
   },
+  {
+    description:
+      'MusePublic/332_ckpt_SD_XL 在官方的 Stable Diffusion XL 1.0 基础上，通过使用特定的高质量图像数据集进行额外训练（即“微调”）得到的“特化版”模型。该模型在保持原始模型的生成能力的同时，针对特定的图像风格（水墨风）进行了优化，能够生成符合该风格的高质量图像。',
+    displayName: '快速生图水墨风',
+    enabled: true,
+    id: 'MusePublic/332_ckpt_SD_XL',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      'MusePublic/329_ckpt_SD_XL 在官方的 Stable Diffusion XL 1.0 基础上，通过使用特定的高质量图像数据集进行额外训练（即“微调”）得到的“特化版”模型。该模型在保持原始模型的生成能力的同时，针对特定的图像风格（粘土风）进行了优化，能够生成符合该风格的高质量图像。',
+    displayName: '快速生图黏土风',
+    enabled: true,
+    id: 'MusePublic/329_ckpt_SD_XL',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
 ];
 
 export const allModels = [...modelscopeChatModels, ...modelscopeImageModels];
