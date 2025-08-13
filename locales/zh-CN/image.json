@@ -24,6 +24,9 @@
     "model": {
       "label": "模型"
     },
+    "modelDescription": {
+      "title": "模型描述"
+    },
     "prompt": {
       "placeholder": "描述你想要生成的内容"
     },

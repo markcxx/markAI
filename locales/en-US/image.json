@@ -24,6 +24,9 @@
     "model": {
       "label": "Model"
     },
+    "modelDescription": {
+      "title": "Model Description"
+    },
     "prompt": {
       "placeholder": "Describe what you want to generate"
     },

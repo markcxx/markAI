@@ -13,6 +13,7 @@ import DimensionControlGroup from './components/DimensionControlGroup';
 import ImageNum from './components/ImageNum';
 import ImageUrl from './components/ImageUrl';
 import ImageUrlsUpload from './components/ImageUrlsUpload';
+import ModelDescription from './components/ModelDescription';
 import ModelSelect from './components/ModelSelect';
 import SeedNumberInput from './components/SeedNumberInput';
 import SizeSelect from './components/SizeSelect';
@@ -86,6 +87,8 @@ const ConfigPanel = memo(() => {
       <ConfigItemLayout label={t('config.imageNum.label')}>
         <ImageNum />
       </ConfigItemLayout>
+
+      <ModelDescription />
     </Flexbox>
   );
 });

@@ -12,42 +12,126 @@ export interface ModelScopeModelCard {
   owned_by: string;
 }
 
+/**
+ * Create an image generation task with ModelScope API
+ */
+async function createImageTask(payload: CreateImagePayload, apiKey: string): Promise<string> {
+  const { model, params } = payload;
+  const endpoint = 'https://api-inference.modelscope.cn/v1/images/generations';
+
+  const response = await fetch(endpoint, {
+    body: JSON.stringify({
+      model,
+      prompt: params.prompt,
+      ...(params.seed !== undefined ? { seed: params.seed } : {}),
+    }),
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'X-ModelScope-Async-Mode': 'true',
+    },
+    method: 'POST',
+  });
+
+  if (!response.ok) {
+    let errorData;
+    try {
+      errorData = await response.json();
+    } catch {
+      // Failed to parse JSON error response
+    }
+    throw new Error(
+      `Failed to create image task (${response.status}): ${errorData?.error?.message || response.statusText}`,
+    );
+  }
+
+  const result = await response.json();
+  if (!result.task_id) {
+    throw new Error('No task_id in response');
+  }
+
+  return result.task_id;
+}
+
+/**
+ * Query the status of an image generation task
+ */
+async function queryTaskStatus(taskId: string, apiKey: string): Promise<any> {
+  const endpoint = `https://api-inference.modelscope.cn/v1/tasks/${taskId}`;
+
+  const response = await fetch(endpoint, {
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'X-ModelScope-Task-Type': 'image_generation',
+    },
+  });
+
+  if (!response.ok) {
+    let errorData;
+    try {
+      errorData = await response.json();
+    } catch {
+      // Failed to parse JSON error response
+    }
+    throw new Error(
+      `Failed to query task status (${response.status}): ${errorData?.error?.message || response.statusText}`,
+    );
+  }
+
+  return response.json();
+}
+
 const createModelScopeImage = async (
   payload: CreateImagePayload,
   options: { apiKey: string },
 ): Promise<CreateImageResponse> => {
-  const { model, params } = payload;
-  const endpoint = 'https://api-inference.modelscope.cn/v1/images/generations';
-
+  // ModelScope has changed all image generation models to async mode
+  // Use async mode for all models
   try {
-    const response = await fetch(endpoint, {
-      body: JSON.stringify({
-        model,
-        n: 1,
-        prompt: params.prompt,
-        size: params.size || '1024x1024',
-        ...(params.seed !== undefined ? { seed: params.seed } : {}),
-      }),
-      headers: {
-        'Authorization': `Bearer ${options.apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
+    // 1. Create image generation task
+    const taskId = await createImageTask(payload, options.apiKey);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'Failed to generate image');
+    // 2. Poll task status until completion
+    let taskStatus: any = null;
+    let retries = 0;
+    let consecutiveFailures = 0;
+    const maxConsecutiveFailures = 3;
+    const maxRetries = 60; // Maximum 5 minutes with 5s intervals
+    const retryInterval = 5000; // 5 seconds
+
+    while (retries < maxRetries) {
+      try {
+        taskStatus = await queryTaskStatus(taskId, options.apiKey);
+        consecutiveFailures = 0; // Reset consecutive failures on success
+      } catch {
+        consecutiveFailures++;
+        if (consecutiveFailures >= maxConsecutiveFailures) {
+          throw new Error(
+            `Failed to query task status after ${maxConsecutiveFailures} consecutive attempts`,
+          );
+        }
+        // Continue to retry after a delay
+      }
+
+      if (taskStatus?.task_status === 'SUCCEED') {
+        if (!taskStatus.output_images?.[0]) {
+          throw new Error('No image URL in successful response');
+        }
+        return {
+          imageUrl: taskStatus.output_images[0],
+        };
+      } else if (taskStatus?.task_status === 'FAILED') {
+        throw new Error('Image generation task failed');
+      }
+
+      // Wait before next retry
+      await new Promise((resolve) => {
+        setTimeout(resolve, retryInterval);
+      });
+      retries++;
     }
 
-    const result = await response.json();
-    if (!result.images?.[0]?.url) {
-      throw new Error('No image URL in response');
-    }
-
-    return {
-      imageUrl: result.images[0].url,
-    };
+    throw new Error('Image generation task timed out');
   } catch (error) {
     const err = error as Error;
     throw AgentRuntimeError.createImage({

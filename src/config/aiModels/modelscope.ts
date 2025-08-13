@@ -64,7 +64,7 @@ const modelscopeImageModels: AIImageModelCard[] = [
   {
     description:
       '麦橘超然 MajicFlus 是一款基于 flux.dev 微调融合的模型，专注于高质量人像生成，尤其擅长表现 亚洲女性 的细腻与美感。模型以 唯美、写实、易用 为核心特色，能够通过简单的提示词生成优质效果，同时对复杂提示词也有出色的响应能力。',
-    displayName: 'MAILAND/majicflus_v1',
+    displayName: '麦橘超然 MajicFlus',
     enabled: true,
     id: 'MAILAND/majicflus_v1',
     parameters: {
@@ -80,8 +80,8 @@ const modelscopeImageModels: AIImageModelCard[] = [
   },
   {
     description:
-      'FLUX.1 Krea [dev] 是一个具有 120 亿参数的修正流变换器，能够根据文本描述生成图像。',
-    displayName: 'black-forest-labs/FLUX.1-Krea-dev',
+      'FLUX.1 Krea [dev] 是一个具有 120 亿参数的修正流变换器，能够根据文本描述生成图像。',
+    displayName: 'FLUX.1 Krea-dev',
     enabled: true,
     id: 'black-forest-labs/FLUX.1-Krea-dev',
     parameters: {
@@ -97,9 +97,110 @@ const modelscopeImageModels: AIImageModelCard[] = [
   },
   {
     description: 'FLUX.1 [dev] 是一个具有 120 亿参数的修正流变换器，能够根据文本描述生成图像。',
-    displayName: 'MusePublic/489_ckpt_FLUX_1',
+    displayName: 'FLUX.1-dev',
     enabled: true,
     id: 'MusePublic/489_ckpt_FLUX_1',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      'Qwen/Qwen-Image 是阿里巴巴开发的通义千问文生图模型，支持中文提示词，能够生成高质量的图像。',
+    displayName: 'Qwen Image',
+    enabled: true,
+    id: 'Qwen/Qwen-Image',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      'FLUX.1-dev HighRes 是一个基于 FLUX.1-dev 微调得到的模型。通过在数百万张 2048 分辨率左右各类尺寸的图片上进行微调，该模型在 2048、2560 等分辨率下的图像生成质量显著优于原始的 FLUX.1-dev。同时相比使用 FLUX.1-dev 生成 1024 分辨率图片并使用 Real-ESRGAN 等模型进行图像超分辨率，FLUX.1-dev HighRes 生成的原生 2k 分辨率图片在细节、纹理、边缘上的质量显著更优。',
+    displayName: 'FLUX.1-dev HighRes',
+    enabled: true,
+    id: 'MusePublic/flux-high-res',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description: 'FLUX.1-Kontext-Dev 的贡献者未提供更加详细的模型介绍',
+    displayName: 'FLUX.1-Kontext-Dev',
+    enabled: true,
+    id: 'MusePublic/FLUX.1-Kontext-Dev',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      '万象熔炉的14_ckpt_SD_XL 是一款基于 Stable Diffusion XL (SDXL) 1.0 架构进行微调（Fine-tuning）或合并（Merging）的自定义社区模型。它旨在生成具有特定艺术风格和主题的高质量图像，尤其在二次元领域表现突出。',
+    displayName: '万象熔炉 14_ckpt_SD_XL',
+    enabled: true,
+    id: 'MusePublic/14_ckpt_SD_XL',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      'MusePublic/14_ckpt_SD_XL 是一款由社区创作者 MusePublic 开发的、基于 Stable Diffusion XL (SDXL) 1.0 架构的写实主义风格微调模型。它专为生成高质量、富有真实感和摄影美学的图像而设计，尤其在亚洲人物肖像领域表现极为出色，以其干净、细腻且赏心悦目的画风而受到社区用户的欢迎。',
+    displayName: 'sd35_large',
+    enabled: true,
+    id: 'muse/sd35_large',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '768x768', '512x512'],
+      },
+    },
+    type: 'image',
+  },
+  {
+    description:
+      '红潮 -12b-10steps-FP16-AIGC不依赖于Stable Diffusion系列的技术栈，而是采用了先进的扩散变换器（Diffusion Transformer, DiT）架构。该模型的核心亮点在于其庞大的120亿（12B）参数规模和极致的生成效率，能够在短短10个采样步数内生成媲美业界顶尖水平的高质量图像。',
+    displayName: '红潮 -12b-10steps-FP16-AIGC',
+    enabled: true,
+    id: 'qijitech/RedCraft-12b-10steps-FP16-AIGC',
     parameters: {
       prompt: {
         default: '',

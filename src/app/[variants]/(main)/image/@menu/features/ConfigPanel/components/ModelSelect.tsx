@@ -108,6 +108,7 @@ const ModelSelect = memo(() => {
             logo={provider.logo}
             name={provider.name}
             provider={provider.id}
+            showTag={false}
             source={provider.source}
           />
           {showLLM && (

@@ -200,6 +200,7 @@ interface ProviderItemRenderProps {
   logo?: string;
   name: string;
   provider: string;
+  showTag?: boolean;
   source?: AiProviderSourceType;
 }
 
@@ -310,7 +311,7 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
 };
 
 export const ProviderItemRender = memo<ProviderItemRenderProps>(
-  ({ provider, name, source, logo }) => {
+  ({ provider, name, source, logo, showTag = true }) => {
     // 获取提供商对应的标签信息
     const tagInfo = providerTagMap[provider];
     // 使用 useThemeMode 获取当前主题模式
@@ -325,7 +326,7 @@ export const ProviderItemRender = memo<ProviderItemRenderProps>(
         )}
         <Flexbox align={'center'} gap={4} horizontal>
           {name}
-          {tagInfo && (
+          {showTag && tagInfo && (
             <Tag
               size={'small'}
               style={{
