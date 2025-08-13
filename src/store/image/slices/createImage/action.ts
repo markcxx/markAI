@@ -3,8 +3,6 @@ import { StateCreator } from 'zustand';
 import { chainPromptEnhancement } from '@/chains/promptEnhancement';
 import { chatService } from '@/services/chat';
 import { imageService } from '@/services/image';
-import { useUserStore } from '@/store/user';
-import { systemAgentSelectors } from '@/store/user/slices/settings/selectors';
 
 import { ImageStore } from '../../store';
 import { generationBatchSelectors } from '../generationBatch/selectors';
@@ -51,17 +49,15 @@ export const createCreateImageSlice: StateCreator<
     }
 
     // Check if prompt enhancement is enabled
-    const userStore = useUserStore.getState();
-    const promptEnhancementConfig = systemAgentSelectors.promptEnhancement(userStore);
+    const promptEnhancementEnabled = imageGenerationConfigSelectors.promptEnhancementEnabled(store);
+    const promptEnhancementModel = imageGenerationConfigSelectors.promptEnhancementModel(store);
+    const promptEnhancementProvider =
+      imageGenerationConfigSelectors.promptEnhancementProvider(store);
 
     let finalPrompt = parameters.prompt;
 
     // Enhance prompt if enabled
-    if (
-      promptEnhancementConfig &&
-      promptEnhancementConfig.model &&
-      promptEnhancementConfig.provider
-    ) {
+    if (promptEnhancementEnabled && promptEnhancementModel && promptEnhancementProvider) {
       try {
         const enhancementPayload = chainPromptEnhancement(parameters.prompt);
 
@@ -84,8 +80,8 @@ export const createCreateImageSlice: StateCreator<
             {
               ...enhancementPayload,
               messages,
-              model: promptEnhancementConfig.model,
-              provider: promptEnhancementConfig.provider,
+              model: promptEnhancementModel,
+              provider: promptEnhancementProvider,
             },
             {
               onMessageHandle: (message) => {

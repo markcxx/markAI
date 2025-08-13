@@ -13,8 +13,6 @@ import { chatService } from '@/services/chat';
 import { useImageStore } from '@/store/image';
 import { createImageSelectors, imageGenerationConfigSelectors } from '@/store/image/selectors';
 import { useGenerationConfigParam } from '@/store/image/slices/generationConfig/hooks';
-import { useUserStore } from '@/store/user';
-import { systemAgentSelectors } from '@/store/user/slices/settings/selectors';
 
 import PromptTitle from './Title';
 
@@ -79,9 +77,14 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
   const isCreating = useImageStore(createImageSelectors.isCreating);
   const createImage = useImageStore((s) => s.createImage);
   const [isEnhancing, setIsEnhancing] = useState(false);
-  const promptEnhancementConfig = useUserStore(systemAgentSelectors.promptEnhancement);
   const promptEnhancementEnabled = useImageStore(
     imageGenerationConfigSelectors.promptEnhancementEnabled,
+  );
+  const promptEnhancementModel = useImageStore(
+    imageGenerationConfigSelectors.promptEnhancementModel,
+  );
+  const promptEnhancementProvider = useImageStore(
+    imageGenerationConfigSelectors.promptEnhancementProvider,
   );
 
   const handleGenerate = async () => {
@@ -92,8 +95,8 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
     if (
       !value.trim() ||
       !promptEnhancementEnabled ||
-      !promptEnhancementConfig?.model ||
-      !promptEnhancementConfig?.provider
+      !promptEnhancementModel ||
+      !promptEnhancementProvider
     ) {
       return;
     }
@@ -121,8 +124,8 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
           {
             ...enhancementPayload,
             messages,
-            model: promptEnhancementConfig.model,
-            provider: promptEnhancementConfig.provider,
+            model: promptEnhancementModel,
+            provider: promptEnhancementProvider,
           },
           {
             onErrorHandle: (error) => {
@@ -187,29 +190,27 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
           value={value}
         />
         <Flexbox gap={8} horizontal>
-          {promptEnhancementEnabled &&
-            promptEnhancementConfig?.model &&
-            promptEnhancementConfig?.provider && (
-              <Button
-                disabled={!value.trim() || isEnhancing || isCreating}
-                icon={Wand2}
-                loading={isEnhancing}
-                onClick={handleEnhancePrompt}
-                size={'large'}
-                style={{
-                  fontWeight: 500,
-                  height: 64,
-                  minWidth: 64,
-                  width: 64,
-                }}
-                title={
-                  isEnhancing
-                    ? t('generation.actions.enhancing')
-                    : t('generation.actions.enhancePrompt')
-                }
-                type={'default'}
-              />
-            )}
+          {promptEnhancementEnabled && promptEnhancementModel && promptEnhancementProvider && (
+            <Button
+              disabled={!value.trim() || isEnhancing || isCreating}
+              icon={Wand2}
+              loading={isEnhancing}
+              onClick={handleEnhancePrompt}
+              size={'large'}
+              style={{
+                fontWeight: 500,
+                height: 64,
+                minWidth: 64,
+                width: 64,
+              }}
+              title={
+                isEnhancing
+                  ? t('generation.actions.enhancing')
+                  : t('generation.actions.enhancePrompt')
+              }
+              type={'default'}
+            />
+          )}
           <Button
             disabled={!value.trim() || isEnhancing || isCreating}
             icon={Sparkles}
