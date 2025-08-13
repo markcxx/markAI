@@ -60,6 +60,38 @@ const defaultMiddleware = (request: NextRequest) => {
   const url = new URL(request.url);
   logDefault('Processing request: %s %s', request.method, request.url);
 
+  // Domain redirect logic - only in production
+  if (process.env.NODE_ENV === 'production') {
+    const currentDate = new Date();
+    const dayOfMonth = currentDate.getDate();
+    const currentHost = url.hostname;
+
+    // Define domains
+    const primaryDomain = 'chatai.markqq.com'; // 主域名 (1-10日)
+    const secondaryDomain = 'aichat.markqq.com'; // 副域名 (11日-月末)
+
+    logDefault('Domain redirect check: day=%d, host=%s', dayOfMonth, currentHost);
+
+    // Redirect logic based on date
+    if (dayOfMonth <= 10) {
+      // 前10日使用主域名
+      if (currentHost === secondaryDomain) {
+        const redirectUrl = new URL(request.url);
+        redirectUrl.hostname = primaryDomain;
+        logDefault('Redirecting to primary domain: %s', redirectUrl.toString());
+        return NextResponse.redirect(redirectUrl, { status: 301 });
+      }
+    } else {
+      // 11日到月末使用副域名
+      if (currentHost === primaryDomain) {
+        const redirectUrl = new URL(request.url);
+        redirectUrl.hostname = secondaryDomain;
+        logDefault('Redirecting to secondary domain: %s', redirectUrl.toString());
+        return NextResponse.redirect(redirectUrl, { status: 301 });
+      }
+    }
+  }
+
   // skip all api requests
   if (backendApiEndpoints.some((path) => url.pathname.startsWith(path))) {
     logDefault('Skipping API request: %s', url.pathname);
