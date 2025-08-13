@@ -42,6 +42,10 @@
       "label": "Chiều rộng"
     }
   },
+  "enhancement": {
+    "title": "Cải thiện lời nhắc",
+    "description": "Sử dụng mô hình AI để tối ưu hóa lời nhắc của bạn và tạo mô tả hình ảnh chính xác hơn."
+  },
   "generation": {
     "actions": {
       "applySeed": "Áp dụng hạt giống",
@@ -52,6 +56,8 @@
       "deleteBatch": "Xóa lô",
       "download": "Tải xuống",
       "downloadFailed": "Tải ảnh thất bại",
+      "enhancePrompt": "Cải thiện lời nhắc",
+      "enhancing": "Đang cải thiện",
       "errorCopied": "Thông tin lỗi đã được sao chép vào bộ nhớ tạm",
       "errorCopyFailed": "Sao chép thông tin lỗi thất bại",
       "generate": "Tạo",
@@ -70,6 +76,10 @@
       "failed": "Tạo thất bại",
       "generating": "Đang tạo..."
     }
+  },
+  "imageGeneration": {
+    "title": "Tạo ảnh",
+    "description": "Sử dụng mô hình AI để tạo ảnh dựa trên mô tả của bạn."
   },
   "notSupportGuide": {
     "desc": "Phiên bản triển khai hiện tại là chế độ cơ sở dữ liệu phía khách, không hỗ trợ chức năng tạo hình ảnh AI. Vui lòng chuyển sang <1>chế độ triển khai cơ sở dữ liệu phía máy chủ</1> hoặc sử dụng trực tiếp <3>LobeChat Cloud</3>",

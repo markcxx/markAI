@@ -1,6 +1,10 @@
 import { StateCreator } from 'zustand';
 
+import { chainPromptEnhancement } from '@/chains/promptEnhancement';
+import { chatService } from '@/services/chat';
 import { imageService } from '@/services/image';
+import { useUserStore } from '@/store/user';
+import { systemAgentSelectors } from '@/store/user/slices/settings/selectors';
 
 import { ImageStore } from '../../store';
 import { generationBatchSelectors } from '../generationBatch/selectors';
@@ -46,6 +50,74 @@ export const createCreateImageSlice: StateCreator<
       throw new TypeError('prompt is empty');
     }
 
+    // Check if prompt enhancement is enabled
+    const userStore = useUserStore.getState();
+    const promptEnhancementConfig = systemAgentSelectors.promptEnhancement(userStore);
+
+    let finalPrompt = parameters.prompt;
+
+    // Enhance prompt if enabled
+    if (
+      promptEnhancementConfig &&
+      promptEnhancementConfig.model &&
+      promptEnhancementConfig.provider
+    ) {
+      try {
+        const enhancementPayload = chainPromptEnhancement(parameters.prompt);
+
+        // 转换 OpenAIChatMessage[] 为 ChatMessage[]
+        const messages =
+          enhancementPayload.messages?.map((msg, index) => ({
+            id: `enhancement_${index}`,
+            content: typeof msg.content === 'string' ? msg.content : '',
+            role: msg.role,
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            meta: {},
+          })) || [];
+
+        // 使用 Promise 包装回调方式的 API
+        const enhancedPrompt = await new Promise<string>((resolve, reject) => {
+          let assistantContent = '';
+
+          chatService.createAssistantMessage(
+            {
+              ...enhancementPayload,
+              messages,
+              model: promptEnhancementConfig.model,
+              provider: promptEnhancementConfig.provider,
+            },
+            {
+              onMessageHandle: (message) => {
+                if (message.type === 'text') {
+                  assistantContent += message.text;
+                }
+              },
+              onFinish: async () => {
+                resolve(assistantContent.trim() || parameters.prompt);
+              },
+              onErrorHandle: (error) => {
+                reject(error);
+              },
+            },
+          );
+        });
+
+        if (enhancedPrompt && enhancedPrompt !== parameters.prompt) {
+          finalPrompt = enhancedPrompt;
+        }
+      } catch (error) {
+        console.warn('提示词增强失败，使用原始提示词:', error);
+        // Continue with original prompt if enhancement fails
+      }
+    }
+
+    // Update parameters with enhanced prompt
+    const enhancedParameters = {
+      ...parameters,
+      prompt: finalPrompt,
+    };
+
     // Track the final topic ID to use for image creation
     let finalTopicId = activeGenerationTopicId;
 
@@ -78,7 +150,7 @@ export const createCreateImageSlice: StateCreator<
         provider,
         model,
         imageNum,
-        params: parameters as any,
+        params: enhancedParameters as any,
       });
 
       // 6. Only refresh generation batches if it's not a new topic

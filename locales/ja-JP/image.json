@@ -42,6 +42,10 @@
       "label": "幅"
     }
   },
+  "enhancement": {
+    "title": "プロンプトの強化",
+    "description": "AIモデルを使用してプロンプトを最適化し、より正確な画像の説明を生成します。"
+  },
   "generation": {
     "actions": {
       "applySeed": "シードを適用する",
@@ -52,6 +56,8 @@
       "deleteBatch": "バッチを削除",
       "download": "ダウンロード",
       "downloadFailed": "画像のダウンロードに失敗しました",
+      "enhancePrompt": "プロンプト強化",
+      "enhancing": "強化中",
       "errorCopied": "エラー情報がクリップボードにコピーされました",
       "errorCopyFailed": "エラー情報のコピーに失敗しました",
       "generate": "生成",

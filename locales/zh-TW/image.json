@@ -42,6 +42,10 @@
       "label": "寬度"
     }
   },
+  "enhancement": {
+    "title": "提示詞增強",
+    "description": "使用AI模型優化您的提示詞，生成更精確的圖像描述。"
+  },
   "generation": {
     "actions": {
       "applySeed": "應用種子",
@@ -52,6 +56,8 @@
       "deleteBatch": "刪除批次",
       "download": "下載",
       "downloadFailed": "下載圖片失敗",
+      "enhancePrompt": "增強提示詞",
+      "enhancing": "增強中",
       "errorCopied": "錯誤訊息已複製到剪貼簿",
       "errorCopyFailed": "複製錯誤訊息失敗",
       "generate": "生成",
@@ -70,6 +76,10 @@
       "failed": "生成失敗",
       "generating": "生成中..."
     }
+  },
+  "imageGeneration": {
+    "title": "圖像生成",
+    "description": "使用AI模型根據您的描述生成圖像。"
   },
   "notSupportGuide": {
     "desc": "當前部署實例為客戶端資料庫模式，無法使用 AI 圖像生成功能。請切換到<1>服務端資料庫部署模式</1>，或直接使用 <3>LobeChat Cloud</3>",

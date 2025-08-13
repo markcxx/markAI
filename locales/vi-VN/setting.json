@@ -500,6 +500,11 @@
       "modelDesc": "Mô hình được chỉ định để tự động đặt tên chủ đề cho vẽ AI",
       "title": "Tự động đặt tên chủ đề vẽ AI"
     },
+    "promptEnhancement": {
+      "label": "Mô hình cải thiện prompt",
+      "modelDesc": "Mô hình được chỉ định để cải thiện prompt của người dùng",
+      "title": "Cải thiện prompt"
+    },
     "helpInfo": "Khi tạo trợ lý mới, sẽ sử dụng cài đặt trợ lý mặc định làm giá trị mặc định.",
     "historyCompress": {
       "label": "Mô hình lịch sử cuộc trò chuyện",

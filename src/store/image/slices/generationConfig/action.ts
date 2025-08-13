@@ -34,6 +34,10 @@ export interface GenerationConfigAction {
   setHeight(height: number): void;
   toggleAspectRatioLock(): void;
   setAspectRatio(aspectRatio: string): void;
+
+  // 提示词增强相关
+  togglePromptEnhancement(): void;
+  setPromptEnhancementModel(model: string, provider: string): void;
 }
 
 /**
@@ -291,5 +295,32 @@ export const createGenerationConfigSlice: StateCreator<
 
   reuseSeed: (seed: number) => {
     set((state) => ({ parameters: { ...state.parameters, seed } }), false, `reuseSeed/${seed}`);
+  },
+
+  togglePromptEnhancement: () => {
+    set(
+      (state) => ({
+        promptEnhancement: {
+          ...state.promptEnhancement,
+          enabled: !state.promptEnhancement?.enabled,
+        },
+      }),
+      false,
+      'togglePromptEnhancement',
+    );
+  },
+
+  setPromptEnhancementModel: (model: string, provider: string) => {
+    set(
+      (state) => ({
+        promptEnhancement: {
+          ...state.promptEnhancement,
+          model,
+          provider,
+        },
+      }),
+      false,
+      `setPromptEnhancementModel/${model}/${provider}`,
+    );
   },
 });

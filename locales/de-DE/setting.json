@@ -500,6 +500,11 @@
       "modelDesc": "Modell zur automatischen Benennung von Themen für KI-Malerei",
       "title": "Automatische Benennung von KI-Malthemen"
     },
+    "promptEnhancement": {
+      "label": "Prompt-Verbesserungsmodell",
+      "modelDesc": "Modell zur Verbesserung von Benutzer-Prompts",
+      "title": "Prompt-Verbesserung"
+    },
     "helpInfo": "Beim Erstellen eines neuen Assistenten werden die Standardassistenteneinstellungen als Voreinstellungen verwendet.",
     "historyCompress": {
       "label": "Gesprächshistorienmodell",

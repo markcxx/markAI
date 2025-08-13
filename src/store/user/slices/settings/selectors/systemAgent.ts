@@ -14,11 +14,13 @@ const agentMeta = (s: UserStore) => currentSystemAgent(s).agentMeta;
 const queryRewrite = (s: UserStore) => currentSystemAgent(s).queryRewrite;
 const historyCompress = (s: UserStore) => currentSystemAgent(s).historyCompress;
 const generationTopic = (s: UserStore) => currentSystemAgent(s).generationTopic;
+const promptEnhancement = (s: UserStore) => currentSystemAgent(s).promptEnhancement;
 
 export const systemAgentSelectors = {
   agentMeta,
   generationTopic,
   historyCompress,
+  promptEnhancement,
   queryRewrite,
   thread,
   topic,

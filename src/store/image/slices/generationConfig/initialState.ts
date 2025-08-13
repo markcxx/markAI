@@ -21,6 +21,13 @@ export interface GenerationConfigState {
 
   isAspectRatioLocked: boolean;
   activeAspectRatio: string | null; // string - 虚拟比例; null - 原生比例
+
+  // 提示词增强相关
+  promptEnhancement: {
+    enabled: boolean;
+    model: string;
+    provider: string;
+  };
 }
 
 export const DEFAULT_IMAGE_GENERATION_PARAMETERS: RuntimeImageGenParams =
@@ -34,4 +41,9 @@ export const initialGenerationConfigState: GenerationConfigState = {
   parametersSchema: gptImage1ParamsSchema,
   isAspectRatioLocked: false,
   activeAspectRatio: null,
+  promptEnhancement: {
+    enabled: false,
+    model: 'gemini-2.5-flash',
+    provider: 'google',
+  },
 };

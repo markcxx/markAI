@@ -15,6 +15,7 @@ import ImageUrl from './components/ImageUrl';
 import ImageUrlsUpload from './components/ImageUrlsUpload';
 import ModelDescription from './components/ModelDescription';
 import ModelSelect from './components/ModelSelect';
+import PromptEnhancement from './components/PromptEnhancement';
 import SeedNumberInput from './components/SeedNumberInput';
 import SizeSelect from './components/SizeSelect';
 import StepsSliderInput from './components/StepsSliderInput';
@@ -87,6 +88,8 @@ const ConfigPanel = memo(() => {
       <ConfigItemLayout label={t('config.imageNum.label')}>
         <ImageNum />
       </ConfigItemLayout>
+
+      <PromptEnhancement />
 
       <ModelDescription />
     </Flexbox>

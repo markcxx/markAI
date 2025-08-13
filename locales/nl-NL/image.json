@@ -42,6 +42,10 @@
       "label": "Breedte"
     }
   },
+  "enhancement": {
+    "title": "Promptverbetering",
+    "description": "Gebruik een AI-model om uw prompts te optimaliseren en nauwkeurigere afbeeldingsbeschrijvingen te genereren."
+  },
   "generation": {
     "actions": {
       "applySeed": "Zaad toepassen",
@@ -52,6 +56,8 @@
       "deleteBatch": "Batch verwijderen",
       "download": "Downloaden",
       "downloadFailed": "Afbeelding downloaden mislukt",
+      "enhancePrompt": "Prompt verbeteren",
+      "enhancing": "Verbeteren",
       "errorCopied": "Foutmelding gekopieerd naar klembord",
       "errorCopyFailed": "Foutmelding kopiëren mislukt",
       "generate": "Genereren",

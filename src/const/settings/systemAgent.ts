@@ -24,6 +24,10 @@ export const DEFAULT_SYSTEM_AGENT_CONFIG: UserSystemAgentConfig = {
   agentMeta: DEFAULT_SYSTEM_AGENT_ITEM,
   generationTopic: DEFAULT_SYSTEM_AGENT_ITEM,
   historyCompress: DEFAULT_SYSTEM_AGENT_ITEM,
+  promptEnhancement: {
+    model: 'gemini-2.0-flash-exp',
+    provider: 'google',
+  },
   queryRewrite: DEFAULT_QUERY_REWRITE_SYSTEM_AGENT_ITEM,
   thread: DEFAULT_SYSTEM_AGENT_ITEM,
   topic: DEFAULT_SYSTEM_AGENT_ITEM,

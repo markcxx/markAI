@@ -24,9 +24,6 @@
     "model": {
       "label": "模型"
     },
-    "modelDescription": {
-      "title": "模型描述"
-    },
     "prompt": {
       "placeholder": "描述你想要生成的内容"
     },
@@ -45,12 +42,18 @@
       "label": "宽度"
     }
   },
+  "enhancement": {
+    "title": "提示词增强",
+    "description": "使用AI模型优化您的提示词，生成更精确的图像描述"
+  },
   "generation": {
     "actions": {
       "applySeed": "应用种子",
       "copyError": "复制错误信息",
       "copyPrompt": "复制提示词",
       "copySeed": "复制种子",
+      "enhancePrompt": "增强提示词",
+      "enhancing": "增强中...",
       "delete": "删除",
       "deleteBatch": "删除批次",
       "download": "下载",

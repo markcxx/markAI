@@ -500,6 +500,11 @@
       "modelDesc": "Modèle spécifiquement utilisé pour la nomination automatique des sujets de peinture IA",
       "title": "Nomination automatique des sujets de peinture IA"
     },
+    "promptEnhancement": {
+      "label": "Modèle d'amélioration de prompt",
+      "modelDesc": "Modèle désigné pour améliorer les prompts utilisateur",
+      "title": "Amélioration de prompt"
+    },
     "helpInfo": "Lors de la création d'un nouvel assistant, les paramètres par défaut de l'assistant seront utilisés comme valeurs par défaut.",
     "historyCompress": {
       "label": "Modèle d'historique de conversation",

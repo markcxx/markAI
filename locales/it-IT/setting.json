@@ -500,6 +500,11 @@
       "modelDesc": "Modello specificato per la denominazione automatica degli argomenti nel disegno AI",
       "title": "Denominazione automatica argomenti per disegno AI"
     },
+    "promptEnhancement": {
+      "label": "Modello di miglioramento prompt",
+      "modelDesc": "Modello designato per migliorare i prompt dell'utente",
+      "title": "Miglioramento prompt"
+    },
     "helpInfo": "Quando crei un nuovo assistente, verranno utilizzate le impostazioni predefinite dell'assistente come valori predefiniti.",
     "historyCompress": {
       "label": "Modello di storia delle conversazioni",

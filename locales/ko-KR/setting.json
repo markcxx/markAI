@@ -496,9 +496,14 @@
       "title": "사용자 정의 프롬프트"
     },
     "generationTopic": {
-      "label": "AI 그림 주제 명명 모델",
-      "modelDesc": "AI 그림 자동 주제 명명에 사용되는 모델 지정",
-      "title": "AI 그림 자동 주제 명명"
+      "label": "AI 아트 주제 명명 모델",
+      "modelDesc": "AI 아트 주제 자동 명명에 사용되는 모델을 지정합니다",
+      "title": "AI 아트 자동 주제 명명"
+    },
+    "promptEnhancement": {
+      "label": "프롬프트 향상 모델",
+      "modelDesc": "사용자 프롬프트 향상에 사용되는 모델을 지정합니다",
+      "title": "프롬프트 향상"
     },
     "helpInfo": "새 도우미를 생성할 때 기본 도우미 설정이 기본값으로 사용됩니다.",
     "historyCompress": {

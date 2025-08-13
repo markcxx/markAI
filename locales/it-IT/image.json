@@ -42,6 +42,10 @@
       "label": "Larghezza"
     }
   },
+  "enhancement": {
+    "title": "Miglioramento del prompt",
+    "description": "Usa un modello AI per ottimizzare i tuoi prompt e generare descrizioni di immagini più accurate."
+  },
   "generation": {
     "actions": {
       "applySeed": "Applica seme",
@@ -52,6 +56,8 @@
       "deleteBatch": "Elimina batch",
       "download": "Scarica",
       "downloadFailed": "Download immagine fallito",
+      "enhancePrompt": "Migliora prompt",
+      "enhancing": "Miglioramento in corso",
       "errorCopied": "Messaggio di errore copiato negli appunti",
       "errorCopyFailed": "Copia messaggio di errore fallita",
       "generate": "Genera",

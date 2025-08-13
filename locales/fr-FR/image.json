@@ -42,6 +42,10 @@
       "label": "Largeur"
     }
   },
+  "enhancement": {
+    "title": "Amélioration de l'invite",
+    "description": "Utilisez un modèle d'IA pour optimiser vos invites et générer des descriptions d'images plus précises."
+  },
   "generation": {
     "actions": {
       "applySeed": "Appliquer la graine",
@@ -52,6 +56,8 @@
       "deleteBatch": "Supprimer le lot",
       "download": "Télécharger",
       "downloadFailed": "Échec du téléchargement de l'image",
+      "enhancePrompt": "Améliorer le prompt",
+      "enhancing": "Amélioration en cours",
       "errorCopied": "Message d'erreur copié dans le presse-papiers",
       "errorCopyFailed": "Échec de la copie du message d'erreur",
       "generate": "Générer",

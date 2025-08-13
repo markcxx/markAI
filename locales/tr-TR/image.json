@@ -42,6 +42,10 @@
       "label": "Genişlik"
     }
   },
+  "enhancement": {
+    "title": "İstem Geliştirme",
+    "description": "İstemlerinizi optimize etmek ve daha doğru görsel açıklamaları oluşturmak için bir yapay zeka modeli kullanın."
+  },
   "generation": {
     "actions": {
       "applySeed": "Tohum Uygula",
@@ -52,6 +56,8 @@
       "deleteBatch": "Toplu Silme",
       "download": "İndir",
       "downloadFailed": "Resim indirilemedi",
+      "enhancePrompt": "İpucunu Geliştir",
+      "enhancing": "Geliştiriliyor",
       "errorCopied": "Hata mesajı panoya kopyalandı",
       "errorCopyFailed": "Hata mesajı kopyalanamadı",
       "generate": "Oluştur",
@@ -70,6 +76,10 @@
       "failed": "Oluşturma başarısız",
       "generating": "Oluşturuluyor..."
     }
+  },
+  "imageGeneration": {
+    "title": "Görsel Oluşturma",
+    "description": "Açıklamanıza göre görsel oluşturmak için bir yapay zeka modeli kullanın."
   },
   "notSupportGuide": {
     "desc": "Mevcut dağıtım örneği istemci veritabanı modundadır, AI resim oluşturma özelliği kullanılamaz. Lütfen <1>sunucu veritabanı dağıtım moduna</1> geçin veya doğrudan <3>LobeChat Cloud</3> kullanın",

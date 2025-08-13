@@ -42,6 +42,10 @@
       "label": "Szerokość"
     }
   },
+  "enhancement": {
+    "title": "Ulepszanie podpowiedzi",
+    "description": "Użyj modelu AI do optymalizacji podpowiedzi i generowania dokładniejszych opisów obrazów."
+  },
   "generation": {
     "actions": {
       "applySeed": "Zastosuj nasiono",
@@ -52,6 +56,8 @@
       "deleteBatch": "Usuń partię",
       "download": "Pobierz",
       "downloadFailed": "Pobieranie obrazu nie powiodło się",
+      "enhancePrompt": "Ulepsz podpowiedź",
+      "enhancing": "Ulepszanie",
       "errorCopied": "Informacja o błędzie skopiowana do schowka",
       "errorCopyFailed": "Kopiowanie informacji o błędzie nie powiodło się",
       "generate": "Generuj",
@@ -70,6 +76,10 @@
       "failed": "Generowanie nie powiodło się",
       "generating": "Generowanie..."
     }
+  },
+  "imageGeneration": {
+    "title": "Generowanie obrazów",
+    "description": "Użyj modelu AI do generowania obrazów na podstawie opisu."
   },
   "notSupportGuide": {
     "desc": "Aktualna instancja wdrożeniowa działa w trybie bazy danych klienta i nie obsługuje funkcji generowania obrazów AI. Proszę przełączyć się na <1>tryb wdrożenia bazy danych serwera</1> lub bezpośrednio skorzystać z <3>LobeChat Cloud</3>",

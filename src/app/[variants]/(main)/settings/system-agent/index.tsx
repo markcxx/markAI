@@ -12,6 +12,7 @@ const Page = () => {
     <>
       <SystemAgentForm systemAgentKey="topic" />
       <SystemAgentForm systemAgentKey="generationTopic" />
+      <SystemAgentForm systemAgentKey="promptEnhancement" />
       <SystemAgentForm systemAgentKey="translation" />
       <SystemAgentForm systemAgentKey="historyCompress" />
       <SystemAgentForm systemAgentKey="agentMeta" />

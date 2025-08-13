@@ -42,6 +42,10 @@
       "label": "너비"
     }
   },
+  "enhancement": {
+    "title": "프롬프트 개선",
+    "description": "AI 모델을 사용하여 프롬프트를 최적화하고 더 정확한 이미지 설명을 생성합니다."
+  },
   "generation": {
     "actions": {
       "applySeed": "시드 적용",
@@ -52,6 +56,8 @@
       "deleteBatch": "배치 삭제",
       "download": "다운로드",
       "downloadFailed": "이미지 다운로드 실패",
+      "enhancePrompt": "프롬프트 향상",
+      "enhancing": "향상 중",
       "errorCopied": "오류 정보가 클립보드에 복사되었습니다",
       "errorCopyFailed": "오류 정보 복사 실패",
       "generate": "생성",

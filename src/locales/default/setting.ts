@@ -510,6 +510,11 @@ export default {
       modelDesc: '指定用于压缩会话历史的模型',
       title: '自动总结会话历史',
     },
+    promptEnhancement: {
+      label: '提示词增强模型',
+      modelDesc: '指定用于增强用户提示词的模型',
+      title: '提示词增强',
+    },
     queryRewrite: {
       label: '提问重写模型',
       modelDesc: '指定用于优化用户提问的模型',

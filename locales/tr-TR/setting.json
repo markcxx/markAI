@@ -500,6 +500,11 @@
       "modelDesc": "Yapay zeka resimlerinin otomatik konu isimlendirmesi için belirlenen model",
       "title": "Yapay Zeka Resim Otomatik Konu İsimlendirme"
     },
+    "promptEnhancement": {
+      "label": "Prompt Geliştirme Modeli",
+      "modelDesc": "Kullanıcı promptlarını geliştirmek için belirlenen model",
+      "title": "Prompt Geliştirme"
+    },
     "helpInfo": "Yeni bir asistan oluşturduğunuzda, varsayılan asistan ayarları ön ayar olarak kullanılacaktır.",
     "historyCompress": {
       "label": "Oturum Geçmişi Modeli",

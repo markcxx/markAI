@@ -42,6 +42,10 @@
       "label": "Largura"
     }
   },
+  "enhancement": {
+    "title": "Aprimoramento de prompt",
+    "description": "Use um modelo de IA para otimizar seus prompts e gerar descrições de imagens mais precisas."
+  },
   "generation": {
     "actions": {
       "applySeed": "Aplicar semente",
@@ -52,6 +56,8 @@
       "deleteBatch": "Excluir lote",
       "download": "Baixar",
       "downloadFailed": "Falha ao baixar a imagem",
+      "enhancePrompt": "Aprimorar prompt",
+      "enhancing": "Aprimorando",
       "errorCopied": "Informação de erro copiada para a área de transferência",
       "errorCopyFailed": "Falha ao copiar a informação de erro",
       "generate": "Gerar",

@@ -500,6 +500,11 @@
       "modelDesc": "指定用于 AI 绘画自动命名话题的模型",
       "title": "AI 绘画自动命名话题"
     },
+    "promptEnhancement": {
+      "label": "提示词增强模型",
+      "modelDesc": "指定用于增强用户提示词的模型",
+      "title": "提示词增强"
+    },
     "helpInfo": "当创建新助手时，将以默认助手设置作为预设值。",
     "historyCompress": {
       "label": "会话历史模型",

@@ -2,14 +2,19 @@
 
 import { Button, TextArea } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Wand2 } from 'lucide-react';
 import type { KeyboardEvent } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
+import { chainPromptEnhancement } from '@/chains/promptEnhancement';
+import { chatService } from '@/services/chat';
 import { useImageStore } from '@/store/image';
-import { createImageSelectors } from '@/store/image/selectors';
+import { createImageSelectors, imageGenerationConfigSelectors } from '@/store/image/selectors';
 import { useGenerationConfigParam } from '@/store/image/slices/generationConfig/hooks';
+import { useUserStore } from '@/store/user';
+import { systemAgentSelectors } from '@/store/user/slices/settings/selectors';
 
 import PromptTitle from './Title';
 
@@ -30,6 +35,33 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
         : `0 0 0  ${token.colorBgContainerSecondary}`},
       0 32px 0 ${token.colorBgContainerSecondary};
   `,
+  textarea: css`
+    resize: none;
+
+    min-height: 64px;
+    padding-block: 12px;
+    padding-inline: 16px;
+    border: 2px solid rgba(0, 0, 0, 6%);
+    border-radius: 8px;
+
+    font-size: 14px;
+    line-height: 20px;
+
+    background-color: transparent;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: rgba(22, 119, 255, 40%) !important;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 10%) !important;
+    }
+
+    &:focus {
+      border-color: #1677ff !important;
+      outline: none !important;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 20%) !important;
+    }
+  `,
   wrapper: css`
     display: flex;
     flex-direction: column;
@@ -46,9 +78,76 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
   const { value, setValue } = useGenerationConfigParam('prompt');
   const isCreating = useImageStore(createImageSelectors.isCreating);
   const createImage = useImageStore((s) => s.createImage);
+  const [isEnhancing, setIsEnhancing] = useState(false);
+  const promptEnhancementConfig = useUserStore(systemAgentSelectors.promptEnhancement);
+  const promptEnhancementEnabled = useImageStore(
+    imageGenerationConfigSelectors.promptEnhancementEnabled,
+  );
 
   const handleGenerate = async () => {
     await createImage();
+  };
+
+  const handleEnhancePrompt = async () => {
+    if (
+      !value.trim() ||
+      !promptEnhancementEnabled ||
+      !promptEnhancementConfig?.model ||
+      !promptEnhancementConfig?.provider
+    ) {
+      return;
+    }
+
+    setIsEnhancing(true);
+    try {
+      const enhancementPayload = chainPromptEnhancement(value);
+
+      // 转换 OpenAIChatMessage[] 为 ChatMessage[]
+      const messages =
+        enhancementPayload.messages?.map((msg, index) => ({
+          content: typeof msg.content === 'string' ? msg.content : '',
+          createdAt: Date.now(),
+          id: `enhancement_${index}`,
+          meta: {},
+          role: msg.role,
+          updatedAt: Date.now(),
+        })) || [];
+
+      // 使用 Promise 包装回调方式的 API
+      const enhancedPrompt = await new Promise<string>((resolve, reject) => {
+        let assistantContent = '';
+
+        chatService.createAssistantMessage(
+          {
+            ...enhancementPayload,
+            messages,
+            model: promptEnhancementConfig.model,
+            provider: promptEnhancementConfig.provider,
+          },
+          {
+            onErrorHandle: (error) => {
+              reject(error);
+            },
+            onFinish: async () => {
+              resolve(assistantContent.trim() || value);
+            },
+            onMessageHandle: (message) => {
+              if (message.type === 'text') {
+                assistantContent += message.text;
+              }
+            },
+          },
+        );
+      });
+
+      if (enhancedPrompt && enhancedPrompt !== value) {
+        setValue(enhancedPrompt);
+      }
+    } catch (error) {
+      console.error('Prompt enhancement failed:', error);
+    } finally {
+      setIsEnhancing(false);
+    }
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -81,31 +180,58 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
       >
         <TextArea
           autoSize={{ maxRows: 6, minRows: 3 }}
+          className={styles.textarea}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={t('config.prompt.placeholder')}
-          style={{
-            borderRadius: 0,
-            padding: 0,
-          }}
           value={value}
-          variant={'borderless'}
         />
-        <Button
-          disabled={!value}
-          icon={Sparkles}
-          loading={isCreating}
-          onClick={handleGenerate}
-          size={'large'}
-          style={{
-            fontWeight: 500,
-            height: 64,
-            minWidth: 64,
-            width: 64,
-          }}
-          title={isCreating ? t('generation.status.generating') : t('generation.actions.generate')}
-          type={'primary'}
-        />
+        <Flexbox gap={8} horizontal>
+          {promptEnhancementEnabled &&
+            promptEnhancementConfig?.model &&
+            promptEnhancementConfig?.provider && (
+              <Button
+                disabled={!value.trim() || isEnhancing || isCreating}
+                icon={Wand2}
+                loading={isEnhancing}
+                onClick={handleEnhancePrompt}
+                size={'large'}
+                style={{
+                  fontWeight: 500,
+                  height: 64,
+                  minWidth: 64,
+                  width: 64,
+                }}
+                title={
+                  isEnhancing
+                    ? t('generation.actions.enhancing')
+                    : t('generation.actions.enhancePrompt')
+                }
+                type={'default'}
+              />
+            )}
+          <Button
+            disabled={!value.trim() || isEnhancing || isCreating}
+            icon={Sparkles}
+            loading={isCreating || isEnhancing}
+            onClick={handleGenerate}
+            size={'large'}
+            style={{
+              fontWeight: 500,
+              height: 64,
+              minWidth: 64,
+              width: 64,
+            }}
+            title={
+              isCreating
+                ? t('generation.status.generating')
+                : isEnhancing
+                  ? t('generation.actions.enhancing')
+                  : t('generation.actions.generate')
+            }
+            type={'primary'}
+          />
+        </Flexbox>
       </Flexbox>
     </Flexbox>
   );

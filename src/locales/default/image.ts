@@ -42,6 +42,10 @@ export default {
       label: '宽度',
     },
   },
+  enhancement: {
+    description: '使用AI模型优化您的提示词，生成更精确的图像描述',
+    title: '提示词增强',
+  },
   generation: {
     actions: {
       applySeed: '应用种子',
@@ -52,6 +56,8 @@ export default {
       deleteBatch: '删除批次',
       download: '下载',
       downloadFailed: '下载图片失败，请检查网络连接或 S3 存储服务的跨域配置',
+      enhancePrompt: '增强提示词',
+      enhancing: '增强中...',
       errorCopied: '错误信息已复制到剪贴板',
       errorCopyFailed: '复制错误信息失败',
       generate: '生成',

@@ -42,6 +42,10 @@
       "label": "Breite"
     }
   },
+  "enhancement": {
+    "title": "Prompt-Verbesserung",
+    "description": "Verwenden Sie ein KI-Modell, um Ihre Prompts zu optimieren und genauere Bildbeschreibungen zu generieren."
+  },
   "generation": {
     "actions": {
       "applySeed": "Saatgut anwenden",
@@ -52,6 +56,8 @@
       "deleteBatch": "Batch löschen",
       "download": "Herunterladen",
       "downloadFailed": "Bild-Download fehlgeschlagen",
+      "enhancePrompt": "Prompt verbessern",
+      "enhancing": "Verbesserung läuft",
       "errorCopied": "Fehlermeldung wurde in die Zwischenablage kopiert",
       "errorCopyFailed": "Fehlermeldung kopieren fehlgeschlagen",
       "generate": "Generieren",
