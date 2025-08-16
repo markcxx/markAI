@@ -1,5 +1,5 @@
 import { ActionIcon, ActionIconProps } from '@lobehub/ui';
-import { Github, User } from 'lucide-react';
+import { BookOpen, Github, User } from 'lucide-react';
 import Link from 'next/link';
 import { memo, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
@@ -30,6 +30,14 @@ const BottomActions = memo(() => {
             />
           </Link>
         )}
+        <Link aria-label={'文档'} href={'https://doc.chatai.markqq.com'} target={'_blank'}>
+          <ActionIcon
+            icon={BookOpen}
+            size={ICON_SIZE}
+            title={'文档'}
+            tooltipProps={{ placement: 'right' }}
+          />
+        </Link>
         <ActionIcon
           icon={User}
           onClick={() => setShowDeveloperPanel(true)}
