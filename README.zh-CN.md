@@ -5,22 +5,23 @@
 <h1>MarkAI</h1>
 
 现代化设计的开源 ChatGPT/LLMs 聊天应用与开发框架<br/>
-支持语音合成、多模态、可扩展的（\[function call]\[docs-functionc-call]）插件系统<br/>
+支持语音合成、多模态、可扩展的（[function call][docs-functionc-call]）插件系统<br/>
 一键**免费**拥有你自己的 ChatGPT/Gemini/Claude/Ollama 应用
 
 [English](./README.md) · **简体中文**
 
 <!-- SHIELD GROUP -->
 
-\[!\[]\[github-release-shield]]\[github-release-link]
-\[!\[]\[docker-release-shield]]\[docker-release-link]
-\[!\[]\[vercel-shield]]\[vercel-link]
-\[!\[]\[discord-shield]]\[discord-link]<br/>
-\[!\[]\[codecov-shield]]\[codecov-link]
-\[!\[]\[github-action-test-shield]]\[github-action-test-link]
-\[!\[]\[github-action-release-shield]]\[github-action-release-link]
-\[!\[]\[github-releasedate-shield]]\[github-releasedate-link]<br/>
-\[!\[]\[github-license-shield]]\[github-license-link]<br>
+[![][github-release-shield]][github-release-link]
+[![][docker-release-shield]][docker-release-link]
+[![][vercel-shield]][vercel-link]
+[![][discord-shield]][discord-link]<br/>
+[![][codecov-shield]][codecov-link]
+[![][github-action-test-shield]][github-action-test-link]
+[![][github-action-release-shield]][github-action-release-link]
+[![][github-releasedate-shield]][github-releasedate-link]<br/>
+[![][github-license-shield]][github-license-link]<br>
+[![][sponsor-shield]][sponsor-link]
 
 <sup>探索私人生产力的未来。在个体崛起的时代中为你打造.</sup>
 
@@ -39,21 +40,21 @@
   - [🏪 MCP 市场](#-mcp-市场)
   - [🖥️ 桌面应用](#️-桌面应用)
   - [🌐 智能联网搜索](#-智能联网搜索)
-  - [\[思维链 (CoT)\]\[docs-feat-cot\]](#思维链-cotdocs-feat-cot)
-  - [\[分支对话\]\[docs-feat-branch\]](#分支对话docs-feat-branch)
-  - [\[支持白板 (Artifacts)\]\[docs-feat-artifacts\]](#支持白板-artifactsdocs-feat-artifacts)
-  - [\[文件上传 / 知识库\]\[docs-feat-knowledgebase\]](#文件上传--知识库docs-feat-knowledgebase)
-  - [\[多模型服务商支持\]\[docs-feat-provider\]](#多模型服务商支持docs-feat-provider)
-  - [\[支持本地大语言模型 (LLM)\]\[docs-feat-local\]](#支持本地大语言模型-llmdocs-feat-local)
-  - [\[模型视觉识别 (Model Visual)\]\[docs-feat-vision\]](#模型视觉识别-model-visualdocs-feat-vision)
-  - [\[TTS & STT 语音会话\]\[docs-feat-tts\]](#tts--stt-语音会话docs-feat-tts)
-  - [\[Text to Image 文生图\]\[docs-feat-t2i\]](#text-to-image-文生图docs-feat-t2i)
-  - [\[插件系统 (Tools Calling)\]\[docs-feat-plugin\]](#插件系统-tools-callingdocs-feat-plugin)
-  - [\[助手市场 (GPTs)\]\[docs-feat-agent\]](#助手市场-gptsdocs-feat-agent)
-  - [\[支持本地 / 远程数据库\]\[docs-feat-database\]](#支持本地--远程数据库docs-feat-database)
-  - [\[渐进式 Web 应用 (PWA)\]\[docs-feat-pwa\]](#渐进式-web-应用-pwadocs-feat-pwa)
-  - [\[移动设备适配\]\[docs-feat-mobile\]](#移动设备适配docs-feat-mobile)
-  - [\[自定义主题\]\[docs-feat-theme\]](#自定义主题docs-feat-theme)
+  - [思维链 (CoT)](#思维链-cot)
+  - [分支对话](#分支对话)
+  - [支持白板 (Artifacts)](#支持白板-artifacts)
+  - [文件上传 / 知识库](#文件上传--知识库)
+  - [多模型服务商支持](#多模型服务商支持)
+  - [支持本地大语言模型 (LLM)](#支持本地大语言模型-llm)
+  - [模型视觉识别 (Model Visual)](#模型视觉识别-model-visual)
+  - [TTS & STT 语音会话](#tts--stt-语音会话)
+  - [Text to Image 文生图](#text-to-image-文生图)
+  - [插件系统 (Tools Calling)](#插件系统-tools-calling)
+  - [助手市场 (GPTs)](#助手市场-gpts)
+  - [支持本地 / 远程数据库](#支持本地--远程数据库)
+  - [渐进式 Web 应用 (PWA)](#渐进式-web-应用-pwa)
+  - [移动设备适配](#移动设备适配)
+  - [自定义主题](#自定义主题)
   - [`*` 更多特性](#-更多特性)
 
 ####
@@ -69,9 +70,9 @@
 
 不论普通用户与专业开发者，MarkAI 旨在成为所有人的 AI Agent 实验场。MarkAI 目前正在积极开发中，有任何需求或者问题，欢迎提交问题反馈。
 
-| \[!\[]\[vercel-shield-badge]]\[vercel-link]   | 无需安装或注册！访问我们的网站，快速体验                                     |
-| :-------------------------------------------- | :--------------------------------------------------------------------------- |
-| \[!\[]\[discord-shield-badge]]\[discord-link] | 加入我们的 Discord 社区！这是你可以与开发者和其他 LobeHub 热衷用户交流的地方 |
+| [![][vercel-shield-badge]][vercel-link]   | 无需安装或注册！访问我们的网站，快速体验                                     |
+| :---------------------------------------- | :--------------------------------------------------------------------------- |
+| [![][discord-shield-badge]][discord-link] | 加入我们的 Discord 社区！这是你可以与开发者和其他 LobeHub 热衷用户交流的地方 |
 
 > \[!IMPORTANT]
 >
@@ -93,7 +94,7 @@
 
 将对话转化为强大的工作流程，连接数据库、API、文件系统等。体验真正理解并与你的世界互动的 AI Agent。
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ### 🏪 MCP 市场
 
@@ -103,7 +104,7 @@
 
 从生产力工具到开发环境，发现扩展 AI 覆盖范围和效率的新方式。与社区连接，找到满足特定需求的完美插件。
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ### 🖥️ 桌面应用
 
@@ -115,7 +116,7 @@
 
 体验更快的响应时间、更好的资源管理和与 AI 助手的更稳定连接。桌面应用专为要求 AI 工具最佳性能的用户设计。
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ### 🌐 智能联网搜索
 
@@ -127,21 +128,21 @@
 
 访问实时信息，验证事实，探索当前事件，无需离开对话。你的 AI 成为通向世界知识的门户，始终保持最新和全面。
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Chain of Thought](./public/images/MultipleModels.png)
 
-### \[思维链 (CoT)]\[docs-feat-cot]
+### [思维链 (CoT)][docs-feat-cot]
 
 体验前所未有的 AI 推理过程。通过创新的思维链（CoT）可视化功能，您可以实时观察复杂问题是如何一步步被解析的。这项突破性的功能为 AI 的决策过程提供了前所未有的透明度，让您能够清晰地了解结论是如何得出的。
 
 通过将复杂的推理过程分解为清晰的逻辑步骤，您可以更好地理解和验证 AI 的解题思路。无论您是在调试问题、学习知识，还是单纯对 AI 推理感兴趣，思维链可视化都能将抽象思维转化为一种引人入胜的互动体验。
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Branching Conversations](./public/images/chatmode_chat_light.webp)
 
-### \[分支对话]\[docs-feat-branch]
+### [分支对话][docs-feat-branch]
 
 为您带来更自然、更灵活的 AI 对话方式。通过分支对话功能，您的讨论可以像人类对话一样自然延伸。在任意消息处创建新的对话分支，让您在保留原有上下文的同时，自由探索不同的对话方向。
 
@@ -152,11 +153,11 @@
 
 这项突破性功能将线性对话转变为动态的树状结构，让您能够更深入地探索想法，实现更高效的互动体验。
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Artifacts Support](./public/images/Wenshengtu.png)
 
-### \[支持白板 (Artifacts)]\[docs-feat-artifacts]
+### [支持白板 (Artifacts)][docs-feat-artifacts]
 
 体验集成于 LobeChat 的 Claude Artifacts 能力。这项革命性功能突破了 AI 人机交互的边界，让您能够实时创建和可视化各种格式的内容。
 
@@ -166,9 +167,9 @@
 - 实时构建与渲染交互式 HTML 页面
 - 输出多种格式的专业文档
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
-### \[文件上传 / 知识库]\[docs-feat-knowledgebase]
+### [文件上传 / 知识库][docs-feat-knowledgebase]
 
 MarkAI 支持文件上传与知识库功能，你可以上传文件、图片、音频、视频等多种类型的文件，以及创建知识库，方便用户管理和查找文件。同时在对话中使用文件和知识库功能，实现更加丰富的对话体验。
 
@@ -176,11 +177,11 @@ MarkAI 支持文件上传与知识库功能，你可以上传文件、图片、�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
-### \[多模型服务商支持]\[docs-feat-provider]
+### [多模型服务商支持][docs-feat-provider]
 
 在 MarkAI 的不断发展过程中，我们深刻理解到在提供 AI 会话服务时模型服务商的多样性对于满足社区需求的重要性。因此，我们不再局限于单一的模型服务商，而是拓展了对多种模型服务商的支持，以便为用户提供更为丰富和多样化的会话选择。
 
@@ -249,23 +250,23 @@ MarkAI 支持文件上传与知识库功能，你可以上传文件、图片、�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Local LLM Support](./public/images/Agent.png)
 
-### \[支持本地大语言模型 (LLM)]\[docs-feat-local]
+### [支持本地大语言模型 (LLM)][docs-feat-local]
 
 为了满足特定用户的需求，MarkAI 还基于 [Ollama](https://ollama.ai) 支持了本地模型的使用，让用户能够更灵活地使用自己的或第三方的模型。
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
-### \[模型视觉识别 (Model Visual)]\[docs-feat-vision]
+### [模型视觉识别 (Model Visual)][docs-feat-vision]
 
 MarkAI 已经支持 OpenAI 最新的 [`gpt-4-vision`](https://platform.openai.com/docs/guides/vision) 支持视觉识别的模型，这是一个具备视觉识别能力的多模态应用。
 用户可以轻松上传图片或者拖拽图片到对话框中，助手将能够识别图片内容，并在此基础上进行智能对话，构建更智能、更多元化的聊天场景。
@@ -274,13 +275,13 @@ MarkAI 已经支持 OpenAI 最新的 [`gpt-4-vision`](https://platform.openai.co
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![TTS & STT Voice Conversation](./public/images/TTS.png)
 
-### \[TTS & STT 语音会话]\[docs-feat-tts]
+### [TTS & STT 语音会话][docs-feat-tts]
 
 MarkAI 支持文字转语音（Text-to-Speech，TTS）和语音转文字（Speech-to-Text，STT）技术，这使得我们的应用能够将文本信息转化为清晰的语音输出，用户可以像与真人交谈一样与我们的对话助手进行交流。
 用户可以从多种声音中选择，给助手搭配合适的音源。 同时，对于那些倾向于听觉学习或者想要在忙碌中获取信息的用户来说，TTS 提供了一个极佳的解决方案。
@@ -289,13 +290,13 @@ MarkAI 支持文字转语音（Text-to-Speech，TTS）和语音转文字（Speec
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Text to Image Generation](./public/images/Wenshengtu.png)
 
-### \[Text to Image 文生图]\[docs-feat-t2i]
+### [Text to Image 文生图][docs-feat-t2i]
 
 支持最新的文本到图片生成技术，MarkAI 现在能够让用户在与助手对话中直接调用文生图工具进行创作。
 通过利用 [`DALL-E 3`](https://openai.com/dall-e-3)、[`MidJourney`](https://www.midjourney.com/) 和 [`Pollinations`](https://pollinations.ai/) 等 AI 工具的能力， 助手们现在可以将你的想法转化为图像。
@@ -303,13 +304,13 @@ MarkAI 支持文字转语音（Text-to-Speech，TTS）和语音转文字（Speec
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Plugin System](./public/images/plugins.png)
 
-### \[插件系统 (Tools Calling)]\[docs-feat-plugin]
+### [插件系统 (Tools Calling)][docs-feat-plugin]
 
 MarkAI 的插件生态系统是其核心功能的重要扩展，它极大地增强了 ChatGPT 的实用性和灵活性。
 
@@ -334,13 +335,13 @@ MarkAI 的插件生态系统是其核心功能的重要扩展，它极大地增�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Agent Market](./public/images/Agent.png)
 
-### \[助手市场 (GPTs)]\[docs-feat-agent]
+### [助手市场 (GPTs)][docs-feat-agent]
 
 在 MarkAI 的助手市场中，创作者们可以发现一个充满活力和创新的社区，它汇聚了众多精心设计的助手，这些助手不仅在工作场景中发挥着重要作用，也在学习过程中提供了极大的便利。
 我们的市场不仅是一个展示平台，更是一个协作的空间。在这里，每个人都可以贡献自己的智慧，分享个人开发的助手。
@@ -369,11 +370,11 @@ MarkAI 的插件生态系统是其核心功能的重要扩展，它极大地增�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
-### \[支持本地 / 远程数据库]\[docs-feat-database]
+### [支持本地 / 远程数据库][docs-feat-database]
 
 MarkAI 支持同时使用服务端数据库和本地数据库。根据您的需求，您可以选择合适的部署方案：
 
@@ -384,13 +385,13 @@ MarkAI 支持同时使用服务端数据库和本地数据库。根据您的需�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Progressive Web App](./public/images/markai.png)
 
-### \[渐进式 Web 应用 (PWA)]\[docs-feat-pwa]
+### [渐进式 Web 应用 (PWA)][docs-feat-pwa]
 
 我们深知在当今多设备环境下为用户提供无缝体验的重要性。为此，我们采用了渐进式 Web 应用 [PWA](https://support.google.com/chrome/answer/9658361) 技术，
 这是一种能够将网页应用提升至接近原生应用体验的现代 Web 技术。通过 PWA，MarkAI 能够在桌面和移动设备上提供高度优化的用户体验，同时保持轻量级和高性能的特点。
@@ -406,25 +407,25 @@ MarkAI 支持同时使用服务端数据库和本地数据库。根据您的需�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Mobile Device Adaptation](./public/images/chatmode_chat_dark.webp)
 
-### \[移动设备适配]\[docs-feat-mobile]
+### [移动设备适配][docs-feat-mobile]
 
 针对移动设备进行了一系列的优化设计，以提升用户的移动体验。目前，我们正在对移动端的用户体验进行版本迭代，以实现更加流畅和直观的交互。如果您有任何建议或想法，我们非常欢迎您通过 GitHub Issues 或者 Pull Requests 提供反馈。
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Custom Themes](./public/images/theme_light.webp)
 
-### \[自定义主题]\[docs-feat-theme]
+### [自定义主题][docs-feat-theme]
 
 作为设计工程师出身，MarkAI 在界面设计上充分考虑用户的个性化体验，因此引入了灵活多变的主题模式，其中包括日间的亮色模式和夜间的深色模式。
 除了主题模式的切换，还提供了一系列的颜色定制选项，允许用户根据自己的喜好来调整应用的主题色彩。无论是想要沉稳的深蓝，还是希望活泼的桃粉，或者是专业的灰白，用户都能够在 MarkAI 中找到匹配自己风格的颜色选择。
@@ -435,7 +436,7 @@ MarkAI 支持同时使用服务端数据库和本地数据库。根据您的需�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
@@ -459,7 +460,7 @@ MarkAI 支持同时使用服务端数据库和本地数据库。根据您的需�
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
@@ -473,3 +474,45 @@ This project is [Apache 2.0](./LICENSE) licensed.
 
 Copyright © 2025 MarkAI. <br />
 This project is [Apache 2.0](./LICENSE) licensed.
+
+<!-- LINK GROUP -->
+
+[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
+[codecov-link]: https://codecov.io/gh/lobehub/lobe-chat
+[codecov-shield]: https://img.shields.io/codecov/c/github/lobehub/lobe-chat?labelColor=black&style=flat-square&logo=codecov&logoColor=white
+[discord-link]: https://discord.gg/AYFPHvv2jT
+[discord-shield]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square
+[discord-shield-badge]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=for-the-badge
+[docker-release-link]: https://hub.docker.com/r/lobehub/lobe-chat-database
+[docker-release-shield]: https://img.shields.io/docker/v/lobehub/lobe-chat-database?color=369eff&label=docker&labelColor=black&logo=docker&logoColor=white&style=flat-square&sort=semver
+[docs-feat-agent]: https://lobehub.com/docs/usage/features/agent-market
+[docs-feat-artifacts]: https://lobehub.com/docs/usage/features/artifacts
+[docs-feat-branch]: https://lobehub.com/docs/usage/features/branching-conversations
+[docs-feat-cot]: https://lobehub.com/docs/usage/features/cot
+[docs-feat-database]: https://lobehub.com/docs/usage/features/database
+[docs-feat-knowledgebase]: https://lobehub.com/blog/knowledge-base
+[docs-feat-local]: https://lobehub.com/docs/usage/features/local-llm
+[docs-feat-mobile]: https://lobehub.com/docs/usage/features/mobile
+[docs-feat-plugin]: https://lobehub.com/docs/usage/features/plugin-system
+[docs-feat-provider]: https://lobehub.com/docs/usage/features/multi-ai-providers
+[docs-feat-pwa]: https://lobehub.com/docs/usage/features/pwa
+[docs-feat-t2i]: https://lobehub.com/docs/usage/features/text-to-image
+[docs-feat-theme]: https://lobehub.com/docs/usage/features/theme
+[docs-feat-tts]: https://lobehub.com/docs/usage/features/tts
+[docs-feat-vision]: https://lobehub.com/docs/usage/features/vision
+[docs-functionc-call]: https://lobehub.com/zh/blog/openai-function-call
+[github-action-release-link]: https://github.com/lobehub/lobe-chat/actions/workflows/release.yml
+[github-action-release-shield]: https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/release.yml?label=release&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
+[github-action-test-link]: https://github.com/lobehub/lobe-chat/actions/workflows/test.yml
+[github-action-test-shield]: https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/test.yml?label=test&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
+[github-license-link]: https://github.com/lobehub/lobe-chat/blob/main/LICENSE
+[github-license-shield]: https://img.shields.io/badge/license-apache%202.0-white?labelColor=black&style=flat-square
+[github-release-link]: https://github.com/lobehub/lobe-chat/releases
+[github-release-shield]: https://img.shields.io/github/v/release/lobehub/lobe-chat?color=369eff&labelColor=black&logo=github&style=flat-square
+[github-releasedate-link]: https://github.com/lobehub/lobe-chat/releases
+[github-releasedate-shield]: https://img.shields.io/github/release-date/lobehub/lobe-chat?labelColor=black&style=flat-square
+[sponsor-link]: https://opencollective.com/lobehub 'Become ❤ LobeHub Sponsor'
+[sponsor-shield]: https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&logoColor=white&style=flat-square
+[vercel-link]: https://chat-preview.lobehub.com
+[vercel-shield]: https://img.shields.io/badge/vercel-online-55b467?labelColor=black&logo=vercel&style=flat-square
+[vercel-shield-badge]: https://img.shields.io/badge/TRY%20LOBECHAT-ONLINE-55b467?labelColor=black&logo=vercel&style=for-the-badge

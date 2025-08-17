@@ -12,16 +12,16 @@ One-click **FREE** deployment of your private OpenAI ChatGPT/Claude/Gemini/Groq/
 
 <!-- SHIELD GROUP -->
 
-\[!\[]\[github-release-shield]]\[github-release-link]
-\[!\[]\[docker-release-shield]]\[docker-release-link]
-\[!\[]\[vercel-shield]]\[vercel-link]
-\[!\[]\[discord-shield]]\[discord-link]<br/>
-\[!\[]\[codecov-shield]]\[codecov-link]
-\[!\[]\[github-action-test-shield]]\[github-action-test-link]
-\[!\[]\[github-action-release-shield]]\[github-action-release-link]
-\[!\[]\[github-releasedate-shield]]\[github-releasedate-link]<br/>
-\[!\[]\[github-license-shield]]\[github-license-link]<br>
-\[!\[]\[sponsor-shield]]\[sponsor-link]
+[![][github-release-shield]][github-release-link]
+[![][docker-release-shield]][docker-release-link]
+[![][vercel-shield]][vercel-link]
+[![][discord-shield]][discord-link]<br/>
+[![][codecov-shield]][codecov-link]
+[![][github-action-test-shield]][github-action-test-link]
+[![][github-action-release-shield]][github-action-release-link]
+[![][github-releasedate-shield]][github-releasedate-link]<br/>
+[![][github-license-shield]][github-license-link]<br>
+[![][sponsor-shield]][sponsor-link]
 
 <sup>Pioneering the new age of thinking and creating. Built for you, the Super Individual.</sup>
 
@@ -40,21 +40,21 @@ One-click **FREE** deployment of your private OpenAI ChatGPT/Claude/Gemini/Groq/
   - [🏪 MCP Marketplace](#-mcp-marketplace)
   - [🖥️ Desktop App](#️-desktop-app)
   - [🌐 Smart Internet Search](#-smart-internet-search)
-  - [\[Chain of Thought\]\[docs-feat-cot\]](#chain-of-thoughtdocs-feat-cot)
-  - [\[Branching Conversations\]\[docs-feat-branch\]](#branching-conversationsdocs-feat-branch)
-  - [\[Artifacts Support\]\[docs-feat-artifacts\]](#artifacts-supportdocs-feat-artifacts)
-  - [\[File Upload /Knowledge Base\]\[docs-feat-knowledgebase\]](#file-upload-knowledge-basedocs-feat-knowledgebase)
-  - [\[Multi-Model Service Provider Support\]\[docs-feat-provider\]](#multi-model-service-provider-supportdocs-feat-provider)
-  - [\[Local Large Language Model (LLM) Support\]\[docs-feat-local\]](#local-large-language-model-llm-supportdocs-feat-local)
-  - [\[Model Visual Recognition\]\[docs-feat-vision\]](#model-visual-recognitiondocs-feat-vision)
-  - [\[TTS & STT Voice Conversation\]\[docs-feat-tts\]](#tts--stt-voice-conversationdocs-feat-tts)
-  - [\[Text to Image Generation\]\[docs-feat-t2i\]](#text-to-image-generationdocs-feat-t2i)
-  - [\[Plugin System (Function Calling)\]\[docs-feat-plugin\]](#plugin-system-function-callingdocs-feat-plugin)
-  - [\[Agent Market (GPTs)\]\[docs-feat-agent\]](#agent-market-gptsdocs-feat-agent)
-  - [\[Support Local / Remote Database\]\[docs-feat-database\]](#support-local--remote-databasedocs-feat-database)
-  - [\[Progressive Web App (PWA)\]\[docs-feat-pwa\]](#progressive-web-app-pwadocs-feat-pwa)
-  - [\[Mobile Device Adaptation\]\[docs-feat-mobile\]](#mobile-device-adaptationdocs-feat-mobile)
-  - [\[Custom Themes\]\[docs-feat-theme\]](#custom-themesdocs-feat-theme)
+  - [Chain of Thought](#chain-of-thought)
+  - [Branching Conversations](#branching-conversations)
+  - [Artifacts Support](#artifacts-support)
+  - [File Upload /Knowledge Base](#file-upload-knowledge-base)
+  - [Multi-Model Service Provider Support](#multi-model-service-provider-support)
+  - [Local Large Language Model (LLM) Support](#local-large-language-model-llm-support)
+  - [Model Visual Recognition](#model-visual-recognition)
+  - [TTS & STT Voice Conversation](#tts--stt-voice-conversation)
+  - [Text to Image Generation](#text-to-image-generation)
+  - [Plugin System (Function Calling)](#plugin-system-function-calling)
+  - [Agent Market (GPTs)](#agent-market-gpts)
+  - [Support Local / Remote Database](#support-local--remote-database)
+  - [Progressive Web App (PWA)](#progressive-web-app-pwa)
+  - [Mobile Device Adaptation](#mobile-device-adaptation)
+  - [Custom Themes](#custom-themes)
   - [`*` What's more](#-whats-more)
 
 ####
@@ -70,9 +70,9 @@ By adopting the Bootstrapping approach, we aim to provide developers and users w
 
 Whether for users or professional developers, MarkAI will be your AI Agent playground. Please be aware that MarkAI is currently under active development, and feedback is welcome for any issues encountered.
 
-| \[!\[]\[vercel-shield-badge]]\[vercel-link]   | No installation or registration necessary! Visit our website to experience it firsthand.                           |
-| :-------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
-| \[!\[]\[discord-shield-badge]]\[discord-link] | Join our Discord community! This is where you can connect with developers and other enthusiastic users of LobeHub. |
+| [![][vercel-shield-badge]][vercel-link]   | No installation or registration necessary! Visit our website to experience it firsthand.                           |
+| :---------------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
+| [![][discord-shield-badge]][discord-link] | Join our Discord community! This is where you can connect with developers and other enthusiastic users of LobeHub. |
 
 > \[!IMPORTANT]
 >
@@ -92,7 +92,7 @@ Unlock the full potential of your AI by enabling smooth, secure, and dynamic int
 
 Transform your conversations into powerful workflows by connecting to databases, APIs, file systems, and more. Experience the freedom of AI that truly understands and interacts with your world.
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ### 🏪 MCP Marketplace
 
@@ -102,7 +102,7 @@ Browse a growing library of MCP plugins to expand your AI's capabilities and str
 
 From productivity tools to development environments, discover new ways to extend your AI's reach and effectiveness. Connect with the community and find the perfect plugins for your specific needs.
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Desktop App](./public/images/markai.png)
 
@@ -114,7 +114,7 @@ Get the full MarkAI experience without browser limitations—lightweight, focuse
 
 Experience faster response times, better resource management, and a more stable connection to your AI assistant. The desktop app is designed for users who demand the best performance from their AI tools.
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Smart Internet Search](./public/images/online-search.png)
 
@@ -126,21 +126,21 @@ With real-time internet access, your AI keeps up with the world—news, data, tr
 
 Access live information, verify facts, and explore current events without leaving your conversation. Your AI becomes a gateway to the world's knowledge, always current and comprehensive.
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Chain of Thought](./public/images/MultipleModels.png)
 
-### \[Chain of Thought]\[docs-feat-cot]
+### [Chain of Thought][docs-feat-cot]
 
 Experience AI reasoning like never before. Watch as complex problems unfold step by step through our innovative Chain of Thought (CoT) visualization. This breakthrough feature provides unprecedented transparency into AI's decision-making process, allowing you to observe how conclusions are reached in real-time.
 
 By breaking down complex reasoning into clear, logical steps, you can better understand and validate the AI's problem-solving approach. Whether you're debugging, learning, or simply curious about AI reasoning, CoT visualization transforms abstract thinking into an engaging, interactive experience.
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Branching Conversations](./public/images/chatmode_chat_light.webp)
 
-### \[Branching Conversations]\[docs-feat-branch]
+### [Branching Conversations][docs-feat-branch]
 
 Introducing a more natural and flexible way to chat with AI. With Branch Conversations, your discussions can flow in multiple directions, just like human conversations do. Create new conversation branches from any message, giving you the freedom to explore different paths while preserving the original context.
 
@@ -151,11 +151,11 @@ Choose between two powerful modes:
 
 This groundbreaking feature transforms linear conversations into dynamic, tree-like structures, enabling deeper exploration of ideas and more productive interactions.
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 ![Artifacts Support](./public/images/Wenshengtu.png)
 
-### \[Artifacts Support]\[docs-feat-artifacts]
+### [Artifacts Support][docs-feat-artifacts]
 
 Experience the power of Claude Artifacts, now integrated into LobeChat. This revolutionary feature expands the boundaries of AI-human interaction, enabling real-time creation and visualization of diverse content formats.
 
@@ -165,9 +165,9 @@ Create and visualize with unprecedented flexibility:
 - Build and render interactive HTML pages in real-time
 - Produce professional documents in multiple formats
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
-### \[File Upload /Knowledge Base]\[docs-feat-knowledgebase]
+### [File Upload /Knowledge Base][docs-feat-knowledgebase]
 
 MarkAI supports file upload and knowledge base functionality. You can upload various types of files including documents, images, audio, and video, as well as create knowledge bases, making it convenient for users to manage and search for files. Additionally, you can utilize files and knowledge base features during conversations, enabling a richer dialogue experience.
 
@@ -175,11 +175,11 @@ MarkAI supports file upload and knowledge base functionality. You can upload var
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
-### \[Multi-Model Service Provider Support]\[docs-feat-provider]
+### [Multi-Model Service Provider Support][docs-feat-provider]
 
 In the continuous development of MarkAI, we deeply understand the importance of diversity in model service providers for meeting the needs of the community when providing AI conversation services. Therefore, we have expanded our support to multiple model service providers, rather than being limited to a single one, in order to offer users a more diverse and rich selection of conversations.
 
@@ -248,23 +248,23 @@ At the same time, we are also planning to support more model service providers. 
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Local LLM Support](./public/images/Agent.png)
 
-### \[Local Large Language Model (LLM) Support]\[docs-feat-local]
+### [Local Large Language Model (LLM) Support][docs-feat-local]
 
 To meet the specific needs of users, MarkAI also supports the use of local models based on [Ollama](https://ollama.ai), allowing users to flexibly use their own or third-party models.
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
-### \[Model Visual Recognition]\[docs-feat-vision]
+### [Model Visual Recognition][docs-feat-vision]
 
 MarkAI now supports OpenAI's latest [`gpt-4-vision`](https://platform.openai.com/docs/guides/vision) model with visual recognition capabilities,
 a multimodal intelligence that can perceive visuals. Users can easily upload or drag and drop images into the dialogue box,
@@ -276,13 +276,13 @@ Whether it's sharing images in daily use or interpreting images within specific 
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![TTS & STT Voice Conversation](./public/images/TTS.png)
 
-### \[TTS & STT Voice Conversation]\[docs-feat-tts]
+### [TTS & STT Voice Conversation][docs-feat-tts]
 
 MarkAI supports Text-to-Speech (TTS) and Speech-to-Text (STT) technologies, enabling our application to convert text messages into clear voice outputs,
 allowing users to interact with our conversational agent as if they were talking to a real person. Users can choose from a variety of voices to pair with the agent.
@@ -293,13 +293,13 @@ Users can choose the voice that suits their personal preferences or specific sce
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Text to Image Generation](./public/images/Wenshengtu.png)
 
-### \[Text to Image Generation]\[docs-feat-t2i]
+### [Text to Image Generation][docs-feat-t2i]
 
 With support for the latest text-to-image generation technology, MarkAI now allows users to invoke image creation tools directly within conversations with the agent. By leveraging the capabilities of AI tools such as [`DALL-E 3`](https://openai.com/dall-e-3), [`MidJourney`](https://www.midjourney.com/), and [`Pollinations`](https://pollinations.ai/), the agents are now equipped to transform your ideas into images.
 
@@ -307,13 +307,13 @@ This enables a more private and immersive creative process, allowing for the sea
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Plugin System](./public/images/plugins.png)
 
-### \[Plugin System (Function Calling)]\[docs-feat-plugin]
+### [Plugin System (Function Calling)][docs-feat-plugin]
 
 The plugin ecosystem of MarkAI is an important extension of its core functionality, greatly enhancing the practicality and flexibility of the MarkAI assistant.
 
@@ -338,13 +338,13 @@ In addition, these plugins are not limited to news aggregation, but can also ext
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Agent Market](./public/images/Agent.png)
 
-### \[Agent Market (GPTs)]\[docs-feat-agent]
+### [Agent Market (GPTs)][docs-feat-agent]
 
 In MarkAI Agent Marketplace, creators can discover a vibrant and innovative community that brings together a multitude of well-designed agents,
 which not only play an important role in work scenarios but also offer great convenience in learning processes.
@@ -352,7 +352,7 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 > \[!TIP]
 >
-> By \[🤖/🏪 Submit Agents]\[submit-agents-link], you can easily submit your agent creations to our platform.
+> By [🤖/🏪 Submit Agents][submit-agents-link], you can easily submit your agent creations to our platform.
 > Importantly, MarkAI has established a sophisticated automated internationalization (i18n) workflow,
 > capable of seamlessly translating your agent into multiple language versions.
 > This means that no matter what language your users speak, they can experience your agent without barriers.
@@ -377,11 +377,11 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
-### \[Support Local / Remote Database]\[docs-feat-database]
+### [Support Local / Remote Database][docs-feat-database]
 
 MarkAI supports the use of both server-side and local databases. Depending on your needs, you can choose the appropriate deployment solution:
 
@@ -392,13 +392,13 @@ Regardless of which database you choose, MarkAI can provide you with an excellen
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Progressive Web App](./public/images/markai.png)
 
-### \[Progressive Web App (PWA)]\[docs-feat-pwa]
+### [Progressive Web App (PWA)][docs-feat-pwa]
 
 We deeply understand the importance of providing a seamless experience for users in today's multi-device environment.
 Therefore, we have adopted Progressive Web Application ([PWA](https://support.google.com/chrome/answer/9658361)) technology,
@@ -419,25 +419,25 @@ providing smooth animations, responsive layouts, and adapting to different devic
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Mobile Device Adaptation](./public/images/chatmode_chat_dark.webp)
 
-### \[Mobile Device Adaptation]\[docs-feat-mobile]
+### [Mobile Device Adaptation][docs-feat-mobile]
 
 We have carried out a series of optimization designs for mobile devices to enhance the user's mobile experience. Currently, we are iterating on the mobile user experience to achieve smoother and more intuitive interactions. If you have any suggestions or ideas, we welcome you to provide feedback through GitHub Issues or Pull Requests.
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
 ![Custom Themes](./public/images/theme_light.webp)
 
-### \[Custom Themes]\[docs-feat-theme]
+### [Custom Themes][docs-feat-theme]
 
 As a design-engineering-oriented application, MarkAI places great emphasis on users' personalized experiences,
 hence introducing flexible and diverse theme modes, including a light mode for daytime and a dark mode for nighttime.
@@ -451,7 +451,7 @@ Whether it's a desire for a sober dark blue, a lively peach pink, or a professio
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
@@ -475,7 +475,7 @@ Beside these features, MarkAI also have much better basic technique underground:
 
 <div align="right">
 
-[!\[\]\[back-to-top\]](#readme-top)
+[![][back-to-top]](#readme-top)
 
 </div>
 
@@ -489,3 +489,45 @@ This project is [Apache 2.0](./LICENSE) licensed.
 
 Copyright © 2025 MarkAI. <br />
 This project is [Apache 2.0](./LICENSE) licensed.
+
+<!-- LINK GROUP -->
+
+[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
+[codecov-link]: https://codecov.io/gh/lobehub/lobe-chat
+[codecov-shield]: https://img.shields.io/codecov/c/github/lobehub/lobe-chat?labelColor=black&style=flat-square&logo=codecov&logoColor=white
+[discord-link]: https://discord.gg/AYFPHvv2jT
+[discord-shield]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square
+[discord-shield-badge]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=for-the-badge
+[docker-release-link]: https://hub.docker.com/r/lobehub/lobe-chat-database
+[docker-release-shield]: https://img.shields.io/docker/v/lobehub/lobe-chat-database?color=369eff&label=docker&labelColor=black&logo=docker&logoColor=white&style=flat-square&sort=semver
+[docs-feat-agent]: https://lobehub.com/docs/usage/features/agent-market
+[docs-feat-artifacts]: https://lobehub.com/docs/usage/features/artifacts
+[docs-feat-branch]: https://lobehub.com/docs/usage/features/branching-conversations
+[docs-feat-cot]: https://lobehub.com/docs/usage/features/cot
+[docs-feat-database]: https://lobehub.com/docs/usage/features/database
+[docs-feat-knowledgebase]: https://lobehub.com/blog/knowledge-base
+[docs-feat-local]: https://lobehub.com/docs/usage/features/local-llm
+[docs-feat-mobile]: https://lobehub.com/docs/usage/features/mobile
+[docs-feat-plugin]: https://lobehub.com/docs/usage/features/plugin-system
+[docs-feat-provider]: https://lobehub.com/docs/usage/features/multi-ai-providers
+[docs-feat-pwa]: https://lobehub.com/docs/usage/features/pwa
+[docs-feat-t2i]: https://lobehub.com/docs/usage/features/text-to-image
+[docs-feat-theme]: https://lobehub.com/docs/usage/features/theme
+[docs-feat-tts]: https://lobehub.com/docs/usage/features/tts
+[docs-feat-vision]: https://lobehub.com/docs/usage/features/vision
+[github-action-release-link]: https://github.com/lobehub/lobe-chat/actions/workflows/release.yml
+[github-action-release-shield]: https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/release.yml?label=release&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
+[github-action-test-link]: https://github.com/lobehub/lobe-chat/actions/workflows/test.yml
+[github-action-test-shield]: https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/test.yml?label=test&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
+[github-license-link]: https://github.com/lobehub/lobe-chat/blob/main/LICENSE
+[github-license-shield]: https://img.shields.io/badge/license-apache%202.0-white?labelColor=black&style=flat-square
+[github-release-link]: https://github.com/lobehub/lobe-chat/releases
+[github-release-shield]: https://img.shields.io/github/v/release/lobehub/lobe-chat?color=369eff&labelColor=black&logo=github&style=flat-square
+[github-releasedate-link]: https://github.com/lobehub/lobe-chat/releases
+[github-releasedate-shield]: https://img.shields.io/github/release-date/lobehub/lobe-chat?labelColor=black&style=flat-square
+[sponsor-link]: https://opencollective.com/lobehub 'Become ❤ LobeHub Sponsor'
+[sponsor-shield]: https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&logoColor=white&style=flat-square
+[submit-agents-link]: https://github.com/lobehub/lobe-chat-agents
+[vercel-link]: https://chat-preview.lobehub.com
+[vercel-shield]: https://img.shields.io/badge/vercel-online-55b467?labelColor=black&logo=vercel&style=flat-square
+[vercel-shield-badge]: https://img.shields.io/badge/TRY%20LOBECHAT-ONLINE-55b467?labelColor=black&logo=vercel&style=for-the-badge
