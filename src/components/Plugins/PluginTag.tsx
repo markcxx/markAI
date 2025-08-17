@@ -1,5 +1,5 @@
 import { Icon, Tag } from '@lobehub/ui';
-import { BadgeCheck, CircleUser, Package } from 'lucide-react';
+import { CircleUser, Package } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +17,6 @@ const PluginTag = memo<PluginTagProps>(
   ({ showIcon = true, author, type, showText = true, isMCP }) => {
     const { t } = useTranslation('plugin');
     const isCustom = type === 'customPlugin';
-    const isOfficial = author === 'LobeHub';
 
     const customTag = (
       <Tag color={'warning'} icon={showIcon && <Icon icon={Package} />} size={'small'}>
@@ -36,11 +35,7 @@ const PluginTag = memo<PluginTagProps>(
     if (isCustom) return customTag;
 
     return (
-      <Tag
-        color={isOfficial ? 'success' : undefined}
-        icon={showIcon && <Icon icon={isOfficial ? BadgeCheck : CircleUser} />}
-        size={'small'}
-      >
+      <Tag icon={showIcon && <Icon icon={CircleUser} />} size={'small'}>
         {showText && (author || t('store.communityPlugin'))}
       </Tag>
     );
