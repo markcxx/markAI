@@ -89,10 +89,12 @@ export const createCommonSlice: StateCreator<
             const preference = isEmpty ? DEFAULT_PREFERENCE : data.preference;
 
             // if there is avatar or userId (from client DB), update it into user
+            const currentUser = get().user;
             const user =
               data.avatar || data.userId
-                ? merge(get().user, {
-                    avatar: data.avatar,
+                ? merge(currentUser, {
+                    // 只有当前用户没有头像时，才使用服务器返回的头像
+                    avatar: currentUser?.avatar || data.avatar,
                     email: data.email,
                     firstName: data.firstName,
                     fullName: data.fullName,
@@ -100,7 +102,7 @@ export const createCommonSlice: StateCreator<
                     latestName: data.lastName,
                     username: data.username,
                   } as LobeUser)
-                : get().user;
+                : currentUser;
 
             set(
               {
