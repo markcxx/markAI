@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 import urlJoin from 'url-join';
 
-import { SOCIAL_URL } from '@/const/branding';
+import { DEVELOPER_LINKS , SOCIAL_URL } from '@/const/branding';
 import { AssistantNavKey, McpNavKey } from '@/types/discover';
 
 import { useDetailContext } from '../DetailProvider';
@@ -99,7 +99,7 @@ const Nav = memo<NavProps>(({ mobile, setActiveTab, activeTab = AssistantNavKey.
           <Link
             className={styles.link}
             href={urlJoin(
-              'https://github.com/markcxx/lobe-chat-agents/tree/main/locales',
+              `${DEVELOPER_LINKS.github}/lobe-chat-agents/tree/main/locales`,
               identifier,
             )}
             target={'_blank'}
@@ -109,7 +109,7 @@ const Nav = memo<NavProps>(({ mobile, setActiveTab, activeTab = AssistantNavKey.
         )}
         <Link
           className={styles.link}
-          href={'https://github.com/markcxx/lobe-chat-agents/issues/new/choose'}
+          href={`${DEVELOPER_LINKS.github}/lobe-chat-agents/issues/new/choose`}
           target={'_blank'}
         >
           {t('mcp.details.nav.reportIssue')}

@@ -102,8 +102,10 @@
     "removed": "Bu model listeden çıkarıldı, seçiminizi kaldırırsanız otomatik olarak kaldırılacaktır"
   },
   "ModelSwitchPanel": {
+    "collapse": "Daralt",
     "emptyModel": "Etkinleştirilmiş model bulunmamaktadır, lütfen ayarlara giderek açın",
     "emptyProvider": "Etkinleştirilmiş bir sağlayıcı yok, lütfen ayarlara gidin",
+    "expand": "Genişlet",
     "goToSettings": "Ayrıntılara git",
     "provider": "Sağlayıcı",
     "title": "Model"

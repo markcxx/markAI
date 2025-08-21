@@ -102,8 +102,10 @@
     "removed": "Il modello non è più nella lista, verrà rimosso automaticamente se deselezionato"
   },
   "ModelSwitchPanel": {
+    "collapse": "Comprimi",
     "emptyModel": "Nessun modello attivo. Vai alle impostazioni per attivarne uno.",
     "emptyProvider": "Nessun fornitore attivo, vai alle impostazioni per attivarlo",
+    "expand": "Espandi",
     "goToSettings": "Vai alle impostazioni",
     "provider": "Provider",
     "title": "Modello"

@@ -102,8 +102,10 @@
     "removed": "모델이 목록에서 제거되었습니다. 선택이 취소되면 자동으로 제거됩니다."
   },
   "ModelSwitchPanel": {
+    "collapse": "접기",
     "emptyModel": "활성화된 모델이 없습니다. 설정으로 이동하여 활성화하세요",
     "emptyProvider": "활성화된 서비스 제공자가 없습니다. 설정으로 가서 활성화하세요.",
+    "expand": "펼치기",
     "goToSettings": "설정으로 가기",
     "provider": "제공자",
     "title": "모델"

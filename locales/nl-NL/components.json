@@ -102,8 +102,10 @@
     "removed": "Dit model staat niet meer in de lijst. Als je het deselecteert, wordt het automatisch verwijderd."
   },
   "ModelSwitchPanel": {
+    "collapse": "Inklappen",
     "emptyModel": "No enabled model, please go to settings to enable.",
     "emptyProvider": "Geen ingeschakelde provider, ga naar instellingen om deze in te schakelen",
+    "expand": "Uitklappen",
     "goToSettings": "Ga naar instellingen",
     "provider": "Provider",
     "title": "Model"

@@ -100,6 +100,11 @@ const ModelSelect = memo<ModelSelectProps>(({ value, onChange, showAbility = tru
               }}
               size={'small'}
               title={isCollapsed ? t('ModelSwitchPanel.expand') : t('ModelSwitchPanel.collapse')}
+              tooltipProps={{
+                mouseEnterDelay: 0.5,
+                mouseLeaveDelay: 0.1,
+                placement: 'top',
+              }}
             />
             <ProviderItemRender
               logo={provider.logo}

@@ -102,8 +102,10 @@
     "removed": "该模型不在列表中，若取消选中将会自动移除"
   },
   "ModelSwitchPanel": {
+    "collapse": "折叠",
     "emptyModel": "没有启用的模型，请前往设置开启",
     "emptyProvider": "没有启用的服务商，请前往设置开启",
+    "expand": "展开",
     "goToSettings": "前往设置",
     "provider": "服务商",
     "title": "模型"

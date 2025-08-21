@@ -102,8 +102,10 @@
     "removed": "Le modèle n'est pas dans la liste, il sera automatiquement supprimé si vous annulez la sélection"
   },
   "ModelSwitchPanel": {
+    "collapse": "Réduire",
     "emptyModel": "Aucun modèle activé. Veuillez vous rendre dans les paramètres pour l'activer.",
     "emptyProvider": "Aucun fournisseur activé, veuillez aller dans les paramètres pour l'activer",
+    "expand": "Développer",
     "goToSettings": "Aller aux paramètres",
     "provider": "Fournisseur",
     "title": "Modèle"

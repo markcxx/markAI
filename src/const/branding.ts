@@ -23,6 +23,29 @@ export const SOCIAL_URL = {
   youtube: 'https://www.youtube.com/@lobehub',
 };
 
+// 开发者相关链接配置
+export const DEVELOPER_LINKS = {
+  // 个人链接
+  blog: 'https://www.markqq.com',
+  // 联系方式
+contact: {
+    email: '2811016860@qq.com',
+    qq: '2811016860',
+    wechat: 'C18583219975',
+  },
+
+  
+  
+github: 'https://github.com/markcxx',
+
+  
+  // 项目链接
+projects: {
+    cocoMusic: '/#',
+    vidFlowDesktop: 'https://vidflow.markqq.com/',
+  },
+};
+
 export const BRANDING_EMAIL = {
   business: 'hello@lobehub.com',
   support: 'support@lobehub.com',

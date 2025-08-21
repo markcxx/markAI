@@ -5,6 +5,7 @@ import { memo, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import DeveloperPanel from '@/components/DeveloperPanel';
+import { DEVELOPER_LINKS } from '@/const/branding';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 const ICON_SIZE: ActionIconProps['size'] = {
@@ -21,7 +22,7 @@ const BottomActions = memo(() => {
     <>
       <Flexbox gap={8}>
         {!hideGitHub && (
-          <Link aria-label={'GitHub'} href={'https://github.com/markcxx'} target={'_blank'}>
+          <Link aria-label={'GitHub'} href={DEVELOPER_LINKS.github} target={'_blank'}>
             <ActionIcon
               icon={Github}
               size={ICON_SIZE}

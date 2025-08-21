@@ -102,8 +102,10 @@
     "removed": "The model is not in the list. It will be automatically removed if deselected."
   },
   "ModelSwitchPanel": {
+    "collapse": "Collapse",
     "emptyModel": "No enabled model. Please go to settings to enable.",
     "emptyProvider": "No enabled providers. Please go to settings to enable one.",
+    "expand": "Expand",
     "goToSettings": "Go to settings",
     "provider": "Provider",
     "title": "Model"

@@ -102,8 +102,10 @@
     "removed": "Ten model nie znajduje się na liście, jeśli zostanie odznaczony, zostanie automatycznie usunięty"
   },
   "ModelSwitchPanel": {
+    "collapse": "Zwiń",
     "emptyModel": "Brak włączonych modeli, przejdź do ustawień i włącz je",
     "emptyProvider": "Nie ma aktywnego dostawcy usług, przejdź do ustawień, aby go włączyć",
+    "expand": "Rozwiń",
     "goToSettings": "Przejdź do ustawień",
     "provider": "Dostawca",
     "title": "Model"

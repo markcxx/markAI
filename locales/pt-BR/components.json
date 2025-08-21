@@ -102,8 +102,10 @@
     "removed": "Este modelo não está na lista, se for desmarcado, será removido automaticamente"
   },
   "ModelSwitchPanel": {
+    "collapse": "Recolher",
     "emptyModel": "Nenhum modelo habilitado. Por favor, vá para as configurações e habilite um.",
     "emptyProvider": "Nenhum provedor ativado, por favor vá para as configurações para ativar",
+    "expand": "Expandir",
     "goToSettings": "Ir para as configurações",
     "provider": "Fornecedor",
     "title": "Modelo"
