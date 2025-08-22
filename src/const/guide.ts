@@ -28,20 +28,20 @@ MarkAI 是由怪兽马尔克开发的多平台多服务商AI集成平台。这�
 - **插件系统**：支持扩展插件功能
 - **MCP服务支持**：支持HTTP或SSE协议的MCP服务
 
-### 暂不支持的功能
-- 知识库功能（作者暂无资金配置向量数据库服务器）
-- AI绘画/图像生成功能
+### 已全面支持的功能
+- 知识库功能：支持文件上传、向量化存储和智能检索
+- AI绘画/图像生成功能：支持多种AI绘画服务商
 
 ### 支持的AI服务商
 
 MarkAI 支持以下主要AI服务提供商：
 - **DeepSeek**：包括 deepseek-chat、deepseek-reasoner 等模型
-- **通义千问(Qwen)**：阿里巴巴的大语言模型系列
+- **通义千问(Qwen)**：阿里巴巴Qwen大语言模型系列
 - **SiliconCloud**：硅基流动提供的AI服务
-- **OpenAI**：GPT系列模型，包括GPT-4、GPT-3.5等
+- **OpenAI**：GPT系列模型，包括GPT-4、GPT-4o等
 - **Anthropic**：Claude系列模型
 - **Google**：Gemini系列模型
-- **Groq**：高性能推理服务
+- **ModelScope**：提供deepseek、Qwen、Glm、kimi等大模型
 - **OpenRouter**：多模型聚合服务
 - **HuggingFace**：开源模型托管平台
 - **智谱AI(Zhipu)**：GLM系列模型

@@ -68,7 +68,7 @@ const useStyles = createStyles(({ css, token, responsive }) => ({
 
 const AgentsSuggest = memo<{ mobile?: boolean }>(({ mobile }) => {
   const { t } = useTranslation('welcome');
-  const [randomSeed, setRandomSeed] = useState(1);
+  const [randomSeed, setRandomSeed] = useState(() => Math.floor(Math.random() * 10_000));
   const useAssistantList = useDiscoverStore((s) => s.useAssistantList);
 
   const { data: assistantList, isLoading } = useAssistantList({

@@ -3,14 +3,13 @@
 import { ActionIcon, Block } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
 import { shuffle } from 'lodash-es';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
-import { memo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import { BRANDING_NAME } from '@/const/branding';
-import { USAGE_DOCUMENTS } from '@/const/url';
 import { useSendMessage } from '@/features/ChatInput/useSend';
 import { useChatStore } from '@/store/chat';
 
@@ -37,7 +36,7 @@ const useStyles = createStyles(({ css, token, responsive }) => ({
   `,
 }));
 
-const qa = shuffle([
+const allQuestions = [
   'q01',
   'q02',
   'q03',
@@ -53,29 +52,48 @@ const qa = shuffle([
   'q13',
   'q14',
   'q15',
-]);
+];
 
 const QuestionSuggest = memo<{ mobile?: boolean }>(({ mobile }) => {
   const [updateInputMessage] = useChatStore((s) => [s.updateInputMessage]);
+  const [randomSeed, setRandomSeed] = useState(() => Math.floor(Math.random() * 10_000));
 
   const { t } = useTranslation('welcome');
   const { styles } = useStyles();
   const { send: sendMessage } = useSendMessage();
 
+  // 动态随机选择问题
+  const selectedQuestions = useMemo(() => {
+    const shuffled = shuffle([...allQuestions]);
+    return shuffled.slice(0, mobile ? 2 : 5);
+  }, [mobile, randomSeed]);
+
+  const handleRefresh = () => {
+    setRandomSeed(Math.floor(Math.random() * 10_000));
+  };
+
   return (
     <Flexbox gap={8} width={'100%'}>
       <Flexbox align={'center'} horizontal justify={'space-between'}>
         <div className={styles.title}>{t('guide.questions.title')}</div>
-        <Link href={USAGE_DOCUMENTS} target={'_blank'}>
+        <Flexbox gap={4} horizontal>
           <ActionIcon
-            icon={ArrowRight}
-            size={{ blockSize: 24, size: 16 }}
-            title={t('guide.questions.moreBtn')}
+            icon={RefreshCw}
+            onClick={handleRefresh}
+            size={{ blockSize: 24, size: 14 }}
+            title={t('guide.agents.replaceBtn')}
           />
-        </Link>
+          <Link href={'https://doc.chatai.markqq.com'} target={'_blank'}>
+            <ActionIcon
+              icon={ArrowRight}
+              size={{ blockSize: 24, size: 16 }}
+              title={t('guide.questions.moreBtn')}
+            />
+          </Link>
+        </Flexbox>
       </Flexbox>
       <Flexbox gap={8} horizontal wrap={'wrap'}>
-        {qa.slice(0, mobile ? 2 : 5).map((item) => {
+        {selectedQuestions.map((item) => {
           const text = t(`guide.qa.${item}` as any, { appName: BRANDING_NAME });
           return (
             <Block
@@ -91,7 +109,7 @@ const QuestionSuggest = memo<{ mobile?: boolean }>(({ mobile }) => {
               }}
               variant={'outlined'}
             >
-              {t(text)}
+              {text}
             </Block>
           );
         })}
