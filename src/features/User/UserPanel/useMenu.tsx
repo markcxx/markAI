@@ -1,5 +1,4 @@
 import { Hotkey, Icon } from '@lobehub/ui';
-import { DiscordIcon } from '@lobehub/ui/icons';
 import { Badge } from 'antd';
 import { ItemType } from 'antd/es/menu/interface';
 import {
@@ -22,12 +21,10 @@ import { Flexbox } from 'react-layout-kit';
 
 import type { MenuProps } from '@/components/Menu';
 import { enableAuth } from '@/const/auth';
-import { BRANDING_EMAIL, LOBE_CHAT_CLOUD, SOCIAL_URL } from '@/const/branding';
+import { LOBE_CHAT_CLOUD } from '@/const/branding';
 import { DEFAULT_DESKTOP_HOTKEY_CONFIG } from '@/const/desktop';
 import {
   CHANGELOG,
-  DOCUMENTS_REFER_URL,
-  GITHUB_ISSUES,
   OFFICIAL_URL,
   UTM_SOURCE,
   mailTo,
@@ -151,7 +148,7 @@ export const useMenu = () => {
           icon: <Icon icon={Book} />,
           key: 'docs',
           label: (
-            <Link href={DOCUMENTS_REFER_URL} target={'_blank'}>
+            <Link href={'https://doc.chatai.markqq.com'} target={'_blank'}>
               {t('userPanel.docs')}
             </Link>
           ),
@@ -160,17 +157,8 @@ export const useMenu = () => {
           icon: <Icon icon={Feather} />,
           key: 'feedback',
           label: (
-            <Link href={GITHUB_ISSUES} target={'_blank'}>
+            <Link href={'https://github.com/markcxx/markai'} target={'_blank'}>
               {t('userPanel.feedback')}
-            </Link>
-          ),
-        },
-        {
-          icon: <Icon icon={DiscordIcon} />,
-          key: 'discord',
-          label: (
-            <Link href={SOCIAL_URL.discord} target={'_blank'}>
-              {t('userPanel.discord')}
             </Link>
           ),
         },
@@ -178,12 +166,12 @@ export const useMenu = () => {
           icon: <Icon icon={Mail} />,
           key: 'email',
           label: (
-            <Link href={mailTo(BRANDING_EMAIL.support)} target={'_blank'}>
+            <Link href={mailTo('2811016860@qq.com')} target={'_blank'}>
               {t('userPanel.email')}
             </Link>
           ),
         },
-      ],
+      ].filter(Boolean),
       icon: <Icon icon={LifeBuoy} />,
       key: 'help',
       label: t('userPanel.help'),
