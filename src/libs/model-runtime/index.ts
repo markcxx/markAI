@@ -8,6 +8,7 @@ export * from './error';
 export { LobeGoogleAI } from './google';
 export { LobeGroq } from './groq';
 export * from './helpers';
+export { LobeMarkAI } from './markai';
 export { LobeMinimaxAI } from './minimax';
 export { LobeMistralAI } from './mistral';
 export { default as AgentRuntime } from './ModelRuntime';

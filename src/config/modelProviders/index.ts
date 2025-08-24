@@ -23,6 +23,7 @@ import InfiniAIProvider from './infiniai';
 import InternLMProvider from './internlm';
 import JinaProvider from './jina';
 import LMStudioProvider from './lmstudio';
+import MarkAIProvider from './markai';
 import MinimaxProvider from './minimax';
 import MistralProvider from './mistral';
 import ModelScopeProvider from './modelscope';
@@ -60,6 +61,7 @@ import ZhiPuProvider from './zhipu';
  * @deprecated
  */
 export const LOBE_DEFAULT_MODEL_LIST: ChatModelCard[] = [
+  MarkAIProvider.chatModels,
   OpenAIProvider.chatModels,
   QwenProvider.chatModels,
   ZhiPuProvider.chatModels,
@@ -111,6 +113,7 @@ export const LOBE_DEFAULT_MODEL_LIST: ChatModelCard[] = [
 ].flat();
 
 export const DEFAULT_MODEL_PROVIDER_LIST = [
+  MarkAIProvider,
   OpenAIProvider,
   AnthropicProvider,
   DeepSeekProvider,
@@ -201,6 +204,7 @@ export { default as InternLMProviderCard } from './internlm';
 export { default as JinaProviderCard } from './jina';
 export { default as LMStudioProviderCard } from './lmstudio';
 export { default as LobeHubProviderCard } from './lobehub';
+export { default as MarkAIProviderCard } from './markai';
 export { default as MinimaxProviderCard } from './minimax';
 export { default as MistralProviderCard } from './mistral';
 export { default as ModelScopeProviderCard } from './modelscope';

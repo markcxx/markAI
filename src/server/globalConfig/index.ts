@@ -33,6 +33,10 @@ export const getServerGlobalConfig = async () => {
       lmstudio: {
         fetchOnClient: isDesktop ? false : undefined,
       },
+      markai: {
+        enabled: true,
+        fetchOnClient: false,
+      },
       /* ↓ cloud slot ↓ */
 
       /* ↑ cloud slot ↑ */

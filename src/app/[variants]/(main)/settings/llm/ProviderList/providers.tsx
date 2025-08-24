@@ -16,6 +16,7 @@ import {
   InfiniAIProviderCard,
   InternLMProviderCard,
   JinaProviderCard,
+  MarkAIProviderCard,
   MinimaxProviderCard,
   MistralProviderCard,
   MoonshotProviderCard,
@@ -64,6 +65,7 @@ export const useProviderList = (): ProviderItem[] => {
 
   return useMemo(
     () => [
+      MarkAIProviderCard,
       OpenAIProvider,
       AzureProvider,
       OllamaProvider,
@@ -74,6 +76,7 @@ export const useProviderList = (): ProviderItem[] => {
       GoogleProviderCard,
       DeepSeekProviderCard,
       HuggingFaceProvider,
+      ZhiPuProviderCard,
       OpenRouterProviderCard,
       CloudflareProvider,
       GithubProvider,
@@ -97,7 +100,6 @@ export const useProviderList = (): ProviderItem[] => {
       WenxinProviderCard,
       HunyuanProviderCard,
       SparkProviderCard,
-      ZhiPuProviderCard,
       ZeroOneProviderCard,
       SenseNovaProviderCard,
       StepfunProviderCard,

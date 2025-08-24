@@ -169,6 +169,9 @@ export const getLLMConfig = () => {
       ENABLED_MODELSCOPE: z.boolean(),
       MODELSCOPE_API_KEY: z.string().optional(),
 
+      ENABLED_MARKAI: z.boolean(),
+      MARKAI_API_KEY: z.string().optional(),
+
       ENABLED_V0: z.boolean(),
       V0_API_KEY: z.string().optional(),
     },
@@ -337,6 +340,9 @@ export const getLLMConfig = () => {
 
       ENABLED_MODELSCOPE: !!process.env.MODELSCOPE_API_KEY,
       MODELSCOPE_API_KEY: process.env.MODELSCOPE_API_KEY,
+
+      ENABLED_MARKAI: !!process.env.MARKAI_API_KEY,
+      MARKAI_API_KEY: process.env.MARKAI_API_KEY,
 
       ENABLED_V0: !!process.env.V0_API_KEY,
       V0_API_KEY: process.env.V0_API_KEY,

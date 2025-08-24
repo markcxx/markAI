@@ -52,6 +52,7 @@ export enum ModelProvider {
   Jina = 'jina',
   LMStudio = 'lmstudio',
   LobeHub = 'lobehub',
+  MarkAI = 'markai',
   Minimax = 'minimax',
   Mistral = 'mistral',
   ModelScope = 'modelscope',

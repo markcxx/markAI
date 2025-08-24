@@ -145,6 +145,14 @@ export default {
       enabled: '已启用服务商',
     },
   },
+  markai: {
+    apiKey: {
+      desc: '填入你的 MarkAI API Key',
+      placeholder: 'hf_xxxxxxxxx',
+      title: 'MarkAI API Key',
+    },
+    title: 'MarkAI',
+  },
   menu: {
     addCustomProvider: '添加自定义服务商',
     all: '全部',

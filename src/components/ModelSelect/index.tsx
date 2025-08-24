@@ -19,6 +19,7 @@ import { ModelAbilities } from '@/types/aiModel';
 import { AiProviderSourceType } from '@/types/aiProvider';
 import { ChatModelCard } from '@/types/llm';
 import { formatTokenNumber } from '@/utils/format';
+import { formatModelDisplayName } from '@/utils/formatModelName';
 
 export const TAG_CLASSNAME = 'lobe-model-info-tags';
 
@@ -162,39 +163,44 @@ export const ModelInfoTags = memo<ModelInfoTagsProps>(
 );
 
 interface ModelItemRenderProps extends ChatModelCard {
+  provider?: string;
   showInfoTag?: boolean;
 }
 
-export const ModelItemRender = memo<ModelItemRenderProps>(({ showInfoTag = true, ...model }) => {
-  const { mobile } = useResponsive();
-  return (
-    <Flexbox
-      align={'center'}
-      gap={32}
-      horizontal
-      justify={'space-between'}
-      style={{
-        minWidth: mobile ? '100%' : undefined,
-        overflow: 'hidden',
-        position: 'relative',
-        width: mobile ? '80vw' : 'auto',
-      }}
-    >
+export const ModelItemRender = memo<ModelItemRenderProps>(
+  ({ showInfoTag = true, provider, ...model }) => {
+    const { mobile } = useResponsive();
+    const displayName = formatModelDisplayName(model.id, model.displayName, provider);
+
+    return (
       <Flexbox
         align={'center'}
-        gap={8}
+        gap={32}
         horizontal
-        style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}
+        justify={'space-between'}
+        style={{
+          minWidth: mobile ? '100%' : undefined,
+          overflow: 'hidden',
+          position: 'relative',
+          width: mobile ? '80vw' : 'auto',
+        }}
       >
-        <ModelIcon model={model.id} size={20} />
-        <Text style={mobile ? { maxWidth: '60vw', overflowX: 'auto', whiteSpace: 'nowrap' } : {}}>
-          {model.displayName || model.id}
-        </Text>
+        <Flexbox
+          align={'center'}
+          gap={8}
+          horizontal
+          style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}
+        >
+          <ModelIcon model={model.id} size={20} />
+          <Text style={mobile ? { maxWidth: '60vw', overflowX: 'auto', whiteSpace: 'nowrap' } : {}}>
+            {displayName}
+          </Text>
+        </Flexbox>
+        {showInfoTag && <ModelInfoTags {...model} />}
       </Flexbox>
-      {showInfoTag && <ModelInfoTags {...model} />}
-    </Flexbox>
-  );
-});
+    );
+  },
+);
 
 interface ProviderItemRenderProps {
   logo?: string;
@@ -259,6 +265,13 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
     modelColor: '#ffffff',
     modelName: 'Claude Sonnet 4',
   },
+  markai: {
+    bgColor: 'rgba(82, 196, 26, 0.4)',
+    label: 'MarkAI',
+    labelColor: { dark: '#ffffff', light: '#52c41a' },
+    modelColor: '#52c41a',
+    modelName: 'gpt-oss-120b',
+  },
   modelscope: {
     bgColor: 'rgba(82, 196, 26, 0.4)',
     label: '魔搭社区 永久可用',
@@ -278,7 +291,7 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
     label: 'OpenAI',
     labelColor: { dark: '#ffffff', light: '#333333' },
     modelColor: '#000000',
-    modelName: 'o1 mini',
+    modelName: 'gpt 4o',
   },
   qwen: {
     bgColor: 'rgba(250, 173, 20, 0.4)',

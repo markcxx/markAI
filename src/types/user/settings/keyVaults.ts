@@ -61,6 +61,7 @@ export interface UserKeyVaults extends SearchEngineKeyVaults {
   jina?: OpenAICompatibleKeyVault;
   lmstudio?: OpenAICompatibleKeyVault;
   lobehub?: any;
+  markai?: OpenAICompatibleKeyVault;
   minimax?: OpenAICompatibleKeyVault;
   mistral?: OpenAICompatibleKeyVault;
   modelscope?: OpenAICompatibleKeyVault;
