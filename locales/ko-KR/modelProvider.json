@@ -142,6 +142,10 @@
       "enabled": "서비스 제공자가 활성화되었습니다"
     }
   },
+  "markai": {
+    "description": "MarkAI는 HuggingFace API를 기반으로 한 2차 캡슐화 서비스로, 고품질 AI 모델 액세스 기능을 제공합니다. 다양한 고급 오픈소스 모델을 지원하며, 개발자에게 안정적이고 신뢰할 수 있는 AI 서비스를 제공합니다.",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "사용자 정의 서비스 제공자 추가",
     "all": "모두",

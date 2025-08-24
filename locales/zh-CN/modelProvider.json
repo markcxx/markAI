@@ -150,6 +150,10 @@
     },
     "title": "MarkAI"
   },
+  "markai": {
+    "description": "MarkAI 是基于 HuggingFace API 的二次封装服务，提供高质量的AI模型访问能力。支持多种先进的开源模型，为开发者提供稳定可靠的AI服务。",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "添加自定义服务商",
     "all": "全部",

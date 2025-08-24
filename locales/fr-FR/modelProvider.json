@@ -142,6 +142,10 @@
       "enabled": "Fournisseur activé"
     }
   },
+  "markai": {
+    "description": "MarkAI est un service d'encapsulation secondaire basé sur l'API HuggingFace, fournissant des capacités d'accès aux modèles IA de haute qualité. Il prend en charge divers modèles open source avancés et fournit des services IA stables et fiables aux développeurs.",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "Ajouter un fournisseur personnalisé",
     "all": "Tout",

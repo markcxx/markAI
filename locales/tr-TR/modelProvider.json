@@ -142,6 +142,10 @@
       "enabled": "Hizmet sağlayıcı etkin"
     }
   },
+  "markai": {
+    "description": "MarkAI, HuggingFace API'sine dayalı ikincil kapsülleme hizmeti olup, yüksek kaliteli AI model erişim yetenekleri sağlar. Çeşitli gelişmiş açık kaynak modelleri destekler ve geliştiriciler için istikrarlı ve güvenilir AI hizmetleri sunar.",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "Özel Hizmet Sağlayıcı Ekle",
     "all": "Tümü",

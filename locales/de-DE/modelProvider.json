@@ -142,6 +142,10 @@
       "enabled": "Dienstanbieter aktiviert"
     }
   },
+  "markai": {
+    "description": "MarkAI ist ein sekundärer Kapselungsservice basierend auf der HuggingFace API, der hochwertige KI-Modellzugriffsfunktionen bereitstellt. Es unterstützt verschiedene fortschrittliche Open-Source-Modelle und bietet Entwicklern stabile und zuverlässige KI-Services.",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "Benutzerdefinierten Anbieter hinzufügen",
     "all": "Alle",

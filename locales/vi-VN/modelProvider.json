@@ -142,6 +142,10 @@
       "enabled": "Nhà cung cấp đã được kích hoạt"
     }
   },
+  "markai": {
+    "description": "MarkAI là dịch vụ đóng gói thứ cấp dựa trên API HuggingFace, cung cấp khả năng truy cập mô hình AI chất lượng cao. Nó hỗ trợ các mô hình mã nguồn mở tiên tiến đa dạng và cung cấp dịch vụ AI ổn định và đáng tin cậy cho các nhà phát triển.",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "Thêm nhà cung cấp tùy chỉnh",
     "all": "Tất cả",

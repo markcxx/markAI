@@ -142,6 +142,10 @@
       "enabled": "Dienstverlener ingeschakeld"
     }
   },
+  "markai": {
+    "description": "MarkAI is een secundaire inkapseling service gebaseerd op HuggingFace API, die hoogwaardige AI-model toegangsmogelijkheden biedt. Het ondersteunt verschillende geavanceerde open-source modellen en biedt ontwikkelaars stabiele en betrouwbare AI-services.",
+    "title": "MarkAI"
+  },
   "menu": {
     "addCustomProvider": "Voeg aangepaste provider toe",
     "all": "Alles",
