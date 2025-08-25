@@ -13,6 +13,24 @@ export interface ModelScopeModelCard {
 }
 
 /**
+ * 将宽高比转换为具体的尺寸
+ */
+const getSizeFromAspectRatio = (aspectRatio?: string): string => {
+  if (!aspectRatio) return '1024x1024';
+
+  // 根据宽高比返回对应的尺寸
+  const ratioSizeMap: Record<string, string> = {
+    '16:9': '1792x1024', // 16:9 横图
+    '1:1': '1024x1024',
+    '3:4': '864x1152',
+    '4:3': '1152x864',
+    '9:16': '1024x1792', // 9:16 竖图
+  };
+
+  return ratioSizeMap[aspectRatio] || '1024x1024';
+};
+
+/**
  * Create an image generation task with ModelScope API
  */
 async function createImageTask(payload: CreateImagePayload, apiKey: string): Promise<string> {
@@ -24,6 +42,7 @@ async function createImageTask(payload: CreateImagePayload, apiKey: string): Pro
       model,
       prompt: params.prompt,
       ...(params.seed !== undefined ? { seed: params.seed } : {}),
+      size: getSizeFromAspectRatio(params.aspectRatio),
     }),
     headers: {
       'Authorization': `Bearer ${apiKey}`,

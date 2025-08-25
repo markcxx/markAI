@@ -68,12 +68,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'MAILAND/majicflus_v1',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -85,12 +85,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'black-forest-labs/FLUX.1-Krea-dev',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -101,12 +101,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'MusePublic/489_ckpt_FLUX_1',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -118,12 +118,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'Qwen/Qwen-Image',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -135,12 +135,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'MusePublic/flux-high-res',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -151,12 +151,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'MusePublic/FLUX.1-Kontext-Dev',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -168,12 +168,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'MusePublic/14_ckpt_SD_XL',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -185,12 +185,12 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'muse/sd35_large',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
@@ -202,46 +202,46 @@ const modelscopeImageModels: AIImageModelCard[] = [
     enabled: true,
     id: 'qijitech/RedCraft-12b-10steps-FP16-AIGC',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
   },
   {
     description:
-      'MusePublic/332_ckpt_SD_XL 在官方的 Stable Diffusion XL 1.0 基础上，通过使用特定的高质量图像数据集进行额外训练（即“微调”）得到的“特化版”模型。该模型在保持原始模型的生成能力的同时，针对特定的图像风格（水墨风）进行了优化，能够生成符合该风格的高质量图像。',
+      'MusePublic/332_ckpt_SD_XL 在官方的 Stable Diffusion XL 1.0 基础上，通过使用特定的高质量图像数据集进行额外训练（即"微调"）得到的"特化版"模型。该模型在保持原始模型的生成能力的同时，针对特定的图像风格（水墨风）进行了优化，能够生成符合该风格的高质量图像。',
     displayName: '快速生图水墨风',
     enabled: true,
     id: 'MusePublic/332_ckpt_SD_XL',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',
   },
   {
     description:
-      'MusePublic/329_ckpt_SD_XL 在官方的 Stable Diffusion XL 1.0 基础上，通过使用特定的高质量图像数据集进行额外训练（即“微调”）得到的“特化版”模型。该模型在保持原始模型的生成能力的同时，针对特定的图像风格（粘土风）进行了优化，能够生成符合该风格的高质量图像。',
+      'MusePublic/329_ckpt_SD_XL 在官方的 Stable Diffusion XL 1.0 基础上，通过使用特定的高质量图像数据集进行额外训练（即"微调"）得到的"特化版"模型。该模型在保持原始模型的生成能力的同时，针对特定的图像风格（粘土风）进行了优化，能够生成符合该风格的高质量图像。',
     displayName: '快速生图黏土风',
     enabled: true,
     id: 'MusePublic/329_ckpt_SD_XL',
     parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
-      },
-      size: {
-        default: '1024x1024',
-        enum: ['1024x1024', '768x768', '512x512'],
       },
     },
     type: 'image',

@@ -1,19 +1,15 @@
 'use client';
 
-import { ActionIcon, SliderWithInput } from '@lobehub/ui';
-import { LockIcon, UnlockIcon } from 'lucide-react';
-import { memo, useMemo } from 'react';
+import { SliderWithInput } from '@lobehub/ui';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import { useDimensionControl } from '@/store/image/slices/generationConfig/hooks';
 
-import AspectRatioSelect from '../../../components/AspectRatioSelect';
+import AspectRatioSelect from './AspectRatioSelect';
 
 const styles = {
-  aspectRatioSelect: {
-    width: '100%',
-  },
   label: {
     fontSize: 12,
     fontWeight: 500,
@@ -22,55 +18,12 @@ const styles = {
 
 const DimensionControlGroup = memo(() => {
   const { t } = useTranslation('image');
-  const {
-    isLocked,
-    toggleLock,
-    width,
-    height,
-    aspectRatio,
-    setWidth,
-    setHeight,
-    setAspectRatio,
-    widthSchema,
-    heightSchema,
-    options,
-  } = useDimensionControl();
-
-  // 构建宽高比选择器的选项
-  const aspectRatioOptions = useMemo(
-    () =>
-      options.map((ratio) => ({
-        label: ratio,
-        value: ratio,
-      })),
-    [options],
-  );
-
-  const lockButtonTitle = isLocked ? t('config.aspectRatio.unlock') : t('config.aspectRatio.lock');
-
-  const lockIcon = isLocked ? LockIcon : UnlockIcon;
+  const { width, height, setWidth, setHeight, widthSchema, heightSchema } = useDimensionControl();
 
   return (
     <Flexbox gap={16}>
       {/* 宽高比选择器 */}
-      <Flexbox gap={8}>
-        <Flexbox align="center" distribution="space-between" horizontal>
-          <span style={styles.label}>{t('config.aspectRatio.label')}</span>
-          <ActionIcon
-            aria-label={lockButtonTitle}
-            icon={lockIcon}
-            onClick={toggleLock}
-            size="small"
-            title={lockButtonTitle}
-          />
-        </Flexbox>
-        <AspectRatioSelect
-          onChange={setAspectRatio}
-          options={aspectRatioOptions}
-          style={styles.aspectRatioSelect}
-          value={aspectRatio}
-        />
-      </Flexbox>
+      <AspectRatioSelect />
 
       {/* 宽度滑块 */}
       {widthSchema && (

@@ -964,12 +964,14 @@ const qwenImageModels: AIImageModelCard[] = [
     id: 'wanx2.1-t2i-turbo',
     organization: 'Qwen',
     parameters: {
-      height: { default: 1024, max: 1440, min: 512, step: 1 },
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
       prompt: {
         default: '',
       },
       seed: { default: null },
-      width: { default: 1024, max: 1440, min: 512, step: 1 },
     },
     releasedAt: '2025-01-08',
     type: 'image',

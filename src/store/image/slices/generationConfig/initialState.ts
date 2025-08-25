@@ -1,5 +1,4 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix, typescript-sort-keys/interface */
-import { gptImage1ParamsSchema } from '@/config/aiModels/openai';
 import { ModelProvider } from '@/libs/model-runtime/types/type';
 import {
   ModelParamsSchema,
@@ -10,6 +9,17 @@ import {
 export const DEFAULT_AI_IMAGE_PROVIDER = ModelProvider.ModelScope;
 export const DEFAULT_AI_IMAGE_MODEL = 'Qwen/Qwen-Image';
 export const DEFAULT_IMAGE_NUM = 1;
+
+// 默认的图片生成参数schema，使用aspectRatio而不是size
+export const defaultImageParamsSchema: ModelParamsSchema = {
+  aspectRatio: {
+    default: '1:1',
+    enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+  },
+  prompt: {
+    default: '',
+  },
+};
 
 export interface GenerationConfigState {
   parameters: RuntimeImageGenParams;
@@ -31,14 +41,14 @@ export interface GenerationConfigState {
 }
 
 export const DEFAULT_IMAGE_GENERATION_PARAMETERS: RuntimeImageGenParams =
-  extractDefaultValues(gptImage1ParamsSchema);
+  extractDefaultValues(defaultImageParamsSchema);
 
 export const initialGenerationConfigState: GenerationConfigState = {
   model: DEFAULT_AI_IMAGE_MODEL,
   provider: DEFAULT_AI_IMAGE_PROVIDER,
   imageNum: DEFAULT_IMAGE_NUM,
   parameters: DEFAULT_IMAGE_GENERATION_PARAMETERS,
-  parametersSchema: gptImage1ParamsSchema,
+  parametersSchema: defaultImageParamsSchema,
   isAspectRatioLocked: false,
   activeAspectRatio: null,
   promptEnhancement: {
