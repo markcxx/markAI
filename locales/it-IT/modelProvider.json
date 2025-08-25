@@ -143,6 +143,11 @@
     }
   },
   "markai": {
+    "apiKey": {
+      "desc": "Inserisci la tua chiave API MarkAI",
+      "placeholder": "hf_xxxxxxxxx",
+      "title": "Chiave API MarkAI"
+    },
     "description": "MarkAI è un servizio di incapsulamento secondario basato sull'API HuggingFace, che fornisce capacità di accesso ai modelli AI di alta qualità. Supporta vari modelli open source avanzati e fornisce servizi AI stabili e affidabili per gli sviluppatori.",
     "title": "MarkAI"
   },

@@ -143,6 +143,11 @@
     }
   },
   "markai": {
+    "apiKey": {
+      "desc": "Nhập khóa API MarkAI của bạn",
+      "placeholder": "hf_xxxxxxxxx",
+      "title": "Khóa API MarkAI"
+    },
     "description": "MarkAI là dịch vụ đóng gói thứ cấp dựa trên API HuggingFace, cung cấp khả năng truy cập mô hình AI chất lượng cao. Nó hỗ trợ các mô hình mã nguồn mở tiên tiến đa dạng và cung cấp dịch vụ AI ổn định và đáng tin cậy cho các nhà phát triển.",
     "title": "MarkAI"
   },

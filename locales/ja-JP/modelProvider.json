@@ -143,6 +143,11 @@
     }
   },
   "markai": {
+    "apiKey": {
+      "desc": "MarkAI API キーを入力してください",
+      "placeholder": "hf_xxxxxxxxx",
+      "title": "MarkAI API キー"
+    },
     "description": "MarkAIは、HuggingFace APIをベースとした二次カプセル化サービスで、高品質なAIモデルアクセス機能を提供します。様々な先進的なオープンソースモデルをサポートし、開発者に安定で信頼性の高いAIサービスを提供します。",
     "title": "MarkAI"
   },

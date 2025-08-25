@@ -143,6 +143,11 @@
     }
   },
   "markai": {
+    "apiKey": {
+      "desc": "MarkAI API anahtarınızı girin",
+      "placeholder": "hf_xxxxxxxxx",
+      "title": "MarkAI API Anahtarı"
+    },
     "description": "MarkAI, HuggingFace API'sine dayalı ikincil kapsülleme hizmeti olup, yüksek kaliteli AI model erişim yetenekleri sağlar. Çeşitli gelişmiş açık kaynak modelleri destekler ve geliştiriciler için istikrarlı ve güvenilir AI hizmetleri sunar.",
     "title": "MarkAI"
   },

@@ -68,6 +68,9 @@
   "lmstudio": {
     "description": "LM Studio è un'applicazione desktop per sviluppare e sperimentare LLM sul tuo computer."
   },
+  "markai": {
+    "description": "MarkAI è un servizio di incapsulamento secondario basato sull'API HuggingFace, che fornisce capacità di accesso ai modelli AI di alta qualità. Supporta vari modelli open source avanzati e fornisce servizi AI stabili e affidabili per gli sviluppatori."
+  },
   "minimax": {
     "description": "MiniMax è un'azienda di tecnologia dell'intelligenza artificiale generale fondata nel 2021, dedicata alla co-creazione di intelligenza con gli utenti. MiniMax ha sviluppato modelli generali di diverse modalità, tra cui un modello di testo MoE con trilioni di parametri, un modello vocale e un modello visivo. Ha anche lanciato applicazioni come Conch AI."
   },

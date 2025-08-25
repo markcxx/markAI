@@ -68,6 +68,9 @@
   "lmstudio": {
     "description": "LM Studio, bilgisayarınızda LLM'ler geliştirmek ve denemeler yapmak için bir masaüstü uygulamasıdır."
   },
+  "markai": {
+    "description": "MarkAI, HuggingFace API'sine dayalı ikincil kapsülleme hizmeti olup, yüksek kaliteli AI model erişim yetenekleri sağlar. Çeşitli gelişmiş açık kaynak modelleri destekler ve geliştiriciler için istikrarlı ve güvenilir AI hizmetleri sunar."
+  },
   "minimax": {
     "description": "MiniMax, 2021 yılında kurulan genel yapay zeka teknolojisi şirketidir ve kullanıcılarla birlikte akıllı çözümler yaratmayı hedeflemektedir. MiniMax, farklı modlarda genel büyük modeller geliştirmiştir. Bunlar arasında trilyon parametreli MoE metin büyük modeli, ses büyük modeli ve görüntü büyük modeli bulunmaktadır. Ayrıca, Conch AI gibi uygulamalar da sunmaktadır."
   },

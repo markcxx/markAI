@@ -68,6 +68,9 @@
   "lmstudio": {
     "description": "LM Studio là một ứng dụng máy tính để phát triển và thử nghiệm các LLM trên máy tính của bạn."
   },
+  "markai": {
+    "description": "MarkAI là dịch vụ đóng gói thứ cấp dựa trên API HuggingFace, cung cấp khả năng truy cập mô hình AI chất lượng cao. Nó hỗ trợ các mô hình mã nguồn mở tiên tiến đa dạng và cung cấp dịch vụ AI ổn định và đáng tin cậy cho các nhà phát triển."
+  },
   "minimax": {
     "description": "MiniMax là công ty công nghệ trí tuệ nhân tạo tổng quát được thành lập vào năm 2021, cam kết cùng người dùng sáng tạo trí thông minh. MiniMax đã tự phát triển nhiều mô hình lớn đa phương thức, bao gồm mô hình văn bản MoE với một triệu tham số, mô hình giọng nói và mô hình hình ảnh. Họ cũng đã phát hành các ứng dụng như AI Hải Lý."
   },
