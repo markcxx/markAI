@@ -1,15 +1,14 @@
 /**
  * 格式化模型名称显示
- * 对于MarkAI提供的模型，去除冒号及其后面的所有字符
- * 例如："model:fireworks-ai" -> "model"
+ * 对于包含冒号的模型ID，去除冒号及其后面的所有字符
  *
  * @param modelId - 模型ID
- * @param provider - 提供商名称
  * @returns 格式化后的模型名称
  */
-export const formatModelName = (modelId: string, provider?: string): string => {
-  // 如果是MarkAI提供商，去除冒号及其后面的字符
-  if (provider === 'markai' && modelId.includes(':')) {
+export const formatModelName = (modelId: string): string => {
+  // 对于所有包含冒号的模型ID，去除冒号及其后面的字符
+  // 这主要用于处理MARKAI_MODEL_LIST中的模型格式
+  if (modelId.includes(':')) {
     return modelId.split(':')[0];
   }
 
@@ -19,20 +18,23 @@ export const formatModelName = (modelId: string, provider?: string): string => {
 /**
  * 格式化模型显示名称
  * 优先使用displayName，如果没有则使用格式化后的modelId
+ * 如果displayName包含冒号，也会进行格式化处理
  *
  * @param modelId - 模型ID
  * @param displayName - 显示名称
- * @param provider - 提供商名称
+ * @param _provider - 提供商名称（保留以兼容现有调用）
  * @returns 格式化后的显示名称
  */
 export const formatModelDisplayName = (
   modelId: string,
   displayName?: string,
-  provider?: string,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _provider?: string,
 ): string => {
   if (displayName) {
-    return displayName;
+    // 如果displayName包含冒号，也需要格式化
+    return formatModelName(displayName);
   }
 
-  return formatModelName(modelId, provider);
+  return formatModelName(modelId);
 };
