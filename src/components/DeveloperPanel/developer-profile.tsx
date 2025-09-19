@@ -219,6 +219,15 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   projectImageAmber: css`
     background: linear-gradient(135deg, #fef3c7, #fde68a);
   `,
+  projectImageBlue: css`
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  `,
+  projectImageGreen: css`
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  `,
+  projectImagePurple: css`
+    background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
+  `,
   projectImageRose: css`
     background: linear-gradient(135deg, #fce7f3, #fbcfe8);
   `,
@@ -227,13 +236,35 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     gap: 8px;
     align-items: center;
 
+    padding-block: 8px;
+    padding-inline: 16px;
+    border: 1px solid currentcolor;
+    border-radius: 8px;
+
+    font-size: 14px;
     font-weight: 600;
     color: inherit;
     text-decoration: none;
 
+    background: transparent;
+
+    transition: all 0.3s ease;
+
     &:hover {
-      text-decoration: underline;
+      transform: translateY(-2px);
+
+      border-color: ${isDarkMode ? '#374151' : '#1f2937'};
+
+      color: #fff;
+
+      background: ${isDarkMode ? '#374151' : '#1f2937'};
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 15%);
     }
+  `,
+  projectLinks: css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   `,
   projectTitle: css`
     margin-block-end: 16px;
@@ -242,6 +273,15 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   `,
   projectTitleAmber: css`
     color: #d97706;
+  `,
+  projectTitleBlue: css`
+    color: #2563eb;
+  `,
+  projectTitleGreen: css`
+    color: #059669;
+  `,
+  projectTitlePurple: css`
+    color: #7c3aed;
   `,
   projectTitleRose: css`
     color: #be185d;
@@ -253,7 +293,7 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   `,
   section: css`
     padding-block: 64px;
-padding-inline: 0;
+    padding-inline: 0;
   `,
   sectionAlt: css`
     background: ${isDarkMode ? token.colorBgLayout : '#f8fafc'};
@@ -436,19 +476,53 @@ export default function DeveloperProfile() {
   const projects = [
     {
       description:
-        '集合多平台（网易云音乐、酷狗音乐等）的免付费音乐平台桌面软件，为用户提供统一的音乐播放体验。',
+        '集合多平台（网易云音乐、酷狗音乐、酷我音乐等）的免付费音乐平台桌面软件，为用户提供统一的音乐播放体验。',
       features: ['多平台整合', '免费音乐', '桌面应用', '统一体验'],
+      github: '#',
       icon: <Music size={24} />,
       title: 'CoCoMusic',
       type: 'amber',
+      url: '#',
     },
     {
       description:
         '专门设计的多平台视频下载工具，支持抖音、B站等平台，提供桌面软件和网页端双重体验。',
       features: ['多平台支持', '视频下载', '双端体验', '高效稳定'],
+      github: 'https://github.com/markcxx/VidFlowDesktop',
       icon: <Video size={24} />,
       title: 'VidFlowDesktop',
       type: 'rose',
+      url: 'https://vidflow.markqq.com',
+    },
+    {
+      description:
+        '基于ESP32小智AI应用开发的电脑桌面版应用，支持MCP调用，为没有硬件条件的人群提供使用便利',
+      features: ['多平台支持', 'XiaoZhiAI', '语音对话', 'MCP调用'],
+      github: 'https://github.com/markcxx/Xiaozhi-ai',
+      icon: <Video size={24} />,
+      title: 'XiaoZhi AI桌面版',
+      type: 'blue',
+      url: 'https://github.com/markcxx/Xiaozhi-ai',
+    },
+    {
+      description:
+        '基于和风天气的后端天气服务接口，支持天气预报，实时天气，空气质量预测等，支持MCP服务',
+      features: ['全栈开发', 'Fastapi', '天气服务', 'MCP调用'],
+      github: 'https://github.com/markcxx/momoweather',
+      icon: <Video size={24} />,
+      title: '墨墨天气API',
+      type: 'green',
+      url: 'https://momoweather.markqq.com',
+    },
+    {
+      description:
+        '支持OPENAI协议的大模型服务，支持主流开源模型如deepseek，Qwen,kimi，glm4.5，gpt-oss-120b等，支持MCP服务',
+      features: ['多平台支持', 'OPENAI协议', '大模型服务', 'MCP调用'],
+      github: 'https://github.com/markcxx/huggingface-openai-proxy',
+      icon: <Video size={24} />,
+      title: 'Openai协议MARKAI模型后端服务',
+      type: 'purple',
+      url: '#',
     },
   ];
 
@@ -608,7 +682,17 @@ export default function DeveloperProfile() {
                 >
                   {/* 项目图片区域 */}
                   <div
-                    className={`${styles.projectImage} ${project.type === 'amber' ? styles.projectImageAmber : styles.projectImageRose}`}
+                    className={`${styles.projectImage} ${
+                      project.type === 'amber'
+                        ? styles.projectImageAmber
+                        : project.type === 'blue'
+                          ? styles.projectImageBlue
+                          : project.type === 'green'
+                            ? styles.projectImageGreen
+                            : project.type === 'purple'
+                              ? styles.projectImagePurple
+                              : styles.projectImageRose
+                    }`}
                   >
                     <div style={{ fontSize: '96px', opacity: 0.2 }}>{project.icon}</div>
                   </div>
@@ -617,7 +701,17 @@ export default function DeveloperProfile() {
                   <div className={styles.projectContent}>
                     <div>
                       <h3
-                        className={`${styles.projectTitle} ${project.type === 'amber' ? styles.projectTitleAmber : styles.projectTitleRose}`}
+                        className={`${styles.projectTitle} ${
+                          project.type === 'amber'
+                            ? styles.projectTitleAmber
+                            : project.type === 'blue'
+                              ? styles.projectTitleBlue
+                              : project.type === 'green'
+                                ? styles.projectTitleGreen
+                                : project.type === 'purple'
+                                  ? styles.projectTitlePurple
+                                  : styles.projectTitleRose
+                        }`}
                       >
                         {project.title}
                       </h3>
@@ -637,13 +731,50 @@ export default function DeveloperProfile() {
                       </div>
                     </div>
 
-                    <a
-                      className={`${styles.projectLink} ${project.type === 'amber' ? styles.projectTitleAmber : styles.projectTitleRose}`}
-                      href="#"
-                    >
-                      了解更多
-                      <span>→</span>
-                    </a>
+                    <div className={styles.projectLinks}>
+                      {project.url && project.url !== '#' && (
+                        <a
+                          className={`${styles.projectLink} ${
+                            project.type === 'amber'
+                              ? styles.projectTitleAmber
+                              : project.type === 'blue'
+                                ? styles.projectTitleBlue
+                                : project.type === 'green'
+                                  ? styles.projectTitleGreen
+                                  : project.type === 'purple'
+                                    ? styles.projectTitlePurple
+                                    : styles.projectTitleRose
+                          }`}
+                          href={project.url}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <Globe size={16} />
+                          访问项目
+                        </a>
+                      )}
+                      {project.github && project.github !== '#' && (
+                        <a
+                          className={`${styles.projectLink} ${
+                            project.type === 'amber'
+                              ? styles.projectTitleAmber
+                              : project.type === 'blue'
+                                ? styles.projectTitleBlue
+                                : project.type === 'green'
+                                  ? styles.projectTitleGreen
+                                  : project.type === 'purple'
+                                    ? styles.projectTitlePurple
+                                    : styles.projectTitleRose
+                          }`}
+                          href={project.github}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <Github size={16} />
+                          GitHub
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}
