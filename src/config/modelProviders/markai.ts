@@ -30,16 +30,16 @@ const MarkAI: ModelProviderCard = {
   disableBrowserRequest: true,
   id: 'markai',
   modelList: { showModelFetcher: true },
-  modelsUrl: 'https://api.chatai.markqq.com',
+  modelsUrl: 'https://api.markai.markqq.com',
   name: 'MarkAI',
   settings: {
     disableBrowserRequest: true,
     proxyUrl: {
-      placeholder: 'https://api.chatai.markqq.com',
+      placeholder: 'https://api.markai.markqq.com',
     },
     showModelFetcher: true,
   },
-  url: 'https://api.chatai.markqq.com',
+  url: 'https://api.markai.markqq.com',
 };
 
 export default MarkAI;

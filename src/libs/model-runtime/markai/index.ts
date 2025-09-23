@@ -11,7 +11,7 @@ export interface LobeMarkAIConfig {
 
 export class LobeMarkAI extends LobeOpenAI {
   constructor(config: LobeMarkAIConfig = {}) {
-    const { apiKey, baseURL = 'https://api.chatai.markqq.com/v1', ...rest } = config;
+    const { apiKey, baseURL = 'https://api.markai.markqq.com/v1', ...rest } = config;
 
     const clientOptions: ClientOptions = {
       apiKey: apiKey || process.env.MARKAI_API_KEY,
