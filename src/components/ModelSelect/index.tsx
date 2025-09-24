@@ -360,6 +360,9 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       label: 'Qwen3 Next 80B 推理模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
+    'Qwen/Qwen3-VL-235B-A22B-Instruct': {
+      label: 'Qwen3 多模态版本的旗舰型号',
+    },
     'ZhipuAI/GLM-4.5': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
       label: '智谱 GLM 最强模型',
