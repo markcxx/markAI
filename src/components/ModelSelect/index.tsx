@@ -162,6 +162,375 @@ export const ModelInfoTags = memo<ModelInfoTagsProps>(
   },
 );
 
+// 默认模型标签配置
+const defaultModelTagConfig = {
+  bgColor: 'rgba(24, 144, 255, 0.3)',
+  labelColor: { dark: '#ffffff', light: '#1677ff' },
+};
+
+// 模型标签信息类型
+type ModelTagInfo = {
+  bgColor?: string;
+  label: string;
+  labelColor?: {
+    dark: string;
+    light: string;
+  };
+};
+
+// 按提供商分组的模型标签配置
+const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
+  anthropic: {
+    'claude-opus-4-20250514': {
+      label: '最新模型',
+    },
+    'claude-sonnet-4-20250514': {
+      label: '最强编程模型',
+    },
+  },
+  deepseek: {
+    'deepseek-chat': {
+      label: '对话',
+    },
+    'deepseek-reasoner': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '推理',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
+  google: {
+    'gemini-2.5-flash': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '快速、成本低',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'gemini-2.5-pro': {
+      label: '最强多模态模型',
+    },
+  },
+  groq: {
+    'moonshotai/kimi-k2-instruct-0905': {
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+    },
+    'openai/gpt-oss-120b': {
+      label: '117B 参数 OpenAI开源重量级推理模型',
+    },
+    'openai/gpt-oss-20b': {
+      label: '21B 参数 激活 ~3.6B',
+    },
+    'qwen/qwen3-32b': {
+      label: '32B 全密集模型',
+    },
+  },
+  infiniai: {
+    'claude-sonnet-4-20250514': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最强编程模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'deepseek-r1': {
+      label: 'Deepseek推理模型',
+    },
+    'deepseek-r1-0528-qwen3-8b': {
+      label: 'Deepseek蒸馏模型',
+    },
+    'deepseek-r1-distill-qwen-32b': {
+      label: 'Deepseek蒸馏模型',
+    },
+    'deepseek-v3': {
+      label: 'Deepseek V3 模型',
+    },
+    'ernie-4.5-300b-a47b': {
+      label: '百度文心一言300b模型',
+    },
+    'gemini-2.5-flash': {
+      label: '快速、成本低',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'gemini-2.5-pro': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最强多模态模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'glm-4.5-air': {
+      label: '智谱GLM-4.5-AIR轻量版',
+    },
+    'glm-4.5v': {
+      label: '智谱GLM-4.5-V多模态模型',
+    },
+    'gpt-4.1': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'OpenAI 最通用全能选手',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'gpt-4o': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '多模态 + 语音 + 视觉能力强',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'gpt-oss-120b': {
+      label: '120B 参数 OpenAI开源重量级推理模型',
+    },
+    'kimi-k2-instruct': {
+      label: '开源旗舰推理版本',
+    },
+    'qwen2.5-vl-72b-instruct': {
+      label: 'Qwen2.5 多模态模型',
+    },
+    'qwen3-235b-a22b': {
+      label: '重量级旗舰版本',
+    },
+    'qwen3-235b-a22b-instruct-2507': {
+      label: '指令版本的旗舰型号',
+    },
+    'qwen3-coder-480b-a35b-instruct': {
+      label: 'Qwen3 代码模型 极大规模的编码版本',
+    },
+    'qwen3-next-80b-a3b-instruct': {
+      label: 'Qwen3 Next 80B 指令模型',
+    },
+    'qwen3-next-80b-a3b-thinking': {
+      label: 'Qwen3 Next 80B 推理模型',
+    },
+  },
+  markai: {
+    'Qwen/Qwen2.5-VL-72B-Instruct:nebius': {
+      label: 'Qwen2.5 多模态模型',
+    },
+    'Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai': {
+      label: 'Qwen3 重量级旗舰版本',
+    },
+    'Qwen/Qwen3-Next-80B-A3B-Instruct:novita': {
+      label: 'Qwen3 Next 80B 指令模型',
+    },
+    'Qwen/Qwen3-Next-80B-A3B-Thinking:novita': {
+      label: 'Qwen3 Next 80B 推理模型',
+    },
+    'deepseek-ai/DeepSeek-R1:fireworks-ai': {
+      label: 'Deepseek推理模型',
+    },
+    'deepseek-ai/DeepSeek-V3.1-Terminus:novita': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最新 V3.1 “终结一代”版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'deepseek-ai/DeepSeek-V3.1:fireworks-ai': {
+      label: 'Deepseek V3.1 通用版本',
+    },
+    'moonshotai/Kimi-K2-Instruct-0905:novita': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'openai/gpt-oss-120b': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '120B 参数 OpenAI开源重量级推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'zai-org/GLM-4.5:fireworks-ai': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '智谱 GLM 最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'zai-org/GLM-4.5V:novita': {
+      label: '多模态 GLM 版本',
+    },
+  },
+  modelscope: {
+    'Qwen/Qwen3-235B-A22B-Instruct-2507': {
+      label: 'Qwen3 指令版本的旗舰型号',
+    },
+    'Qwen/Qwen3-235B-A22B-Thinking-2507': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 重量级旗舰版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'Qwen/Qwen3-Coder-480B-A35B-Instruct': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 代码模型 极大规模的编码版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'Qwen/Qwen3-Next-80B-A3B-Instruct': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 Next 80B 指令模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'Qwen/Qwen3-Next-80B-A3B-Thinking': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 Next 80B 推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'ZhipuAI/GLM-4.5': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '智谱 GLM 最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'deepseek-ai/DeepSeek-R1-0528': {
+      label: 'Deepseek 推理版本',
+    },
+    'deepseek-ai/DeepSeek-V3': {
+      label: 'Deepseek V3 通用版本',
+    },
+    'deepseek-ai/DeepSeek-V3.1': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Deepseek V3.1 通用版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'moonshotai/Kimi-K2-Instruct': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'stepfun-ai/step3': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '321B 参数的多模态推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
+  moonshot: {
+    'kimi-k2-0905-preview': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
+  openai: {
+    'gpt-4': {
+      label: '中高端版本',
+    },
+    'gpt-4-0125-preview': {
+      label: '中高端版本',
+      labelColor: { dark: '#ffffff', light: '#52c41a' },
+    },
+    'gpt-4-0613': {
+      label: '中高端版本',
+    },
+    'gpt-4-1106-preview': {
+      label: '中高端版本',
+      labelColor: { dark: '#ffffff', light: '#52c41a' },
+    },
+    'gpt-4-turbo': {
+      label: '速度性能优化',
+    },
+    'gpt-4-turbo-2024-04-09': {
+      label: '速度性能优化',
+    },
+    'gpt-4-turbo-preview': {
+      label: '速度性能优化',
+      labelColor: { dark: '#ffffff', light: '#52c41a' },
+    },
+    'gpt-4.1': {
+      label: '新一代 “4.1” 系列',
+    },
+    'gpt-4o': {
+      label: '多模态 /视觉 /语音能力突出的版本',
+    },
+    'gpt-4o-2024-05-13': {
+      label: '对标 o1 的升级版本',
+    },
+    'gpt-4o-search-preview-2025-03-11': {
+      label: '多模态 /视觉 /语音能力突出的版本',
+    },
+    'gpt-5': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '新一代旗舰版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'o1': {
+      label: '“思考型 /推理型”系列模型',
+    },
+    'o1-pro-2025-03-19': {
+      label: '“思考型 /推理型”系列模型',
+    },
+    'o3': {
+      label: '对标 o1 的升级版本',
+    },
+  },
+  openrouter: {
+    'deepseek/deepseek-chat-v3-0324:free': {
+      label: 'Deepseek 对话模型',
+    },
+    'deepseek/deepseek-chat-v3:free': {
+      label: 'Deepseek 对话模型',
+    },
+    'deepseek/deepseek-r1-0528:free': {
+      label: 'Deepseek 推理版本',
+    },
+    'moonshotai/kimi-k2:free': {
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+    },
+    'x-ai/grok-4-fast:free': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Grok-4',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
+  qwen: {
+    'Moonshot-Kimi-K2-Instruct': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'deepseek-r1': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Deepseek 推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'deepseek-v3': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Deepseek 对话模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-235b-a22b': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 重量级旗舰版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-coder-480b-a35b-instruct': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 代码模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-coder-plus-2025-07-22': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 代码模型 07-22版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-coder-plus-2025-09-23': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 Coder Plus 09-23版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-max-2025-09-23': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3万亿参数模型 09-23版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-max-preview': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3万亿参数模型 预览版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-next-80b-a3b-instruct': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 Next 80B 指令模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'qwen3-next-80b-a3b-thinking': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'Qwen3 Next 80B 推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
+  volcengine: {
+    'doubao-seed-1.6-thinking': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '豆包 推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
+};
+
 interface ModelItemRenderProps extends ChatModelCard {
   provider?: string;
   showInfoTag?: boolean;
@@ -170,7 +539,11 @@ interface ModelItemRenderProps extends ChatModelCard {
 export const ModelItemRender = memo<ModelItemRenderProps>(
   ({ showInfoTag = true, provider, ...model }) => {
     const { mobile } = useResponsive();
+    const { isDarkMode } = useThemeMode();
     const displayName = formatModelDisplayName(model.id, model.displayName, provider);
+
+    // 获取模型标签信息
+    const modelTagInfo = provider && modelTagMap[provider]?.[model.id];
 
     return (
       <Flexbox
@@ -195,6 +568,23 @@ export const ModelItemRender = memo<ModelItemRenderProps>(
           <Text style={mobile ? { maxWidth: '60vw', overflowX: 'auto', whiteSpace: 'nowrap' } : {}}>
             {displayName}
           </Text>
+          {modelTagInfo && (
+            <Tag
+              style={{
+                backgroundColor: modelTagInfo.bgColor || defaultModelTagConfig.bgColor,
+                border: 'none',
+                color: isDarkMode
+                  ? modelTagInfo.labelColor?.dark || defaultModelTagConfig.labelColor.dark
+                  : modelTagInfo.labelColor?.light || defaultModelTagConfig.labelColor.light,
+                fontSize: '11px',
+                height: '18px',
+                lineHeight: '16px',
+                padding: '0 6px',
+              }}
+            >
+              {modelTagInfo.label}
+            </Tag>
+          )}
         </Flexbox>
         {showInfoTag && <ModelInfoTags {...model} />}
       </Flexbox>
