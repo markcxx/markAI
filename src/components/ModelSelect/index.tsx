@@ -298,7 +298,7 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
     label: '阿里云通义千问',
     labelColor: { dark: '#ffffff', light: '#333333' },
     modelColor: '#1677ff',
-    modelName: 'Qwen Plus',
+    modelName: 'Qwen3-max',
   },
   spark: {
     bgColor: 'rgba(250, 140, 22, 0.4)',
