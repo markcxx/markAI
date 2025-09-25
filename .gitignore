@@ -12,6 +12,7 @@ venv
 temp
 tmp
 .windsurfrules
+lobe-chat
 
 # dependencies
 node_modules

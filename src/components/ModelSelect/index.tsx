@@ -306,6 +306,9 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     'Qwen/Qwen3-Next-80B-A3B-Thinking:novita': {
       label: 'Qwen3 Next 80B 推理模型',
     },
+    'Qwen/Qwen3-VL-235B-A22B-Thinking:novita': {
+      label: 'Qwen3 旗舰版本多模态模型',
+    },
     'deepseek-ai/DeepSeek-R1:fireworks-ai': {
       label: 'Deepseek推理模型',
     },
