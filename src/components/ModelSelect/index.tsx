@@ -252,6 +252,12 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       label: '最强多模态模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
+    'gemini-flash-latest': {
+      label: 'gemini-2.5-flash永久别名',
+    },
+    'gemini-flash-lite-latest': {
+      label: 'gemini-2.5-flash-lite永久别名',
+    },
     'glm-4.5-air': {
       label: '智谱GLM-4.5-AIR轻量版',
     },
