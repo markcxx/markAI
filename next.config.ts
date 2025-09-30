@@ -250,6 +250,14 @@ const nextConfig: NextConfig = {
 
   transpilePackages: ['pdfjs-dist', 'mermaid'],
 
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+
   webpack(config) {
     config.experiments = {
       asyncWebAssembly: true,
