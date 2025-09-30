@@ -326,6 +326,11 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     'deepseek-ai/DeepSeek-V3.1:fireworks-ai': {
       label: 'Deepseek V3.1 通用版本',
     },
+    'deepseek-ai/DeepSeek-V3.2-Exp:novita': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最新 V3.2 实验版本',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
     'moonshotai/Kimi-K2-Instruct-0905:novita': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
       label: '1T 参数 MoE 模型 Kimi最强模型',
