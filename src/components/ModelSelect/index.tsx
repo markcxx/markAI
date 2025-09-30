@@ -240,6 +240,12 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     'deepseek-v3': {
       label: 'Deepseek V3 模型',
     },
+    'deepseek-v3.1': {
+      label: 'Deepseek V3.1 模型',
+    },
+    'deepseek-v3.2-exp': {
+      label: '最新 V3.2 实验模型',
+    },
     'ernie-4.5-300b-a47b': {
       label: '百度文心一言300b模型',
     },
@@ -258,11 +264,19 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     'gemini-flash-lite-latest': {
       label: 'gemini-2.5-flash-lite永久别名',
     },
+    'glm-4.5': {
+      label: '智谱GLM-4.5',
+    },
     'glm-4.5-air': {
       label: '智谱GLM-4.5-AIR轻量版',
     },
     'glm-4.5v': {
       label: '智谱GLM-4.5-V多模态模型',
+    },
+    'glm-4.6': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '智谱最新GLM-4.6',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'gpt-4.1': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
@@ -343,11 +357,16 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     },
     'zai-org/GLM-4.5:fireworks-ai': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
-      label: '智谱 GLM 最强模型',
+      label: '智谱 GLM 4.5模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'zai-org/GLM-4.5V:novita': {
       label: '多模态 GLM 版本',
+    },
+    'zai-org/GLM-4.6:novita': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '智谱最新GLM-4.6',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
   },
   modelscope: {
@@ -379,7 +398,7 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     },
     'ZhipuAI/GLM-4.5': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
-      label: '智谱 GLM 最强模型',
+      label: '智谱 GLM 4.5模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'deepseek-ai/DeepSeek-R1-0528': {
