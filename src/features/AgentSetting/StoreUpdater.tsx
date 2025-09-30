@@ -14,7 +14,7 @@ export interface StoreUpdaterProps
 }
 
 const StoreUpdater = memo<StoreUpdaterProps>(
-  ({ onConfigChange, instanceRef, id, onMetaChange, meta, config, loading }) => {
+  ({ onConfigChange, instanceRef, id, onMetaChange, meta = {}, config, loading }) => {
     const storeApi = useStoreApi();
     const useStoreUpdater = createStoreUpdater(storeApi);
 
