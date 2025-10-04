@@ -397,8 +397,11 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       label: 'Qwen3 多模态版本的旗舰型号',
     },
     'ZhipuAI/GLM-4.5': {
-      bgColor: 'rgba(255, 165, 0, 0.9)',
       label: '智谱 GLM 4.5模型',
+    },
+    'ZhipuAI/GLM-4.6': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '智谱最新GLM-4.6',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'deepseek-ai/DeepSeek-R1-0528': {
