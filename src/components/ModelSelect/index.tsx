@@ -411,8 +411,11 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       label: 'Deepseek V3 通用版本',
     },
     'deepseek-ai/DeepSeek-V3.1': {
-      bgColor: 'rgba(255, 165, 0, 0.9)',
       label: 'Deepseek V3.1 通用版本',
+    },
+    'deepseek-ai/DeepSeek-V3.2-Exp': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最新 V3.2 实验模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'moonshotai/Kimi-K2-Instruct': {
