@@ -474,8 +474,14 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       label: '多模态 /视觉 /语音能力突出的版本',
     },
     'gpt-5': {
+      label: '暂不可用',
+    },
+    'gpt-5-mini': {
+      label: '暂不可用',
+    },
+    'gpt-5-nano-2025-08-07': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
-      label: '新一代旗舰版本',
+      label: 'GTP-5模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'o1': {
