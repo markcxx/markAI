@@ -329,6 +329,21 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     'Qwen/Qwen3-VL-235B-A22B-Thinking:novita': {
       label: 'Qwen3 旗舰版本多模态模型',
     },
+    'claude-haiku-4-5-20251001': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '快速、成本低',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'claude-sonnet-4-20250514': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最强编程模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'claude-sonnet-4-5-20250929': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最强编程模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
     'deepseek-ai/DeepSeek-R1:fireworks-ai': {
       label: 'Deepseek推理模型',
     },
@@ -701,7 +716,7 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
     label: 'MarkAI',
     labelColor: { dark: '#ffffff', light: '#52c41a' },
     modelColor: '#52c41a',
-    modelName: 'gpt-oss-120b',
+    modelName: 'claude-sonnet-4-5',
   },
   modelscope: {
     bgColor: 'rgba(82, 196, 26, 0.4)',
