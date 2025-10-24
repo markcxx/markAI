@@ -1,4 +1,12 @@
 {
   "buildCommand": "bun run build",
+  "functions": {
+    "app/(backend)/webapi/chat/[provider]/route.ts": {
+      "maxDuration": 300
+    },
+    "app/(backend)/webapi/chat/openai/route.ts": {
+      "maxDuration": 300
+    }
+  },
   "installCommand": "npx bun@1.2.19 install"
 }
