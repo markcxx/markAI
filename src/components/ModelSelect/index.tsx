@@ -528,6 +528,50 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
   },
+  qiniu: {
+    'claude-4.0-sonnet': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '最强编程模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'deepseek-r1-0528': {
+      label: 'Deepseek 推理版本',
+    },
+    'doubao-1.5-pro-32k': {
+      label: '豆包 长上下文模型',
+    },
+    'doubao-1.5-thinking-pro': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '豆包 推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'doubao-1.5-vision-pro': {
+      label: '豆包 多模态模型',
+    },
+    'doubao-seed-1.6-thinking': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '豆包 推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'gpt-oss-120b': {
+      label: '120B 参数 OpenAI开源重量级推理模型',
+    },
+    'moonshotai/kimi-k2-0905': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '1T 参数 MoE 模型 Kimi最强模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'openai/gpt-5': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'GPT-5模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'z-ai/glm-4.6': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '智谱最新GLM-4.6',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+  },
   qwen: {
     'Moonshot-Kimi-K2-Instruct': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
@@ -745,6 +789,13 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
     labelColor: { dark: '#ffffff', light: '#333333' },
     modelColor: '#000000',
     modelName: 'grok-4',
+  },
+  qiniu: {
+    bgColor: 'rgba(255, 165, 0, 0.4)',
+    label: '七牛云',
+    labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    modelColor: '#ff8c00',
+    modelName: 'gpt-5',
   },
   qwen: {
     bgColor: 'rgba(250, 173, 20, 0.4)',
