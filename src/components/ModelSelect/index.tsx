@@ -314,6 +314,11 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     },
   },
   markai: {
+    'MiniMax-M2': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'MiniMax 第二代模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
     'Qwen/Qwen2.5-VL-72B-Instruct:nebius': {
       label: 'Qwen2.5 多模态模型',
     },
@@ -349,7 +354,7 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     },
     'deepseek-ai/DeepSeek-V3.1-Terminus:novita': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
-      label: '最新 V3.1 “终结一代”版本',
+      label: '最新 V3.1 "终结一代"版本',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'deepseek-ai/DeepSeek-V3.1:fireworks-ai': {
@@ -360,6 +365,11 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
       label: '最新 V3.2 实验版本',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
+    'gpt-4o': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: '多模态 + 语音 + 视觉能力强',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
     'moonshotai/Kimi-K2-Instruct-0905:novita': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
       label: '1T 参数 MoE 模型 Kimi最强模型',
@@ -368,6 +378,11 @@ const modelTagMap: Record<string, Record<string, ModelTagInfo>> = {
     'openai/gpt-oss-120b': {
       bgColor: 'rgba(255, 165, 0, 0.9)',
       label: '120B 参数 OpenAI开源重量级推理模型',
+      labelColor: { dark: '#ffffff', light: '#ff8c00' },
+    },
+    'xai/grok-3': {
+      bgColor: 'rgba(255, 165, 0, 0.9)',
+      label: 'xAI Grok-3 模型',
       labelColor: { dark: '#ffffff', light: '#ff8c00' },
     },
     'zai-org/GLM-4.5:fireworks-ai': {
