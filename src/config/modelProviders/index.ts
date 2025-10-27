@@ -122,6 +122,7 @@ export const DEFAULT_MODEL_PROVIDER_LIST = [
   QwenProvider,
   ModelScopeProvider,
   QiniuProvider,
+  QiniuProvider,
   OpenRouterProvider,
   GroqProvider,
   VolcengineProvider,
@@ -169,7 +170,6 @@ export const DEFAULT_MODEL_PROVIDER_LIST = [
   TaichuProvider,
   Ai360Provider,
   Search1APIProvider,
-  QiniuProvider,
 ];
 
 export const filterEnabledModels = (provider: ModelProviderCard) => {
