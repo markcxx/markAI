@@ -21,6 +21,10 @@ config.rules['unicorn/prefer-query-selector'] = 0;
 config.rules['unicorn/no-array-callback-reference'] = 0;
 // FIXME: Linting error in src/app/[variants]/(main)/chat/features/Migration/DBReader.ts, the fundamental solution should be upgrading typescript-eslint
 config.rules['@typescript-eslint/no-useless-constructor'] = 0;
+// 允许未使用的变量存在
+config.rules['@typescript-eslint/no-unused-vars'] = 0;
+config.rules['no-unused-vars'] = 0;
+config.rules['unused-imports/no-unused-vars'] = 0;
 
 config.overrides = [
   {

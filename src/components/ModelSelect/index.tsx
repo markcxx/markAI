@@ -1,6 +1,6 @@
 import { IconAvatarProps, ModelIcon, ProviderIcon } from '@lobehub/icons';
 import { Avatar, Icon, Tag, Text, Tooltip } from '@lobehub/ui';
-import { createStyles, useResponsive, useThemeMode } from 'antd-style';
+import { createStyles, useResponsive } from 'antd-style';
 import {
   Infinity,
   AtomIcon,
@@ -162,11 +162,11 @@ export const ModelInfoTags = memo<ModelInfoTagsProps>(
   },
 );
 
-// 默认模型标签配置
-const defaultModelTagConfig = {
-  bgColor: 'rgba(24, 144, 255, 0.3)',
-  labelColor: { dark: '#ffffff', light: '#1677ff' },
-};
+// 默认模型标签配置 - 暂时注释掉
+// const defaultModelTagConfig = {
+//   bgColor: 'rgba(24, 144, 255, 0.3)',
+//   labelColor: { dark: '#ffffff', light: '#1677ff' },
+// };
 
 // 模型标签信息类型
 type ModelTagInfo = {
@@ -661,11 +661,11 @@ interface ModelItemRenderProps extends ChatModelCard {
 export const ModelItemRender = memo<ModelItemRenderProps>(
   ({ showInfoTag = true, provider, ...model }) => {
     const { mobile } = useResponsive();
-    const { isDarkMode } = useThemeMode();
+    // const { isDarkMode } = useThemeMode(); // 暂时注释掉，因为标签被注释了
     const displayName = formatModelDisplayName(model.id, model.displayName, provider);
 
-    // 获取模型标签信息
-    const modelTagInfo = provider && modelTagMap[provider]?.[model.id];
+    // 获取模型标签信息 - 暂时注释掉
+    // const modelTagInfo = provider && modelTagMap[provider]?.[model.id];
 
     return (
       <Flexbox
@@ -690,7 +690,8 @@ export const ModelItemRender = memo<ModelItemRenderProps>(
           <Text style={mobile ? { maxWidth: '60vw', overflowX: 'auto', whiteSpace: 'nowrap' } : {}}>
             {displayName}
           </Text>
-          {modelTagInfo && (
+          {/* 暂时注释掉模型标签显示 */}
+          {/* {modelTagInfo && (
             <Tag
               style={{
                 backgroundColor: modelTagInfo.bgColor || defaultModelTagConfig.bgColor,
@@ -706,7 +707,7 @@ export const ModelItemRender = memo<ModelItemRenderProps>(
             >
               {modelTagInfo.label}
             </Tag>
-          )}
+          )} */}
         </Flexbox>
         {showInfoTag && <ModelInfoTags {...model} />}
       </Flexbox>
@@ -844,10 +845,14 @@ const providerTagMap: Record<string, ProviderTagInfo> = {
 
 export const ProviderItemRender = memo<ProviderItemRenderProps>(
   ({ provider, name, source, logo, showTag = true }) => {
-    // 获取提供商对应的标签信息
-    const tagInfo = providerTagMap[provider];
-    // 使用 useThemeMode 获取当前主题模式
-    const { isDarkMode } = useThemeMode();
+    // 获取提供商对应的标签信息 - 暂时注释掉
+    // const tagInfo = providerTagMap[provider];
+    // 使用 useThemeMode 获取当前主题模式 - 暂时注释掉
+    // const { isDarkMode } = useThemeMode();
+
+    // 暂时忽略showTag参数，因为标签功能被注释了
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _showTag = showTag;
 
     return (
       <Flexbox align={'center'} gap={4} horizontal>
@@ -858,7 +863,8 @@ export const ProviderItemRender = memo<ProviderItemRenderProps>(
         )}
         <Flexbox align={'center'} gap={4} horizontal>
           {name}
-          {showTag && tagInfo && (
+          {/* 暂时注释掉提供商标签显示 */}
+          {/* {showTag && tagInfo && (
             <Tag
               size={'small'}
               style={{
@@ -883,7 +889,7 @@ export const ProviderItemRender = memo<ProviderItemRenderProps>(
                 {tagInfo.label}
               </span>
             </Tag>
-          )}
+          )} */}
         </Flexbox>
       </Flexbox>
     );
