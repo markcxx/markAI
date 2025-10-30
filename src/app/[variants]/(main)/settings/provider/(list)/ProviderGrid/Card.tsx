@@ -37,12 +37,20 @@ const ProviderCard = memo<ProviderCardProps>(
             <Flexbox gap={12} width={'100%'}>
               <Flexbox align={'center'} horizontal justify={'space-between'}>
                 {source === 'builtin' ? (
-                  <ProviderCombine
-                    provider={id}
-                    size={24}
-                    style={{ color: theme.colorText }}
-                    title={name}
-                  />
+                  // Special handling for markai provider to use custom logo
+                  id === 'markai' ? (
+                    <Flexbox align={'center'} gap={12} horizontal>
+                      <Avatar alt={name || id} avatar={'/icons/LOGO.png'} size={28} />
+                      <Text strong>{name}</Text>
+                    </Flexbox>
+                  ) : (
+                    <ProviderCombine
+                      provider={id}
+                      size={24}
+                      style={{ color: theme.colorText }}
+                      title={name}
+                    />
+                  )
                 ) : (
                   <Flexbox align={'center'} gap={12} horizontal>
                     {logo ? (
@@ -55,25 +63,22 @@ const ProviderCard = memo<ProviderCardProps>(
                         type={'avatar'}
                       />
                     )}
-                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{name || id}</Text>
+                    <Text strong>{name}</Text>
                   </Flexbox>
                 )}
+                <EnableSwitch enabled={enabled} id={id} />
               </Flexbox>
-              <Text
-                className={styles.desc}
-                ellipsis={{
-                  rows: 2,
-                }}
-              >
-                {source === 'custom' ? description : t(`${id}.description`)}
+              <Text className={styles.desc} type={'secondary'}>
+                {t(`${id}.description`)}
               </Text>
             </Flexbox>
           </Link>
-          <Divider style={{ margin: '4px 0' }} />
-          <Flexbox horizontal justify={'space-between'}>
-            <div />
-            <EnableSwitch enabled={enabled} id={id} />
-          </Flexbox>
+        </Flexbox>
+        <Divider style={{ margin: 0 }} />
+        <Flexbox gap={12} padding={16} width={'100%'}>
+          {/* cloud slot */}
+
+          {/* cloud slot */}
         </Flexbox>
       </Flexbox>
     );

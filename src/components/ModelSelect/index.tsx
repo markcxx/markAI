@@ -854,10 +854,14 @@ export const ProviderItemRender = memo<ProviderItemRenderProps>(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const _showTag = showTag;
 
+    // 判断是否应该使用 Avatar 显示 logo
+    const shouldUseAvatar = (source === 'custom' && !!logo) || provider === 'markai';
+    const avatarSrc = provider === 'markai' ? '/icons/LOGO.png' : logo;
+
     return (
       <Flexbox align={'center'} gap={4} horizontal>
-        {source === 'custom' && !!logo ? (
-          <Avatar avatar={logo} size={20} style={{ filter: 'grayscale(1)' }} title={name} />
+        {shouldUseAvatar ? (
+          <Avatar avatar={avatarSrc} size={20} style={{ filter: 'grayscale(1)' }} title={name} />
         ) : (
           <ProviderIcon provider={provider} size={20} type={'mono'} />
         )}

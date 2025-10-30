@@ -148,7 +148,7 @@
       "placeholder": "hf_xxxxxxxxx",
       "title": "MarkAI API 키"
     },
-    "description": "MarkAI는 HuggingFace API를 기반으로 한 2차 캡슐화 서비스로, 고품질 AI 모델 액세스 기능을 제공합니다. 다양한 고급 오픈소스 모델을 지원하며, 개발자에게 안정적이고 신뢰할 수 있는 AI 서비스를 제공합니다.",
+    "description": "MarkAI는 GPT-5, Claude Sonnet 4.5 등 최고급 상용 모델에 대한 액세스를 제공하는 고급 AI 모델 통합 플랫폼입니다. 전 세계 선도적인 AI 모델 리소스를 통합하여 개발자에게 안정적이고 신뢰할 수 있는 엔터프라이즈급 AI 서비스를 제공합니다.",
     "title": "MarkAI"
   },
   "menu": {

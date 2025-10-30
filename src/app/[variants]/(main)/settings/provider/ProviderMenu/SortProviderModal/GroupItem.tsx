@@ -6,13 +6,18 @@ import { Flexbox } from 'react-layout-kit';
 import { AiProviderListItem } from '@/types/aiProvider';
 
 const GroupItem = memo<AiProviderListItem>(({ id, name, source, logo }) => {
+  // Special handling for markai provider to use custom logo
+  const shouldUseAvatar =
+    (source === 'custom' && logo) || (source === 'builtin' && id === 'markai');
+  const avatarSrc = source === 'custom' ? logo : '/icons/LOGO.png';
+
   return (
     <>
       <Flexbox gap={8} horizontal>
-        {source === 'custom' && logo ? (
+        {shouldUseAvatar ? (
           <Avatar
             alt={name || id}
-            avatar={logo}
+            avatar={avatarSrc}
             shape={'square'}
             size={24}
             style={{ borderRadius: 6 }}

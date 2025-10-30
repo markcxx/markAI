@@ -99,6 +99,10 @@ export interface ModelProviderCard {
   enabled?: boolean;
   id: string;
   /**
+   * custom logo for the provider
+   */
+  logo?: string;
+  /**
    * @deprecated
    */
   modelList?: {

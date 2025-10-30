@@ -26,9 +26,10 @@ const MarkAI: ModelProviderCard = {
   ],
   checkModel: 'deepseek-ai/DeepSeek-V3.1:fireworks-ai',
   description:
-    'MarkAI 是基于 HuggingFace API 的二次封装服务，提供高质量的AI模型访问能力。支持多种先进的开源模型，为开发者提供稳定可靠的AI服务。',
+    'MarkAI 是一个高级AI模型聚合平台，提供包括 GPT-5、Claude Sonnet 4.5 等顶级商业模型的访问能力。整合全球领先的AI模型资源，为开发者提供稳定可靠的企业级AI服务。',
   disableBrowserRequest: true,
   id: 'markai',
+  logo: '/icons/LOGO.png',
   modelList: { showModelFetcher: true },
   modelsUrl: 'https://api.markai.markqq.com',
   name: 'MarkAI',

@@ -43,16 +43,21 @@ const ProviderItem = memo<AiProviderListItem>(({ id, name, source, enabled, logo
   const activeKey = pathname.split('/').pop();
 
   const isCustom = source === AiProviderSourceEnum.Custom;
+
+  // Special handling for markai provider to use custom logo
+  const shouldUseAvatar = (isCustom && logo) || (!isCustom && id === 'markai');
+  const avatarSrc = isCustom ? logo : '/icons/LOGO.png';
+
   return (
     <Link
       className={cx(styles.container, activeKey === id && styles.active)}
       href={`/settings/provider/${id}`}
     >
       <Flexbox gap={8} horizontal>
-        {isCustom && logo ? (
+        {shouldUseAvatar ? (
           <Avatar
             alt={name || id}
-            avatar={logo}
+            avatar={avatarSrc}
             shape={'square'}
             size={24}
             style={{ borderRadius: 6 }}

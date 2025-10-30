@@ -148,7 +148,7 @@
       "placeholder": "hf_xxxxxxxxx",
       "title": "MarkAI API Key"
     },
-    "description": "MarkAI 是基於 HuggingFace API 的二次封裝服務，提供高品質的AI模型存取能力。支援多種先進的開源模型，為開發者提供穩定可靠的AI服務。",
+    "description": "MarkAI 是一個先進的AI模型聚合平台，提供對GPT-5、Claude Sonnet 4.5等頂級商業模型的存取。整合全球領先的AI模型資源，為開發者提供企業級的穩定可靠AI服務。",
     "title": "MarkAI"
   },
   "menu": {

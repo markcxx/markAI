@@ -148,7 +148,7 @@
       "placeholder": "hf_xxxxxxxxx",
       "title": "MarkAI API-sleutel"
     },
-    "description": "MarkAI is een secundaire inkapseling service gebaseerd op HuggingFace API, die hoogwaardige AI-model toegangsmogelijkheden biedt. Het ondersteunt verschillende geavanceerde open-source modellen en biedt ontwikkelaars stabiele en betrouwbare AI-services.",
+    "description": "MarkAI is een geavanceerd AI-model aggregatieplatform dat toegang biedt tot de beste commerciële modellen zoals GPT-5 en Claude Sonnet 4.5. Het integreert wereldwijd leidende AI-modelresources en biedt ontwikkelaars stabiele en betrouwbare AI-services op enterprise-niveau.",
     "title": "MarkAI"
   },
   "menu": {

@@ -148,7 +148,7 @@
       "placeholder": "hf_xxxxxxxxx",
       "title": "MarkAI API Key"
     },
-    "description": "MarkAI is a secondary encapsulation service based on HuggingFace API, providing high-quality AI model access capabilities. It supports various advanced open-source models and provides stable and reliable AI services for developers.",
+    "description": "MarkAI is an advanced AI model aggregation platform that provides access to top-tier commercial models including GPT-5, Claude Sonnet 4.5, and more. Integrating leading AI model resources globally, it offers stable and reliable enterprise-grade AI services for developers.",
     "title": "MarkAI"
   },
   "menu": {

@@ -69,7 +69,7 @@
     "description": "LM Studio 是一个用于在您的计算机上开发和实验 LLMs 的桌面应用程序。"
   },
   "markai": {
-    "description": "MarkAI 是基于 HuggingFace API 的二次封装服务，提供高质量的AI模型访问能力。支持多种先进的开源模型，为开发者提供稳定可靠的AI服务。"
+    "description": "MarkAI 是一个先进的AI模型聚合平台，提供对GPT-5、Claude Sonnet 4.5等顶级商业模型的访问。整合全球领先的AI模型资源，为开发者提供企业级的稳定可靠AI服务。"
   },
   "minimax": {
     "description": "MiniMax 是 2021 年成立的通用人工智能科技公司，致力于与用户共创智能。MiniMax 自主研发了不同模态的通用大模型，其中包括万亿参数的 MoE 文本大模型、语音大模型以及图像大模型。并推出了海螺 AI 等应用。"
