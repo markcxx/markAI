@@ -28,6 +28,7 @@ const MarkAI: ModelProviderCard = {
   description:
     'MarkAI 是一个高级AI模型聚合平台，提供包括 GPT-5、Claude Sonnet 4.5 等顶级商业模型的访问能力。整合全球领先的AI模型资源，为开发者提供稳定可靠的企业级AI服务。',
   disableBrowserRequest: true,
+  enabled: true,
   id: 'markai',
   logo: '/icons/LOGO.png',
   modelList: { showModelFetcher: true },
