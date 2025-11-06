@@ -9,11 +9,13 @@ import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfi
 
 import SettingButton from '../../../features/SettingButton';
 import ShareButton from '../../../features/ShareButton';
+import UpdateLogButton from '../../../features/UpdateLogButton';
 import ChatHeaderTitle from './ChatHeaderTitle';
 
 const MobileHeader = memo(() => {
   const router = useQueryRoute();
   const [open, setOpen] = useState(false);
+  const [updateOpen, setUpdateOpen] = useState(false);
 
   const { isAgentEditable } = useServerConfigStore(featureFlagsSelectors);
 
@@ -25,6 +27,7 @@ const MobileHeader = memo(() => {
       }
       right={
         <>
+          <UpdateLogButton mobile open={updateOpen} setOpen={setUpdateOpen} />
           <ShareButton mobile open={open} setOpen={setOpen} />
           {isAgentEditable && <SettingButton mobile />}
         </>

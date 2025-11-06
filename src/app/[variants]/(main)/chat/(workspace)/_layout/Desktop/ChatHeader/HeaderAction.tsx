@@ -17,6 +17,7 @@ import { HotkeyEnum } from '@/types/hotkey';
 
 import SettingButton from '../../../features/SettingButton';
 import ShareButton from '../../../features/ShareButton';
+import UpdateLogButton from '../../../features/UpdateLogButton';
 
 const HeaderAction = memo<{ className?: string }>(({ className }) => {
   const { t } = useTranslation('chat');
@@ -31,6 +32,7 @@ const HeaderAction = memo<{ className?: string }>(({ className }) => {
   return (
     <Flexbox className={className} gap={4} horizontal>
       <ThemeToggleSwitch />
+      <UpdateLogButton />
       <ShareButton />
       <ActionIcon
         icon={showAgentSettings ? PanelRightClose : PanelRightOpen}
