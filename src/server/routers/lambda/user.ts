@@ -7,10 +7,11 @@ import { isDesktop } from '@/const/version';
 import { MessageModel } from '@/database/models/message';
 import { SessionModel } from '@/database/models/session';
 import { UserModel, UserNotFoundError } from '@/database/models/user';
+import { users } from '@/database/schemas';
 import { ClerkAuth } from '@/libs/clerk-auth';
 import { pino } from '@/libs/logger';
 import { LobeNextAuthDbAdapter } from '@/libs/next-auth/adapter';
-import { authedProcedure, router } from '@/libs/trpc/lambda';
+import { authedProcedure, publicProcedure, router } from '@/libs/trpc/lambda';
 import { serverDatabase } from '@/libs/trpc/lambda/middleware';
 import { KeyVaultsGateKeeper } from '@/server/modules/KeyVaultsEncrypt';
 import { S3 } from '@/server/modules/S3';
@@ -122,6 +123,22 @@ export const userRouter = router({
       userId: ctx.userId,
       username: state.username,
     } satisfies UserInitializationState;
+  }),
+
+  // Public: list registered users with basic public profile
+  listPublicUsers: publicProcedure.use(serverDatabase).query(async ({ ctx }) => {
+    // Return limited public fields
+    const list = await ctx.serverDB
+      .select({
+        avatar: users.avatar,
+        email: users.email,
+        id: users.id,
+        username: users.username,
+      })
+      .from(users);
+
+    // Fallbacks handled in frontend (masking email, default avatar)
+    return list;
   }),
 
   makeUserOnboarded: userProcedure.mutation(async ({ ctx }) => {

@@ -25,6 +25,16 @@ export const CHANGELOG: ChangelogEntry[] = [
         type: 'feature',
       },
       {
+        description: '在聊天右上角添加查看注册用户信息功能',
+        title: '新增查看用户目录功能',
+        type: 'feature',
+      },
+      {
+        description: '热烈欢迎超人欧麻吉加入内测名单。',
+        title: '欢迎公告',
+        type: 'feature',
+      },
+      {
         description: '有新版本时，打开网站自动弹出更新提示。',
         title: '首次未读自动提示',
         type: 'improvement',
