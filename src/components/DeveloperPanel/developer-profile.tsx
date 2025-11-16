@@ -516,9 +516,9 @@ export default function DeveloperProfile() {
     },
     {
       description:
-        '支持OPENAI协议的大模型服务，支持主流开源模型如deepseek，Qwen,kimi，glm4.5，gpt-oss-120b等，支持MCP服务',
+        '支持OPENAI协议的大模型服务，支持主流模型如gpt-5,claude-sonnect-4-5,doubao等，支持MCP服务',
       features: ['多平台支持', 'OPENAI协议', '大模型服务', 'MCP调用'],
-      github: 'https://github.com/markcxx/huggingface-openai-proxy',
+      github: '#',
       icon: <Video size={24} />,
       title: 'Openai协议MARKAI模型后端服务',
       type: 'purple',
