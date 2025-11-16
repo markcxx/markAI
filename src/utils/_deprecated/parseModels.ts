@@ -59,7 +59,8 @@ export const parseModelString = (modelString: string = '', withDeploymentName = 
       model.contextWindowTokens = parseInt(maxTokenStr, 10) || undefined;
 
       for (const capability of capabilityList) {
-        switch (capability) {
+        const cap = capability.trim().toLowerCase();
+        switch (cap) {
           case 'reasoning': {
             model.reasoning = true;
             break;
@@ -76,9 +77,11 @@ export const parseModelString = (modelString: string = '', withDeploymentName = 
             model.files = true;
             break;
           }
-          default: {
-            console.warn(`Unknown capability: ${capability}`);
+          case 'search': {
+            (model as any).search = true;
+            break;
           }
+          default:
         }
       }
     }

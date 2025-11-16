@@ -74,7 +74,8 @@ export const parseModelString = (
       model.contextWindowTokens = parseInt(maxTokenStr, 10) || undefined;
 
       for (const capability of capabilityList) {
-        switch (capability) {
+        const cap = capability.trim().toLowerCase();
+        switch (cap) {
           case 'reasoning': {
             model.abilities!.reasoning = true;
             break;
@@ -95,13 +96,11 @@ export const parseModelString = (
             model.abilities!.search = true;
             break;
           }
-          case 'imageOutput': {
+          case 'imageoutput': {
             model.abilities!.imageOutput = true;
             break;
           }
-          default: {
-            console.warn(`Unknown capability: ${capability}`);
-          }
+          default:
         }
       }
     }
