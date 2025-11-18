@@ -167,7 +167,10 @@ export const transformToAiModelList = ({
         if (modelInList) {
           draft[index] = merge(modelInList, {
             ...toAddModel,
-            displayName: toAddModel.displayName || modelInList.displayName || modelInList.id,
+            displayName:
+              providerId === 'markai'
+                ? toAddModel.id
+                : toAddModel.displayName || modelInList.displayName || modelInList.id,
             enabled: true,
           });
         } else {
@@ -175,7 +178,10 @@ export const transformToAiModelList = ({
           draft.push(
             merge(knownModel, {
               ...toAddModel,
-              displayName: toAddModel.displayName || knownModel.displayName || knownModel.id,
+              displayName:
+                providerId === 'markai'
+                  ? toAddModel.id
+                  : toAddModel.displayName || knownModel.displayName || knownModel.id,
               enabled: true,
             }),
           );
@@ -184,7 +190,8 @@ export const transformToAiModelList = ({
         // if the model is not in LOBE_DEFAULT_MODEL_LIST, add it as a new custom model
         draft.push({
           ...toAddModel,
-          displayName: toAddModel.displayName || toAddModel.id,
+          displayName:
+            providerId === 'markai' ? toAddModel.id : toAddModel.displayName || toAddModel.id,
           enabled: true,
         });
       }

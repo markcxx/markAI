@@ -28,13 +28,9 @@ export const formatModelName = (modelId: string): string => {
 export const formatModelDisplayName = (
   modelId: string,
   displayName?: string,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _provider?: string,
 ): string => {
-  if (displayName) {
-    // 如果displayName包含冒号，也需要格式化
-    return formatModelName(displayName);
-  }
-
+  if (_provider === 'markai') return modelId;
+  if (displayName) return formatModelName(displayName);
   return formatModelName(modelId);
 };
