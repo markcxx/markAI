@@ -29,6 +29,8 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       UPDATE_CHANNEL: ${{ inputs.release_type }}
+      APP_URL: http://localhost:3210
+      NEXT_TELEMETRY_DISABLED: 1
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -60,73 +62,3 @@ jobs:
         if: ${{ startsWith(matrix.os, 'macos') }}
         working-directory: apps/desktop
         run: npx electron-builder --mac --config electron-builder.js --publish always -c.mac.notarize=false -c.mac.identity=null
-
-  prune-old-releases:
-    name: prune releases older than 1 day
-    runs-on: ubuntu-latest
-    needs: build-release
-    steps:
-      - name: delete releases and assets older than 1 day
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const oneDayMs = 24 * 60 * 60 * 1000;
-            const { data: releases } = await github.rest.repos.listReleases({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              per_page: 100,
-            });
-
-            const now = Date.now();
-            const currentVersion = core.getInput('version') || '${{ inputs.version }}';
-
-            for (const rel of releases) {
-              const createdAt = new Date(rel.created_at).getTime();
-              const age = now - createdAt;
-              const tag = rel.tag_name || '';
-              const name = rel.name || '';
-
-              const isCurrent = tag === `v${currentVersion}` || name.includes(currentVersion);
-              if (isCurrent) {
-                continue;
-              }
-
-              if (age > oneDayMs) {
-                // delete assets first
-                for (const asset of rel.assets) {
-                  try {
-                    await github.rest.repos.deleteReleaseAsset({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      asset_id: asset.id,
-                    });
-                  } catch (e) {
-                    core.warning(`Failed to delete asset ${asset.name}: ${e.message}`);
-                  }
-                }
-
-                // delete release
-                try {
-                  await github.rest.repos.deleteRelease({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    release_id: rel.id,
-                  });
-                } catch (e) {
-                  core.warning(`Failed to delete release ${name || tag}: ${e.message}`);
-                }
-
-                // delete tag ref if exists
-                if (tag) {
-                  try {
-                    await github.rest.git.deleteRef({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      ref: `tags/${tag}`,
-                    });
-                  } catch (e) {
-                    core.info(`No tag ref or failed to delete tag ${tag}: ${e.message}`);
-                  }
-                }
-              }
-            }
