@@ -1,7 +1,6 @@
 import { MainBroadcastEventKey, MainBroadcastParams } from '@lobechat/electron-client-ipc';
-import { nativeTheme } from 'electron';
+import { app, nativeTheme } from 'electron';
 
-import { name } from '@/../../package.json';
 import { isMac } from '@/const/env';
 import { createLogger } from '@/utils/logger';
 
@@ -61,8 +60,8 @@ export class TrayManager {
           ? 'tray-dark.png'
           : 'tray-light.png'
         : 'tray.png',
-      identifier: 'main', // Use app icon, ensure this file exists in resources directory
-      tooltip: name, // Can use app.getName() or localized string
+      identifier: 'main',
+      tooltip: app.getName(),
     });
   }
 

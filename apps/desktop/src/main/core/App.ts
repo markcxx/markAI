@@ -69,7 +69,7 @@ export class App {
     logger.info(`PATH: ${app.getAppPath()}`);
     logger.info(` lng: ${app.getLocale()}`);
     logger.info('----------------------------------------------');
-    logger.info('Starting LobeHub...');
+    logger.info('Starting MarkAI...');
 
     logger.debug('Initializing App');
     // Initialize store manager
@@ -319,7 +319,7 @@ export class App {
     if (!isDev) return;
 
     logger.debug('Setting up dev branding');
-    app.setName('lobehub-desktop-dev');
+    app.setName('MarkAI');
     if (macOS()) {
       app.dock!.setIcon(join(buildDir, 'icon-dev.png'));
     }

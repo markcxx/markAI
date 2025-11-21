@@ -79,6 +79,10 @@ export class UpdaterManager {
    * @param manual whether this is a manual check for updates
    */
   public checkForUpdates = async ({ manual = false }: { manual?: boolean } = {}) => {
+    if (!updaterConfig.enableAppUpdate) {
+      logger.info('App updates are disabled, skip checking for updates');
+      return;
+    }
     if (this.checking || this.downloading) return;
 
     this.checking = true;
@@ -109,6 +113,10 @@ export class UpdaterManager {
    * @param manual whether this is a manual download
    */
   public downloadUpdate = async (manual: boolean = false) => {
+    if (!updaterConfig.enableAppUpdate) {
+      logger.info('App updates are disabled, skip downloading updates');
+      return;
+    }
     if (this.downloading || !this.updateAvailable) return;
 
     this.downloading = true;

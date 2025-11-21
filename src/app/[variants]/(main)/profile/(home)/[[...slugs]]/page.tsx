@@ -2,6 +2,7 @@ import { Skeleton } from 'antd';
 import dynamic from 'next/dynamic';
 
 import { enableClerk } from '@/const/auth';
+import { isDesktop } from '@/const/version';
 import { metadataModule } from '@/server/metadata';
 import { translation } from '@/server/translation';
 import { DynamicLayoutProps } from '@/types/next';
@@ -32,7 +33,7 @@ export const generateMetadata = async (props: DynamicLayoutProps) => {
 const Page = async (props: DynamicLayoutProps) => {
   const mobile = await RouteVariants.getIsMobile(props);
 
-  if (enableClerk) return <ClerkProfile mobile={mobile} />;
+  if (enableClerk && !isDesktop) return <ClerkProfile mobile={mobile} />;
 
   return <Client mobile={mobile} />;
 };

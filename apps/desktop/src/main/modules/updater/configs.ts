@@ -7,15 +7,15 @@ export const updaterConfig = {
   // 应用更新配置
   app: {
     // 是否自动检查更新
-    autoCheckUpdate: true,
+    autoCheckUpdate: false,
     // 是否自动下载更新
-    autoDownloadUpdate: true,
+    autoDownloadUpdate: false,
     // 检查更新的时间间隔（毫秒）
     checkUpdateInterval: 60 * 60 * 1000, // 1小时
   },
 
   // 是否启用应用更新
-  enableAppUpdate: true,
+  enableAppUpdate: false,
 
   // 是否启用渲染层热更新
   enableRenderHotUpdate: !isDev,

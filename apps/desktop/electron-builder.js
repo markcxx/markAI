@@ -99,7 +99,7 @@ const config = {
     },
   ],
   win: {
-    executableName: 'LobeHub',
+    executableName: 'MarkAI',
   },
 };
 

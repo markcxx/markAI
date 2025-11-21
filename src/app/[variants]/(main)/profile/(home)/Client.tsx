@@ -19,7 +19,7 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
     authSelectors.isLoginWithNextAuth(s),
     authSelectors.isLogin(s),
   ]);
-  const [nickname, , userProfile, loading, updatePreference] = useUserStore((s) => [
+  const [nickname, username, userProfile, loading, updatePreference] = useUserStore((s) => [
     userProfileSelectors.nickName(s),
     userProfileSelectors.username(s),
     userProfileSelectors.userProfile(s),
@@ -69,13 +69,13 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
       },
       {
         children: <Input disabled />,
-        hidden: !isLoginWithNextAuth || !userProfile?.email,
+        hidden: !userProfile?.email,
         label: t('profile.email'),
         name: 'email',
       },
       {
         children: <SSOProvidersList />,
-        hidden: !isLoginWithNextAuth,
+        hidden: false,
         label: t('profile.sso.providers'),
         layout: 'vertical',
         minWidth: undefined,
@@ -88,7 +88,7 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
     <Form
       form={form}
       initialValues={{
-        customNickname: nickname || 'MarkAI',
+        customNickname: username || nickname || 'MarkAI',
         email: userProfile?.email || '--',
       }}
       items={[profile]}

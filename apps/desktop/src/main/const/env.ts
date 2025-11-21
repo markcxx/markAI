@@ -3,7 +3,16 @@ import os from 'node:os';
 
 export const isDev = dev();
 
-export const OFFICIAL_CLOUD_SERVER = process.env.OFFICIAL_CLOUD_SERVER || 'https://lobechat.com';
+const getMarkAIDomainByDate = () => {
+  try {
+    const day = new Date().getDate();
+    return day <= 10 ? 'https://chatai.markqq.com' : 'https://aichat.markqq.com';
+  } catch {
+    return 'https://chatai.markqq.com';
+  }
+};
+
+export const OFFICIAL_CLOUD_SERVER = process.env.OFFICIAL_CLOUD_SERVER || getMarkAIDomainByDate();
 
 export const isMac = macOS();
 export const isWindows = windows();

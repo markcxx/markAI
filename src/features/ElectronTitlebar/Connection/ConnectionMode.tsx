@@ -1,12 +1,13 @@
 import { StorageMode, StorageModeEnum } from '@lobechat/electron-client-ipc';
 import { Button, Input } from '@lobehub/ui';
-import { LobeHub } from '@lobehub/ui/brand';
 import { createStyles } from 'antd-style';
 import { ComputerIcon, Server } from 'lucide-react';
+import Image from 'next/image';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
+import { BRANDING_LOGO_URL, LOBE_CHAT_CLOUD } from '@/const/branding';
 import { useElectronStore } from '@/store/electron';
 import { electronSyncSelectors } from '@/store/electron/selectors';
 
@@ -152,9 +153,11 @@ const ConnectionMode = memo<ConnectionModeProps>(({ setIsOpen, setWaiting }) => 
           </Flexbox>
           <Option
             description={t('sync.lobehubCloud.description')}
-            icon={LobeHub}
+            icon={() => (
+              <Image alt={LOBE_CHAT_CLOUD} height={24} src={BRANDING_LOGO_URL} width={24} />
+            )}
             isSelected={selectedOption === 'cloud'}
-            label={t('sync.lobehubCloud.title')}
+            label={LOBE_CHAT_CLOUD}
             onClick={handleSelectOption}
             value={StorageModeEnum.Cloud}
           />
@@ -178,7 +181,7 @@ const ConnectionMode = memo<ConnectionModeProps>(({ setIsOpen, setWaiting }) => 
                       setUrlError(validateUrl(newUrl));
                     }}
                     onClick={(e) => e.stopPropagation()}
-                    placeholder="https://your-lobechat.com"
+                    placeholder="https://your-markai.com"
                     status={urlError ? 'error' : undefined}
                     value={selfHostedUrl}
                   />

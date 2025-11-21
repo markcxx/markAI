@@ -7,6 +7,7 @@ import urlJoin from 'url-join';
 import { authEnv } from '@/config/auth';
 import { LOBE_LOCALE_COOKIE } from '@/const/locale';
 import { LOBE_THEME_APPEARANCE } from '@/const/theme';
+import { isDesktop } from '@/const/version';
 import { appEnv } from '@/envs/app';
 import NextAuthEdge from '@/libs/next-auth/edge';
 import { Locales } from '@/locales/resources';
@@ -208,7 +209,8 @@ const nextAuthMiddleware = NextAuthEdge.auth(async (req) => {
   const response = defaultMiddleware(req);
 
   // when enable auth protection, only public route is not protected, others are all protected
-  const isProtected = appEnv.ENABLE_AUTH_PROTECTION ? !isPublicRoute(req) : isProtectedRoute(req);
+  const isProtected =
+    (appEnv.ENABLE_AUTH_PROTECTION ? !isPublicRoute(req) : isProtectedRoute(req)) && !isDesktop;
 
   logNextAuth('Route protection status: %s, %s', req.url, isProtected ? 'protected' : 'public');
 
@@ -256,7 +258,8 @@ const clerkAuthMiddleware = clerkMiddleware(
     logClerk('Clerk middleware processing request: %s %s', req.method, req.url);
 
     // when enable auth protection, only public route is not protected, others are all protected
-    const isProtected = appEnv.ENABLE_AUTH_PROTECTION ? !isPublicRoute(req) : isProtectedRoute(req);
+    const isProtected =
+      (appEnv.ENABLE_AUTH_PROTECTION ? !isPublicRoute(req) : isProtectedRoute(req)) && !isDesktop;
 
     logClerk('Route protection status: %s, %s', req.url, isProtected ? 'protected' : 'public');
 

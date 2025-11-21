@@ -68,6 +68,10 @@ export const remoteSyncSlice: StateCreator<
       await remoteServerService.setRemoteServerConfig({ active: false, storageMode: 'local' });
       // 更新表单URL为空
       set({ dataSyncConfig: initialState.dataSyncConfig });
+      try {
+        const { useUserStore } = await import('@/store/user');
+        useUserStore.setState({ isLoaded: true, isSignedIn: false });
+      } catch {}
       // 刷新状态
       await get().refreshServerConfig();
     } catch (error) {
@@ -107,8 +111,17 @@ export const remoteSyncSlice: StateCreator<
         }
       },
       {
-        onSuccess: (data) => {
+        onSuccess: async (data) => {
           if (!isEqual(data, get().dataSyncConfig)) {
+            try {
+              if (data?.active && data?.storageMode && data.storageMode !== 'local') {
+                const { useUserStore } = await import('@/store/user');
+                useUserStore.setState({ isLoaded: true, isSignedIn: true });
+              } else {
+                const { useUserStore } = await import('@/store/user');
+                useUserStore.setState({ isLoaded: true, isSignedIn: false });
+              }
+            } catch {}
             get().refreshUserData();
           }
 
