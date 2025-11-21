@@ -54,7 +54,7 @@ const config = {
   linux: {
     category: 'Utility',
     maintainer: 'electronjs.org',
-    target: ['AppImage', 'snap', 'deb'],
+    target: ['AppImage', 'deb'],
   },
   mac: {
     compression: 'maximum',

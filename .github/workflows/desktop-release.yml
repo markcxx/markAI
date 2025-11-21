@@ -41,7 +41,7 @@ jobs:
         with:
           version: 10.10.0
       - name: install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: set desktop version
         run: pnpm workflow:set-desktop-version ${{ inputs.version }} ${{ inputs.release_type }}
       - name: build next for desktop
@@ -55,7 +55,7 @@ jobs:
       - name: build and publish linux
         if: ${{ startsWith(matrix.os, 'ubuntu') }}
         working-directory: apps/desktop
-        run: npx electron-builder --linux --config electron-builder.js --publish always
+        run: npx electron-builder --linux AppImage deb --config electron-builder.js --publish always
       - name: build and publish mac
         if: ${{ startsWith(matrix.os, 'macos') }}
         working-directory: apps/desktop
