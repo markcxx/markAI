@@ -1,0 +1,132 @@
+name: desktop-release
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: release version
+        required: true
+        default: 1.0.1
+      release_type:
+        description: release channel
+        required: true
+        default: stable
+        type: choice
+        options:
+          - stable
+          - beta
+          - nightly
+
+jobs:
+  build-release:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      UPDATE_CHANNEL: ${{ inputs.release_type }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: set desktop version
+        run: pnpm workflow:set-desktop-version ${{ inputs.version }} ${{ inputs.release_type }}
+      - name: build next for desktop
+        run: pnpm desktop:build-next
+      - name: prepare dist
+        run: pnpm desktop:prepare-dist
+      - name: build and publish windows
+        if: ${{ startsWith(matrix.os, 'windows') }}
+        working-directory: apps/desktop
+        run: npx electron-builder --win --config electron-builder.js --publish always
+      - name: build and publish linux
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+        working-directory: apps/desktop
+        run: npx electron-builder --linux --config electron-builder.js --publish always
+      - name: build and publish mac
+        if: ${{ startsWith(matrix.os, 'macos') }}
+        working-directory: apps/desktop
+        run: npx electron-builder --mac --config electron-builder.js --publish always -c.mac.notarize=false -c.mac.identity=null
+
+  prune-old-releases:
+    name: prune releases older than 1 day
+    runs-on: ubuntu-latest
+    needs: build-release
+    steps:
+      - name: delete releases and assets older than 1 day
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const oneDayMs = 24 * 60 * 60 * 1000;
+            const { data: releases } = await github.rest.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100,
+            });
+
+            const now = Date.now();
+            const currentVersion = core.getInput('version') || '${{ inputs.version }}';
+
+            for (const rel of releases) {
+              const createdAt = new Date(rel.created_at).getTime();
+              const age = now - createdAt;
+              const tag = rel.tag_name || '';
+              const name = rel.name || '';
+
+              const isCurrent = tag === `v${currentVersion}` || name.includes(currentVersion);
+              if (isCurrent) {
+                continue;
+              }
+
+              if (age > oneDayMs) {
+                // delete assets first
+                for (const asset of rel.assets) {
+                  try {
+                    await github.rest.repos.deleteReleaseAsset({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      asset_id: asset.id,
+                    });
+                  } catch (e) {
+                    core.warning(`Failed to delete asset ${asset.name}: ${e.message}`);
+                  }
+                }
+
+                // delete release
+                try {
+                  await github.rest.repos.deleteRelease({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    release_id: rel.id,
+                  });
+                } catch (e) {
+                  core.warning(`Failed to delete release ${name || tag}: ${e.message}`);
+                }
+
+                // delete tag ref if exists
+                if (tag) {
+                  try {
+                    await github.rest.git.deleteRef({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      ref: `tags/${tag}`,
+                    });
+                  } catch (e) {
+                    core.info(`No tag ref or failed to delete tag ${tag}: ${e.message}`);
+                  }
+                }
+              }
+            }

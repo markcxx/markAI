@@ -76,21 +76,21 @@ function updatePackageJson() {
     // 根据 releaseType 修改其他字段
     switch (releaseType) {
       case 'stable': {
-        packageJson.productName = 'LobeHub';
-        packageJson.name = 'lobehub-desktop';
+        packageJson.productName = 'MarkAI';
+        packageJson.name = 'markai-desktop';
         console.log('🌟 Setting as Stable version.');
         break;
       }
       case 'beta': {
-        packageJson.productName = 'LobeHub-Beta'; // Or 'LobeHub-Beta' if preferred
-        packageJson.name = 'lobehub-desktop-beta'; // Or 'lobehub-desktop' if preferred
+        packageJson.productName = 'MarkAI-Beta';
+        packageJson.name = 'markai-desktop-beta';
         console.log('🧪 Setting as Beta version.');
         updateAppIcon('beta');
         break;
       }
       case 'nightly': {
-        packageJson.productName = 'LobeHub-Nightly'; // Or 'LobeHub-Nightly'
-        packageJson.name = 'lobehub-desktop-nightly'; // Or 'lobehub-desktop-nightly'
+        packageJson.productName = 'MarkAI-Nightly';
+        packageJson.name = 'markai-desktop-nightly';
         console.log('🌙 Setting as Nightly version.');
         updateAppIcon('nightly');
         break;

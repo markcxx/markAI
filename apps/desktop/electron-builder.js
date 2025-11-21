@@ -17,10 +17,10 @@ const isBeta = packageJSON.name.includes('beta');
  */
 const config = {
   appId: isNightly
-    ? 'com.lobehub.lobehub-desktop-nightly'
+    ? 'com.markcxx.markai-desktop-nightly'
     : isBeta
-      ? 'com.lobehub.lobehub-desktop-beta'
-      : 'com.lobehub.lobehub-desktop',
+      ? 'com.markcxx.markai-desktop-beta'
+      : 'com.markcxx.markai-desktop',
   appImage: {
     artifactName: '${productName}-${version}.${ext}',
   },
@@ -93,9 +93,9 @@ const config = {
   },
   publish: [
     {
-      owner: 'lobehub',
+      owner: 'markcxx',
       provider: 'github',
-      repo: 'lobe-chat',
+      repo: 'markAI',
     },
   ],
   win: {

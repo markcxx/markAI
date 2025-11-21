@@ -1,12 +1,12 @@
 {
   "name": "markai-desktop",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "MarkAI Desktop Application",
   "homepage": "https://chatai.markqq.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lobehub/lobe-chat.git"
+    "url": "https://github.com/markcxx/markAI.git"
   },
   "author": "MarkAI",
   "main": "./dist/main/index.js",
