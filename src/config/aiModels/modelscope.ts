@@ -96,6 +96,23 @@ const modelscopeImageModels: AIImageModelCard[] = [
     type: 'image',
   },
   {
+    description:
+      'FLUX.2 [dev] 是一个具有320亿参数的修正流变换器，能够根据文本指令生成、编辑和组合图像。',
+    displayName: 'FLUX.2-dev',
+    enabled: true,
+    id: 'black-forest-labs/FLUX.2-dev',
+    parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
+      prompt: {
+        default: '',
+      },
+    },
+    type: 'image',
+  },
+  {
     description: 'FLUX.1 [dev] 是一个具有 120 亿参数的修正流变换器，能够根据文本描述生成图像。',
     displayName: 'FLUX.1-dev',
     enabled: true,
