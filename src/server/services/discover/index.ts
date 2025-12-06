@@ -52,6 +52,14 @@ export class DiscoverService {
   assistantStore = new AssistantStore();
   pluginStore = new PluginStore();
   market: MarketSDK;
+  private _withTimeout = async <T>(p: Promise<T>, ms: number): Promise<T> => {
+    return await Promise.race([
+      p,
+      new Promise<T>((_, reject) => {
+        setTimeout(() => reject(new Error('timeout')), ms);
+      }),
+    ]);
+  };
 
   constructor({ accessToken }: { accessToken?: string } = {}) {
     this.market = new MarketSDK({
@@ -464,13 +472,16 @@ export class DiscoverService {
 
   getMcpIdentifiers = async (): Promise<IdentifiersResponse> => {
     log('getMcpIdentifiers: fetching identifiers');
-    const result = await this.market.plugins.getPublishedIdentifiers({
-      cache: 'force-cache',
-      next: {
-        revalidate: CacheRevalidate.List,
-        tags: [CacheTag.Discover, CacheTag.MCP],
-      },
-    });
+    const result = await this._withTimeout(
+      this.market.plugins.getPublishedIdentifiers({
+        cache: 'no-store',
+        next: {
+          revalidate: CacheRevalidate.List,
+          tags: [CacheTag.Discover, CacheTag.MCP],
+        },
+      }),
+      10_000,
+    ).catch(() => [] as IdentifiersResponse);
     log('getMcpIdentifiers: returning %d identifiers', result.length);
     return result;
   };

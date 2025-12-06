@@ -42,6 +42,17 @@ export class ChangelogService {
     user: 'lobehub',
   };
 
+  private async _fetchWithTimeout(url: string, init: any = {}, ms = 10_000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), ms);
+    try {
+      const res = await fetch(url, { ...init, signal: controller.signal });
+      return res;
+    } finally {
+      clearTimeout(id);
+    }
+  }
+
   async getLatestChangelogId() {
     const index = await this.getChangelogIndex();
     return index[0]?.id;
@@ -51,7 +62,7 @@ export class ChangelogService {
     try {
       const url = this.genUrl(urlJoin(this.config.docsPath, 'index.json'));
 
-      const res = await fetch(url, {
+      const res = await this._fetchWithTimeout(url, {
         next: { revalidate: 3600, tags: [FetchCacheTag.Changelog] },
       });
 
@@ -89,7 +100,7 @@ export class ChangelogService {
       const filename = options?.locale?.startsWith('zh') ? `${id}.zh-CN.mdx` : `${id}.mdx`;
       const url = this.genUrl(urlJoin(this.config.docsPath, filename));
 
-      const response = await fetch(url, {
+      const response = await this._fetchWithTimeout(url, {
         next: { revalidate: 3600, tags: [FetchCacheTag.Changelog] },
       });
 
@@ -202,7 +213,7 @@ export class ChangelogService {
     if (Object.keys(this.cdnUrls).length === 0) {
       try {
         const url = this.genUrl(this.config.cdnPath);
-        const res = await fetch(url);
+        const res = await this._fetchWithTimeout(url);
         const data = await res.json();
         if (data) {
           this.cdnUrls = data;

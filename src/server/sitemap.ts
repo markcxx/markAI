@@ -42,26 +42,42 @@ export class Sitemap {
 
   // 获取插件总页数
   async getPluginPageCount(): Promise<number> {
-    const list = await this.discoverService.getPluginIdentifiers();
-    return Math.ceil(list.length / ITEMS_PER_PAGE);
+    try {
+      const list = await this.discoverService.getPluginIdentifiers();
+      return Math.ceil(list.length / ITEMS_PER_PAGE);
+    } catch {
+      return 0;
+    }
   }
 
   // 获取助手总页数
   async getAssistantPageCount(): Promise<number> {
-    const list = await this.discoverService.getAssistantIdentifiers();
-    return Math.ceil(list.length / ITEMS_PER_PAGE);
+    try {
+      const list = await this.discoverService.getAssistantIdentifiers();
+      return Math.ceil(list.length / ITEMS_PER_PAGE);
+    } catch {
+      return 0;
+    }
   }
 
   // 获取MCP总页数
   async getMcpPageCount(): Promise<number> {
-    const list = await this.discoverService.getMcpIdentifiers();
-    return Math.ceil(list.length / ITEMS_PER_PAGE);
+    try {
+      const list = await this.discoverService.getMcpIdentifiers();
+      return Math.ceil(list.length / ITEMS_PER_PAGE);
+    } catch {
+      return 0;
+    }
   }
 
   // 获取模型总页数
   async getModelPageCount(): Promise<number> {
-    const list = await this.discoverService.getModelIdentifiers();
-    return Math.ceil(list.length / ITEMS_PER_PAGE);
+    try {
+      const list = await this.discoverService.getModelIdentifiers();
+      return Math.ceil(list.length / ITEMS_PER_PAGE);
+    } catch {
+      return 0;
+    }
   }
 
   private _generateSitemapLink(url: string) {
@@ -172,10 +188,10 @@ export class Sitemap {
 
     // 获取需要分页的类型的页数
     const [pluginPages, assistantPages, mcpPages, modelPages] = await Promise.all([
-      this.getPluginPageCount(),
-      this.getAssistantPageCount(),
-      this.getMcpPageCount(),
-      this.getModelPageCount(),
+      this.getPluginPageCount().catch(() => 0),
+      this.getAssistantPageCount().catch(() => 0),
+      this.getMcpPageCount().catch(() => 0),
+      this.getModelPageCount().catch(() => 0),
     ]);
 
     // 生成分页sitemap链接
@@ -215,7 +231,12 @@ export class Sitemap {
   }
 
   async getAssistants(page?: number): Promise<MetadataRoute.Sitemap> {
-    const list = await this.discoverService.getAssistantIdentifiers();
+    let list: any[] = [];
+    try {
+      list = await this.discoverService.getAssistantIdentifiers();
+    } catch {
+      return [];
+    }
 
     if (page !== undefined) {
       const startIndex = (page - 1) * ITEMS_PER_PAGE;
@@ -240,7 +261,12 @@ export class Sitemap {
   }
 
   async getMcp(page?: number): Promise<MetadataRoute.Sitemap> {
-    const list = await this.discoverService.getMcpIdentifiers();
+    let list: any[] = [];
+    try {
+      list = await this.discoverService.getMcpIdentifiers();
+    } catch {
+      return [];
+    }
 
     if (page !== undefined) {
       const startIndex = (page - 1) * ITEMS_PER_PAGE;
@@ -265,7 +291,12 @@ export class Sitemap {
   }
 
   async getPlugins(page?: number): Promise<MetadataRoute.Sitemap> {
-    const list = await this.discoverService.getPluginIdentifiers();
+    let list: any[] = [];
+    try {
+      list = await this.discoverService.getPluginIdentifiers();
+    } catch {
+      return [];
+    }
 
     if (page !== undefined) {
       const startIndex = (page - 1) * ITEMS_PER_PAGE;
@@ -290,7 +321,12 @@ export class Sitemap {
   }
 
   async getModels(page?: number): Promise<MetadataRoute.Sitemap> {
-    const list = await this.discoverService.getModelIdentifiers();
+    let list: any[] = [];
+    try {
+      list = await this.discoverService.getModelIdentifiers();
+    } catch {
+      return [];
+    }
 
     if (page !== undefined) {
       const startIndex = (page - 1) * ITEMS_PER_PAGE;
@@ -315,7 +351,12 @@ export class Sitemap {
   }
 
   async getProviders(): Promise<MetadataRoute.Sitemap> {
-    const list = await this.discoverService.getProviderIdentifiers();
+    let list: any[] = [];
+    try {
+      list = await this.discoverService.getProviderIdentifiers();
+    } catch {
+      return [];
+    }
     const sitmap = list.map((item) =>
       this._genSitemap(urlJoin('/discover/provider', item.identifier), {
         lastModified: item?.lastModified || LAST_MODIFIED,

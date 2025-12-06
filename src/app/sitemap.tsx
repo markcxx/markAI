@@ -18,10 +18,10 @@ export async function generateSitemaps() {
 
   // 获取需要分页的类型的页数
   const [pluginPages, assistantPages, mcpPages, modelPages] = await Promise.all([
-    sitemapModule.getPluginPageCount(),
-    sitemapModule.getAssistantPageCount(),
-    sitemapModule.getMcpPageCount(),
-    sitemapModule.getModelPageCount(),
+    sitemapModule.getPluginPageCount().catch(() => 0),
+    sitemapModule.getAssistantPageCount().catch(() => 0),
+    sitemapModule.getMcpPageCount().catch(() => 0),
+    sitemapModule.getModelPageCount().catch(() => 0),
   ]);
 
   // 生成分页sitemap ID列表
@@ -49,8 +49,9 @@ export function parsePaginatedId(id: string): { page?: number; type: SitemapType
   return { type: id as SitemapType };
 }
 
-export default async function sitemap({ id }: { id: string }): Promise<MetadataRoute.Sitemap> {
-  const { type, page } = parsePaginatedId(id);
+export default async function sitemap({ id }: { id: Promise<string> }): Promise<MetadataRoute.Sitemap> {
+  const resolvedId = await id;
+  const { type, page } = parsePaginatedId(resolvedId);
   const sitemapModule = new Sitemap();
 
   switch (type) {
@@ -74,20 +75,20 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
     }
     default: {
       // 处理分页的sitemap（plugins-1, assistants-2, mcp-3等）
-      if (id.startsWith('plugins-')) {
-        const pageNum = parseInt(id.split('-')[1], 10);
+      if (resolvedId.startsWith('plugins-')) {
+        const pageNum = parseInt(resolvedId.split('-')[1], 10);
         return sitemapModule.getPlugins(pageNum);
       }
-      if (id.startsWith('assistants-')) {
-        const pageNum = parseInt(id.split('-')[1], 10);
+      if (resolvedId.startsWith('assistants-')) {
+        const pageNum = parseInt(resolvedId.split('-')[1], 10);
         return sitemapModule.getAssistants(pageNum);
       }
-      if (id.startsWith('mcp-')) {
-        const pageNum = parseInt(id.split('-')[1], 10);
+      if (resolvedId.startsWith('mcp-')) {
+        const pageNum = parseInt(resolvedId.split('-')[1], 10);
         return sitemapModule.getMcp(pageNum);
       }
-      if (id.startsWith('models-')) {
-        const pageNum = parseInt(id.split('-')[1], 10);
+      if (resolvedId.startsWith('models-')) {
+        const pageNum = parseInt(resolvedId.split('-')[1], 10);
         return sitemapModule.getModels(pageNum);
       }
 
