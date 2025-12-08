@@ -1,2 +1,2 @@
-npm run type-check
-npx --no-install lint-staged
+pnpm run --silent type-check
+pnpm exec lint-staged --quiet

@@ -89,6 +89,19 @@ export const getServerGlobalConfig = async () => {
     },
   };
 
+  const cloudBannerTitle = process.env.CLOUD_BANNER_TITLE || process.env.NEXT_PUBLIC_CLOUD_BANNER_TITLE;
+  const cloudBannerDesc = process.env.CLOUD_BANNER_DESC || process.env.NEXT_PUBLIC_CLOUD_BANNER_DESC;
+  const cloudBannerDescOnMobile =
+    process.env.CLOUD_BANNER_DESC_ON_MOBILE || process.env.NEXT_PUBLIC_CLOUD_BANNER_DESC_ON_MOBILE;
+
+  if (cloudBannerTitle || cloudBannerDesc || cloudBannerDescOnMobile) {
+    config.cloudBanner = {
+      desc: cloudBannerDesc,
+      descOnMobile: cloudBannerDescOnMobile,
+      title: cloudBannerTitle,
+    };
+  }
+
   return config;
 };
 

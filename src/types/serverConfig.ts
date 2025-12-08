@@ -22,6 +22,11 @@ export type ServerLanguageModel = Partial<Record<GlobalLLMProviderKey, ServerMod
 
 export interface GlobalServerConfig {
   aiProvider: ServerLanguageModel;
+  cloudBanner?: {
+    desc?: string;
+    descOnMobile?: string;
+    title?: string;
+  };
   defaultAgent?: PartialDeep<UserDefaultAgent>;
   enableUploadFileToServer?: boolean;
   enabledAccessCode?: boolean;
