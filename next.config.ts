@@ -312,7 +312,7 @@ const withSentry =
   isProd && hasSentry
     ? (c: NextConfig) =>
         withSentryConfig(
-          c,
+          c as any,
           {
             org: process.env.SENTRY_ORG,
 

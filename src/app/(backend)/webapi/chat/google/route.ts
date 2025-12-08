@@ -22,4 +22,4 @@ export const preferredRegion = [
 ];
 
 export const POST = async (req: Request) =>
-  UniverseRoute(req, { params: Promise.resolve({ provider: 'google' }) });
+  UniverseRoute(req as any, { params: Promise.resolve({ provider: 'google' }) });

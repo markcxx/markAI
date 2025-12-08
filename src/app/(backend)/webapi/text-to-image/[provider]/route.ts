@@ -47,31 +47,33 @@ export const preferredRegion = [
 //   { status: 400 },
 // );
 
-export const POST = checkAuth(async (req: Request, { params, jwtPayload }) => {
-  const { provider } = await params;
+export const POST = checkAuth(
+  async (req: Request | import('next/server').NextRequest, { params, jwtPayload }) => {
+    const { provider } = await params;
 
-  try {
-    // ============  1. init chat model   ============ //
-    const agentRuntime = await initAgentRuntimeWithUserPayload(provider, jwtPayload);
+    try {
+      // ============  1. init chat model   ============ //
+      const agentRuntime = await initAgentRuntimeWithUserPayload(provider, jwtPayload);
 
-    // ============  2. create chat completion   ============ //
+      // ============  2. create chat completion   ============ //
 
-    const data = (await req.json()) as TextToImagePayload;
+      const data = (await req.json()) as TextToImagePayload;
 
-    const images = await agentRuntime.textToImage(data);
+      const images = await agentRuntime.textToImage(data);
 
-    return NextResponse.json(images);
-  } catch (e) {
-    const {
-      errorType = ChatErrorType.InternalServerError,
-      error: errorContent,
-      ...res
-    } = e as ChatCompletionErrorPayload;
+      return NextResponse.json(images);
+    } catch (e) {
+      const {
+        errorType = ChatErrorType.InternalServerError,
+        error: errorContent,
+        ...res
+      } = e as ChatCompletionErrorPayload;
 
-    const error = errorContent || e;
-    // track the error at server side
-    console.error(`Route: [${provider}] ${errorType}:`, error);
+      const error = errorContent || e;
+      // track the error at server side
+      console.error(`Route: [${provider}] ${errorType}:`, error);
 
-    return createErrorResponse(errorType, { error, ...res, provider });
-  }
-});
+      return createErrorResponse(errorType, { error, ...res, provider });
+    }
+  },
+);

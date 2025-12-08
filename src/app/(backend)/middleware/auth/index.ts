@@ -18,10 +18,10 @@ import { getJWTPayload } from '@/utils/server/jwt';
 import { checkAuthMethod } from './utils';
 
 type CreateRuntime = (jwtPayload: JWTPayload) => AgentRuntime;
-type RequestOptions = { createRuntime?: CreateRuntime; params: Promise<{ provider: string }> };
+type RequestOptions = { createRuntime?: CreateRuntime; params: Promise<Record<string, string>> };
 
 export type RequestHandler = (
-  req: Request,
+  req: Request | NextRequest,
   options: RequestOptions & {
     createRuntime?: CreateRuntime;
     jwtPayload: JWTPayload;
@@ -29,7 +29,7 @@ export type RequestHandler = (
 ) => Promise<Response>;
 
 export const checkAuth =
-  (handler: RequestHandler) => async (req: Request, options: RequestOptions) => {
+  (handler: RequestHandler) => async (req: Request | NextRequest, options: RequestOptions) => {
     // we have a special header to debug the api endpoint in development mode
     const isDebugApi = req.headers.get('lobe-auth-dev-backend-api') === '1';
     if (process.env.NODE_ENV === 'development' && isDebugApi) {

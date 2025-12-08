@@ -18,4 +18,4 @@ export const preferredRegion = [
 ];
 
 export const POST = async (req: Request) =>
-  UniverseRoute(req, { params: Promise.resolve({ provider: 'anthropic' }) });
+  UniverseRoute(req as any, { params: Promise.resolve({ provider: 'anthropic' }) });
