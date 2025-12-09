@@ -179,6 +179,22 @@ const modelscopeImageModels: AIImageModelCard[] = [
     type: 'image',
   },
   {
+    description: 'Z-Image 是一个强大的、高效的图像生成模型，具有 6B 参数。',
+    displayName: 'Z-Image',
+    enabled: true,
+    id: 'Tongyi-MAI/Z-Image-Turbo',
+    parameters: {
+      aspectRatio: {
+        default: '1:1',
+        enum: ['1:1', '16:9', '9:16', '4:3', '3:4'],
+      },
+      prompt: {
+        default: '',
+      },
+    },
+    type: 'image',
+  },
+  {
     description:
       '万象熔炉的14_ckpt_SD_XL 是一款基于 Stable Diffusion XL (SDXL) 1.0 架构进行微调（Fine-tuning）或合并（Merging）的自定义社区模型。它旨在生成具有特定艺术风格和主题的高质量图像，尤其在二次元领域表现突出。',
     displayName: '万象熔炉 14_ckpt_SD_XL',
