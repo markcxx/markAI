@@ -1,6 +1,6 @@
 # Gitignore for LobeHub
 ################################################################
-
+scripts/admin/deleteUser.ts
 # general
 .DS_Store
 .idea
