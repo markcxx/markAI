@@ -14,6 +14,7 @@ const isUsePglite = process.env.NEXT_PUBLIC_CLIENT_DB === 'pglite';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
 const isStandaloneMode = buildWithDocker || isDesktop;
+const enablePWA = process.env.NEXT_PUBLIC_ENABLE_PWA === '1';
 
 const standaloneConfig: NextConfig = {
   output: 'standalone',
@@ -290,6 +291,11 @@ const nextConfig: NextConfig = {
       ...config.resolve.fallback,
       zipfile: false,
     };
+    if (!isUsePglite) {
+      config.resolve.alias['@electric-sql/pglite'] = false as any;
+      config.resolve.alias['@electric-sql/pglite/worker'] = false as any;
+      config.resolve.alias['@electric-sql/pglite/vector'] = false as any;
+    }
     return config;
   },
 };
@@ -299,7 +305,7 @@ const noWrapper = (config: NextConfig) => config;
 const withBundleAnalyzer = process.env.ANALYZE === 'true' ? analyzer() : noWrapper;
 
 const withPWA =
-  isProd && !isDesktop
+  isProd && !isDesktop && enablePWA
     ? withSerwistInit({
         register: false,
         swDest: 'public/sw.js',
