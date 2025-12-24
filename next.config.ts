@@ -15,6 +15,8 @@ const isUsePglite = process.env.NEXT_PUBLIC_CLIENT_DB === 'pglite';
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
 const isStandaloneMode = buildWithDocker || isDesktop;
 const enablePWA = process.env.NEXT_PUBLIC_ENABLE_PWA === '1';
+const inVercel = process.env.VERCEL === '1';
+const lightBuild = process.env.NEXT_PUBLIC_LIGHT_BUILD === '1';
 
 const standaloneConfig: NextConfig = {
   output: 'standalone',
@@ -249,7 +251,7 @@ const nextConfig: NextConfig = {
   // when external packages in dev mode with turbopack, this config will lead to bundle error
   serverExternalPackages: isProd ? ['@electric-sql/pglite'] : undefined,
 
-  transpilePackages: ['pdfjs-dist', 'mermaid'],
+  transpilePackages: lightBuild ? [] : ['pdfjs-dist', 'mermaid'],
 
   typescript: {
     // !! WARN !!
@@ -291,7 +293,7 @@ const nextConfig: NextConfig = {
       ...config.resolve.fallback,
       zipfile: false,
     };
-    if (!isUsePglite) {
+    if (!isUsePglite || inVercel) {
       config.resolve.alias['@electric-sql/pglite'] = false as any;
       config.resolve.alias['@electric-sql/pglite/worker'] = false as any;
       config.resolve.alias['@electric-sql/pglite/vector'] = false as any;
