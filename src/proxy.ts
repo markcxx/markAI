@@ -18,19 +18,15 @@ import { RouteVariants } from '@/utils/server/routeVariants';
 import { OAUTH_AUTHORIZED } from './const/auth';
 import { oidcEnv } from './envs/oidc';
 
-// Create debug logger instances
-const logDefault = debug('middleware:default');
-const logNextAuth = debug('middleware:next-auth');
-const logClerk = debug('middleware:clerk');
+const logDefault = debug('proxy:default');
+const logNextAuth = debug('proxy:next-auth');
+const logClerk = debug('proxy:clerk');
 
-// OIDC session pre-sync constant
 const OIDC_SESSION_HEADER = 'x-oidc-session-sync';
 
 export const config = {
   matcher: [
-    // include any files in the api or trpc folders that might have an extension
     '/(api|trpc|webapi)(.*)',
-    // include the /
     '/',
     '/discover',
     '/discover(.*)',
@@ -45,13 +41,11 @@ export const config = {
     '/profile(.*)',
     '/me',
     '/me(.*)',
-
     '/login(.*)',
     '/signup(.*)',
     '/next-auth/(.*)',
     '/oauth(.*)',
     '/oidc(.*)',
-    // ↓ cloud ↓
   ],
 };
 
@@ -61,21 +55,17 @@ const defaultMiddleware = (request: NextRequest) => {
   const url = new URL(request.url);
   logDefault('Processing request: %s %s', request.method, request.url);
 
-  // Domain redirect logic - only in production
   if (process.env.NODE_ENV === 'production') {
     const currentDate = new Date();
     const dayOfMonth = currentDate.getDate();
     const currentHost = url.hostname;
 
-    // Define domains
-    const primaryDomain = 'chatai.markqq.com'; // 主域名 (1-10日)
-    const secondaryDomain = 'aichat.markqq.com'; // 副域名 (11日-月末)
+    const primaryDomain = 'chatai.markqq.com';
+    const secondaryDomain = 'aichat.markqq.com';
 
     logDefault('Domain redirect check: day=%d, host=%s', dayOfMonth, currentHost);
 
-    // Redirect logic based on date
     if (dayOfMonth <= 10) {
-      // 前10日使用主域名
       if (currentHost === secondaryDomain) {
         const redirectUrl = new URL(request.url);
         redirectUrl.hostname = primaryDomain;
@@ -83,7 +73,6 @@ const defaultMiddleware = (request: NextRequest) => {
         return NextResponse.redirect(redirectUrl, { status: 301 });
       }
     } else {
-      // 11日到月末使用副域名
       if (currentHost === primaryDomain) {
         const redirectUrl = new URL(request.url);
         redirectUrl.hostname = secondaryDomain;
@@ -93,25 +82,16 @@ const defaultMiddleware = (request: NextRequest) => {
     }
   }
 
-  // skip all api requests
   if (backendApiEndpoints.some((path) => url.pathname.startsWith(path))) {
     logDefault('Skipping API request: %s', url.pathname);
     return NextResponse.next();
   }
 
-  // 1. Read user preferences from cookies
   const theme =
     request.cookies.get(LOBE_THEME_APPEARANCE)?.value || parseDefaultThemeFromCountry(request);
 
-  // locale has three levels
-  // 1. search params
-  // 2. cookie
-  // 3. browser
-
-  // highest priority is explicitly in search params, like ?hl=zh-CN
   const explicitlyLocale = (url.searchParams.get('hl') || undefined) as Locales | undefined;
 
-  // if it's a new user, there's no cookie, So we need to use the fallback language parsed by accept-language
   const browserLanguage = parseBrowserLanguage(request.headers);
 
   const locale =
@@ -133,7 +113,6 @@ const defaultMiddleware = (request: NextRequest) => {
     theme,
   });
 
-  // 2. Create normalized preference values
   const route = RouteVariants.serializeVariants({
     isMobile: device.type === 'mobile',
     locale,
@@ -142,8 +121,6 @@ const defaultMiddleware = (request: NextRequest) => {
 
   logDefault('Serialized route variant: %s', route);
 
-  // if app is in docker, rewrite to self container
-  // https://github.com/lobehub/lobe-chat/issues/5876
   if (appEnv.MIDDLEWARE_REWRITE_THROUGH_LOCAL) {
     logDefault('Local container rewrite enabled: %O', {
       host: '127.0.0.1',
@@ -157,10 +134,6 @@ const defaultMiddleware = (request: NextRequest) => {
     url.port = process.env.PORT || '3210';
   }
 
-  // refs: https://github.com/lobehub/lobe-chat/pull/5866
-  // new handle segment rewrite: /${route}${originalPathname}
-  // / -> /zh-CN__0__dark
-  // /discover -> /zh-CN__0__dark/discover
   const nextPathname = `/${route}` + (url.pathname === '/' ? '' : url.pathname);
   const nextURL = appEnv.MIDDLEWARE_REWRITE_THROUGH_LOCAL
     ? urlJoin(url.origin, nextPathname)
@@ -179,17 +152,13 @@ const defaultMiddleware = (request: NextRequest) => {
 };
 
 const isPublicRoute = createRouteMatcher([
-  // backend api
   '/api/auth(.*)',
   '/api/webhooks(.*)',
   '/webapi(.*)',
   '/trpc(.*)',
-  // next auth
   '/next-auth/(.*)',
-  // clerk
   '/login',
   '/signup',
-  // oauth
   '/oidc/handoff',
   '/oidc/token',
 ]);
@@ -199,26 +168,20 @@ const isProtectedRoute = createRouteMatcher([
   '/files(.*)',
   '/onboard(.*)',
   '/oauth(.*)',
-  // ↓ cloud ↓
 ]);
 
-// Initialize an Edge compatible NextAuth middleware
 const nextAuthMiddleware = NextAuthEdge.auth(async (req) => {
   logNextAuth('NextAuth middleware processing request: %s %s', req.method, req.url);
 
   const response = defaultMiddleware(req);
 
-  // when enable auth protection, only public route is not protected, others are all protected
   const isProtected =
     (appEnv.ENABLE_AUTH_PROTECTION ? !isPublicRoute(req) : isProtectedRoute(req)) && !isDesktop;
 
   logNextAuth('Route protection status: %s, %s', req.url, isProtected ? 'protected' : 'public');
 
-  // Just check if session exists
   const session = req.auth;
 
-  // Check if next-auth throws errors
-  // refs: https://github.com/lobehub/lobe-chat/pull/1323
   const isLoggedIn = !!session?.expires;
 
   logNextAuth('NextAuth session status: %O', {
@@ -227,20 +190,16 @@ const nextAuthMiddleware = NextAuthEdge.auth(async (req) => {
     userId: session?.user?.id,
   });
 
-  // Remove & amend OAuth authorized header
   response.headers.delete(OAUTH_AUTHORIZED);
   if (isLoggedIn) {
     logNextAuth('Setting auth header: %s = %s', OAUTH_AUTHORIZED, 'true');
     response.headers.set(OAUTH_AUTHORIZED, 'true');
 
-    // If OIDC is enabled and user is logged in, add OIDC session pre-sync header
     if (oidcEnv.ENABLE_OIDC && session?.user?.id) {
       logNextAuth('OIDC session pre-sync: Setting %s = %s', OIDC_SESSION_HEADER, session.user.id);
       response.headers.set(OIDC_SESSION_HEADER, session.user.id);
     }
   } else {
-    // If request a protected route, redirect to sign-in page
-    // ref: https://authjs.dev/getting-started/session-management/protecting
     if (isProtected) {
       logNextAuth('Request a protected route, redirecting to sign-in page');
       const nextLoginUrl = new URL('/next-auth/signin', req.nextUrl.origin);
@@ -257,7 +216,6 @@ const clerkAuthMiddleware = clerkMiddleware(
   async (auth, req) => {
     logClerk('Clerk middleware processing request: %s %s', req.method, req.url);
 
-    // when enable auth protection, only public route is not protected, others are all protected
     const isProtected =
       (appEnv.ENABLE_AUTH_PROTECTION ? !isPublicRoute(req) : isProtectedRoute(req)) && !isDesktop;
 
@@ -276,7 +234,6 @@ const clerkAuthMiddleware = clerkMiddleware(
       userId: data.userId,
     });
 
-    // If OIDC is enabled and Clerk user is logged in, add OIDC session pre-sync header
     if (oidcEnv.ENABLE_OIDC && data.userId) {
       logClerk('OIDC session pre-sync: Setting %s = %s', OIDC_SESSION_HEADER, data.userId);
       response.headers.set(OIDC_SESSION_HEADER, data.userId);
@@ -287,22 +244,23 @@ const clerkAuthMiddleware = clerkMiddleware(
     return response;
   },
   {
-    // https://github.com/lobehub/lobe-chat/pull/3084
     clockSkewInMs: 60 * 60 * 1000,
     signInUrl: '/login',
     signUpUrl: '/signup',
   },
 );
 
-logDefault('Middleware configuration: %O', {
+logDefault('Proxy configuration: %O', {
   enableAuthProtection: appEnv.ENABLE_AUTH_PROTECTION,
   enableClerk: authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH,
   enableNextAuth: authEnv.NEXT_PUBLIC_ENABLE_NEXT_AUTH,
   enableOIDC: oidcEnv.ENABLE_OIDC,
 });
 
-export default authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH
+const proxy = authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH
   ? clerkAuthMiddleware
   : authEnv.NEXT_PUBLIC_ENABLE_NEXT_AUTH
     ? nextAuthMiddleware
     : defaultMiddleware;
+
+export default proxy;

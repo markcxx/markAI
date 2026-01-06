@@ -1,5 +1,9 @@
 {
   "buildCommand": "bun run build",
+  "env": {
+    "NEXT_PUBLIC_LIGHT_BUILD": "1",
+    "NODE_OPTIONS": "--max-old-space-size=8192"
+  },
   "functions": {
     "app/(backend)/webapi/chat/[provider]/route.ts": {
       "maxDuration": 300

@@ -266,6 +266,9 @@ const nextConfig: NextConfig = {
       asyncWebAssembly: true,
       layers: true,
     };
+    if (inVercel) {
+      config.cache = false;
+    }
 
     // 开启该插件会导致 pglite 的 fs bundler 被改表
     if (enableReactScan && !isUsePglite) {
@@ -354,7 +357,7 @@ const withSentry =
             // For all available options, see:
             // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
             // Upload a larger set of source maps for prettier stack traces (increases build time)
-            widenClientFileUpload: true,
+            widenClientFileUpload: false,
           },
         )
     : noWrapper;
