@@ -4,6 +4,7 @@ import { Text } from '@lobehub/ui';
 import { useEffect, useRef, useState } from 'react';
 
 interface ElapsedTimeProps {
+  className?: string;
   generationId: string;
   isActive: boolean;
 }
@@ -16,7 +17,7 @@ const getSessionStorageKey = (generationId: string) => `generation_start_time_${
  * - 1分钟或以上：显示分钟数，精度1位小数
  * - 使用 sessionStorage 在页面刷新时保持准确计时
  */
-export function ElapsedTime({ generationId, isActive }: ElapsedTimeProps) {
+export function ElapsedTime({ generationId, isActive, className }: ElapsedTimeProps) {
   const [elapsedTime, setElapsedTime] = useState<number | null>(null);
   const frameRef = useRef<number | null>(null);
   const lastUpdateRef = useRef<number>(0);
@@ -83,7 +84,7 @@ export function ElapsedTime({ generationId, isActive }: ElapsedTimeProps) {
   })();
 
   return (
-    <Text code fontSize={10} type={'secondary'}>
+    <Text className={className} code fontSize={10} type={className ? undefined : 'secondary'}>
       {formattedTime}
     </Text>
   );

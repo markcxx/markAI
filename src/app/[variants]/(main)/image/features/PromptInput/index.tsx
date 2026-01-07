@@ -22,16 +22,22 @@ interface PromptInputProps {
 }
 
 const useStyles = createStyles(({ css, token, isDarkMode }) => ({
+  button: css`
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: ${token.boxShadowSecondary};
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  `,
   container: css`
-    border: 1px solid ${token.colorBorderSecondary};
     border-radius: ${token.borderRadiusLG * 1.5}px;
     background-color: ${token.colorBgContainer};
-    box-shadow:
-      ${token.boxShadowTertiary},
-      ${isDarkMode
-        ? `0 0 48px 32px ${token.colorBgContainerSecondary}`
-        : `0 0 0  ${token.colorBgContainerSecondary}`},
-      0 32px 0 ${token.colorBgContainerSecondary};
+    transition: all 0.3s ease;
   `,
   textarea: css`
     resize: none;
@@ -39,7 +45,7 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     min-height: 64px;
     padding-block: 12px;
     padding-inline: 16px;
-    border: 2px solid rgba(0, 0, 0, 6%);
+    border: none;
     border-radius: 8px;
 
     font-size: 14px;
@@ -47,17 +53,8 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
 
     background-color: transparent;
 
-    transition: all 0.2s ease;
-
-    &:hover {
-      border-color: rgba(22, 119, 255, 40%) !important;
-      box-shadow: 0 0 0 2px rgba(22, 119, 255, 10%) !important;
-    }
-
     &:focus {
-      border-color: #1677ff !important;
-      outline: none !important;
-      box-shadow: 0 0 0 2px rgba(22, 119, 255, 20%) !important;
+      box-shadow: none !important;
     }
   `,
   wrapper: css`
@@ -175,10 +172,10 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
       <Flexbox
         align="flex-end"
         className={styles.container}
-        gap={12}
+        gap={8}
         height={'100%'}
         horizontal
-        padding={'12px 12px 12px 16px'}
+        padding={'4px 4px 4px 12px'}
         width={'100%'}
       >
         <TextArea
@@ -192,6 +189,7 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
         <Flexbox gap={8} horizontal>
           {promptEnhancementEnabled && promptEnhancementModel && promptEnhancementProvider && (
             <Button
+              className={styles.button}
               disabled={!value.trim() || isEnhancing || isCreating}
               icon={Wand2}
               loading={isEnhancing}
@@ -212,6 +210,7 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
             />
           )}
           <Button
+            className={styles.button}
             disabled={!value.trim() || isEnhancing || isCreating}
             icon={Sparkles}
             loading={isCreating || isEnhancing}

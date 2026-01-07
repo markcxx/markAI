@@ -63,11 +63,9 @@ const ConfigPanel = memo(() => {
         </ConfigItemLayout>
       )}
 
-      {isSupportImageUrls && (
-        <ConfigItemLayout label={t('config.imageUrls.label')}>
-          <ImageUrlsUpload />
-        </ConfigItemLayout>
-      )}
+      <ConfigItemLayout label={t('config.imageUrls.label')}>
+        <ImageUrlsUpload />
+      </ConfigItemLayout>
 
       {shouldShowSizeSelect && (
         <ConfigItemLayout label={t('config.size.label')}>

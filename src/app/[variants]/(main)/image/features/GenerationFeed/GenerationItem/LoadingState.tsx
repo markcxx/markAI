@@ -1,9 +1,10 @@
 'use client';
 
 import { LoadingOutlined } from '@ant-design/icons';
-import { Block } from '@lobehub/ui';
+import { Block, Text } from '@lobehub/ui';
 import { Spin } from 'antd';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Center } from 'react-layout-kit';
 
 import { AsyncTaskStatus } from '@/types/asyncTask';
@@ -16,6 +17,7 @@ import { LoadingStateProps } from './types';
 // 加载状态组件
 export const LoadingState = memo<LoadingStateProps>(({ generation, aspectRatio, onDelete }) => {
   const { styles } = useStyles();
+  const { t } = useTranslation('image');
 
   const isGenerating =
     generation.task.status === AsyncTaskStatus.Processing ||
@@ -28,13 +30,19 @@ export const LoadingState = memo<LoadingStateProps>(({ generation, aspectRatio, 
       justify={'center'}
       style={{
         aspectRatio,
-        maxWidth: generation.asset?.width ? generation.asset.width / 2 : 'unset',
+        maxWidth: generation.asset?.width ? Math.min(generation.asset.width / 2, 320) : 320,
       }}
-      variant={'filled'}
     >
       <Center gap={8}>
-        <Spin indicator={<LoadingOutlined spin />} />
-        <ElapsedTime generationId={generation.id} isActive={isGenerating} />
+        <Spin indicator={<LoadingOutlined className={styles.spinIcon} spin />} />
+        <Center gap={4} horizontal>
+          <Text className={styles.text}>{t('generation.status.generating')}</Text>
+          <ElapsedTime
+            className={styles.text}
+            generationId={generation.id}
+            isActive={isGenerating}
+          />
+        </Center>
       </Center>
       <ActionButtons onDelete={onDelete} />
     </Block>

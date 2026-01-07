@@ -122,7 +122,7 @@
       "upload": "上传图片"
     },
     "placeholder": {
-      "primary": "点击或拖拽上传图片",
+      "primary": "上传参考图",
       "secondary": "支持多张图片选择"
     },
     "progress": {

@@ -137,7 +137,7 @@ const useStyles = createStyles(({ css, token }) => {
       cursor: pointer;
 
       width: 100%;
-      height: 120px;
+      height: 80px;
       border: 2px dashed ${token.colorBorder};
       border-radius: ${token.borderRadiusLG}px;
 
@@ -213,7 +213,7 @@ const useStyles = createStyles(({ css, token }) => {
       overflow: hidden;
 
       width: 100%;
-      height: 160px;
+      height: 120px;
       border-radius: ${token.borderRadiusLG}px;
 
       background: ${token.colorBgContainer};
@@ -299,7 +299,7 @@ const ImageUploadPlaceholder: FC<ImageUploadPlaceholderProps> = memo(({ isDragOv
       horizontal={false}
       onClick={onClick}
     >
-      <ImageIcon className={styles.placeholderIcon} size={48} strokeWidth={1.5} />
+      <ImageIcon className={styles.placeholderIcon} size={32} strokeWidth={1.5} />
       <div className={styles.placeholderText}>
         {t('MultiImagesUpload.placeholder.primary')}
         <br />
