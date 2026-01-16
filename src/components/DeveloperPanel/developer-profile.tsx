@@ -9,6 +9,9 @@ import {
   Github,
   Globe,
   Laptop,
+  Loader2,
+  type LucideIcon,
+  type LucideProps,
   Mail,
   MessageCircle,
   Music,
@@ -17,8 +20,61 @@ import {
   Zap,
 } from 'lucide-react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-import { DEVELOPER_LINKS } from '@/const/branding';
+// Icon mapping
+const ICON_MAP: Record<string, LucideIcon> = {
+  Brain,
+  Code,
+  Database,
+  Github,
+  Globe,
+  Laptop,
+  Mail,
+  MessageCircle,
+  Music,
+  User,
+  Video,
+  Zap,
+};
+
+const getIcon = (iconName: string, props: LucideProps = {}) => {
+  const IconComponent = ICON_MAP[iconName] || Code;
+  return <IconComponent {...props} />;
+};
+
+interface DeveloperData {
+  baseInfo: {
+    avatar: string;
+    description: string;
+    name: string;
+    status: string;
+  };
+  contactInfo: {
+    iconName: string;
+    label: string;
+    value: string;
+  }[];
+  projects: {
+    description: string;
+    features: string[];
+    github: string;
+    iconName: string;
+    title: string;
+    type: string;
+    url: string;
+  }[];
+  skills: {
+    iconName: string;
+    name: string;
+  }[];
+  socialLinks: {
+    iconName: string;
+    label: string;
+    url: string;
+  }[];
+  techStack: string[];
+}
 
 const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   avatar: css`
@@ -104,6 +160,19 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     font-weight: 600;
     color: ${token.colorText};
   `,
+  errorContainer: css`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    color: ${token.colorError};
+
+    background: ${token.colorBgContainer};
+  `,
   footer: css`
     padding-block: 32px;
     padding-inline: 0;
@@ -143,6 +212,17 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     position: absolute;
     inset: 0;
     background: ${isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(15, 23, 42, 0.5)'};
+  `,
+  loadingContainer: css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    color: ${token.colorText};
+
+    background: ${token.colorBgContainer};
   `,
   onlineStatus: css`
     position: absolute;
@@ -290,6 +370,24 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     display: flex;
     flex-direction: column;
     gap: 64px;
+  `,
+  retryButton: css`
+    cursor: pointer;
+
+    padding-block: 8px;
+    padding-inline: 16px;
+    border: 1px solid ${token.colorBorder};
+    border-radius: 8px;
+
+    color: ${token.colorText};
+
+    background: ${token.colorBgContainer};
+
+    transition: all 0.2s;
+
+    &:hover {
+      background: ${token.colorFillTertiary};
+    }
   `,
   section: css`
     padding-block: 64px;
@@ -447,95 +545,51 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
 
 export default function DeveloperProfile() {
   const { styles } = useStyles();
+  const [data, setData] = useState<DeveloperData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const techStack = [
-    'React',
-    'TypeScript',
-    'JavaScript',
-    'Python',
-    'Node.js',
-    'Vue.js',
-    'Qt',
-    'PyQt',
-    'FastAPI',
-    'Electron',
-  ];
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch('https://develop.markqq.com/developer.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch developer data');
+      }
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const skills = [
-    { icon: <Code size={20} />, name: 'MCP协议开发' },
-    { icon: <Database size={20} />, name: 'RAG系统构建' },
-    { icon: <Brain size={20} />, name: '大模型开发' },
-    { icon: <Database size={20} />, name: '语料训练' },
-    { icon: <Brain size={20} />, name: '模型微调' },
-    { icon: <Zap size={20} />, name: 'AI应用开发' },
-    { icon: <Code size={20} />, name: 'PyQt软件开发' },
-    { icon: <Globe size={20} />, name: '全栈开发' },
-    { icon: <Laptop size={20} />, name: '桌面应用开发' },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const projects = [
-    {
-      description:
-        '集合多平台（网易云音乐、酷狗音乐、酷我音乐等）的免付费音乐平台桌面软件，为用户提供统一的音乐播放体验。',
-      features: ['多平台整合', '免费音乐', '桌面应用', '统一体验'],
-      github: '#',
-      icon: <Music size={24} />,
-      title: 'CoCoMusic',
-      type: 'amber',
-      url: '#',
-    },
-    {
-      description:
-        '专门设计的多平台视频下载工具，支持抖音、B站等平台，提供桌面软件和网页端双重体验。',
-      features: ['多平台支持', '视频下载', '双端体验', '高效稳定'],
-      github: 'https://github.com/markcxx/VidFlowDesktop',
-      icon: <Video size={24} />,
-      title: 'VidFlowDesktop',
-      type: 'rose',
-      url: 'https://vidflow.markqq.com',
-    },
-    {
-      description:
-        '基于ESP32小智AI应用开发的电脑桌面版应用，支持MCP调用，为没有硬件条件的人群提供使用便利',
-      features: ['多平台支持', 'XiaoZhiAI', '语音对话', 'MCP调用'],
-      github: 'https://github.com/markcxx/Xiaozhi-ai',
-      icon: <Video size={24} />,
-      title: 'XiaoZhi AI桌面版',
-      type: 'blue',
-      url: 'https://github.com/markcxx/Xiaozhi-ai',
-    },
-    {
-      description:
-        '基于和风天气的后端天气服务接口，支持天气预报，实时天气，空气质量预测等，支持MCP服务',
-      features: ['全栈开发', 'Fastapi', '天气服务', 'MCP调用'],
-      github: 'https://github.com/markcxx/momoweather',
-      icon: <Video size={24} />,
-      title: '墨墨天气API',
-      type: 'green',
-      url: 'https://momoweather.markqq.com',
-    },
-    {
-      description:
-        '支持OPENAI协议的大模型服务，支持主流模型如gpt-5,claude-sonnect-4-5,doubao等，支持MCP服务',
-      features: ['多平台支持', 'OPENAI协议', '大模型服务', 'MCP调用'],
-      github: '#',
-      icon: <Video size={24} />,
-      title: 'Openai协议MARKAI模型后端服务',
-      type: 'purple',
-      url: '#',
-    },
-  ];
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <Loader2 className="animate-spin" size={48} />
+      </div>
+    );
+  }
 
-  const contactInfo = [
-    { icon: <Mail size={20} />, label: '邮箱', value: DEVELOPER_LINKS.contact.email },
-    { icon: <MessageCircle size={20} />, label: '微信', value: DEVELOPER_LINKS.contact.wechat },
-    { icon: <User size={20} />, label: 'QQ', value: DEVELOPER_LINKS.contact.qq },
-  ];
+  if (error || !data) {
+    return (
+      <div className={styles.errorContainer}>
+        <p>Error loading profile: {error}</p>
+        <button className={styles.retryButton} onClick={fetchData} type="button">
+          Retry
+        </button>
+      </div>
+    );
+  }
 
-  const socialLinks = [
-    { icon: <Globe size={20} />, label: '个人博客', url: DEVELOPER_LINKS.blog },
-    { icon: <Github size={20} />, label: 'GitHub', url: DEVELOPER_LINKS.github },
-  ];
+  const { baseInfo, socialLinks, contactInfo, skills, techStack, projects } = data;
 
   return (
     <div className={styles.container}>
@@ -553,9 +607,9 @@ export default function DeveloperProfile() {
             >
               <div className={styles.avatar}>
                 <Image
-                  alt="怪兽马尔克"
+                  alt={baseInfo.name}
                   height={128}
-                  src="/images/mark.jpg"
+                  src={baseInfo.avatar}
                   style={{
                     borderRadius: '50%',
                     objectFit: 'cover',
@@ -575,10 +629,8 @@ export default function DeveloperProfile() {
               initial={{ opacity: 0, x: -50 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h1 className={styles.userName}>怪兽马尔克</h1>
-              <p className={styles.userDesc}>
-                专注于AI大模型开发与应用，致力于构建智能化解决方案。拥有丰富的前端和后端开发经验，特别擅长AI应用开发和桌面应用程序开发。
-              </p>
+              <h1 className={styles.userName}>{baseInfo.name}</h1>
+              <p className={styles.userDesc}>{baseInfo.description}</p>
               <div className={styles.socialLinks}>
                 {socialLinks.map((link, index) => (
                   <a
@@ -588,7 +640,7 @@ export default function DeveloperProfile() {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    {link.icon}
+                    {getIcon(link.iconName)}
                     <span>{link.label}</span>
                   </a>
                 ))}
@@ -619,7 +671,7 @@ export default function DeveloperProfile() {
                   whileHover={{ y: -5 }}
                   whileInView={{ opacity: 1, y: 0 }}
                 >
-                  <div className={styles.skillIcon}>{skill.icon}</div>
+                  <div className={styles.skillIcon}>{getIcon(skill.iconName, { size: 20 })}</div>
                   <h3 className={styles.skillName}>{skill.name}</h3>
                 </motion.div>
               ))}
@@ -694,7 +746,9 @@ export default function DeveloperProfile() {
                               : styles.projectImageRose
                     }`}
                   >
-                    <div style={{ fontSize: '96px', opacity: 0.2 }}>{project.icon}</div>
+                    <div style={{ fontSize: '96px', opacity: 0.2 }}>
+                      {getIcon(project.iconName, { size: 24 })}
+                    </div>
                   </div>
 
                   {/* 项目描述区域 */}
@@ -804,7 +858,9 @@ export default function DeveloperProfile() {
                   whileHover={{ y: -5 }}
                   whileInView={{ opacity: 1, y: 0 }}
                 >
-                  <div className={styles.contactIcon}>{contact.icon}</div>
+                  <div className={styles.contactIcon}>
+                    {getIcon(contact.iconName, { size: 20 })}
+                  </div>
                   <h3 className={styles.contactLabel}>{contact.label}</h3>
                   <p className={styles.contactValue}>{contact.value}</p>
                 </motion.div>
