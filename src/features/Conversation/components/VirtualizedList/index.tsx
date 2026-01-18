@@ -12,6 +12,7 @@ import { useChatStore } from '@/store/chat';
 import { chatSelectors } from '@/store/chat/selectors';
 
 import AutoScroll from '../AutoScroll';
+import MessageAnchor from '../MessageAnchor';
 import SkeletonList from '../SkeletonList';
 import { VirtuosoContext } from './VirtuosoContext';
 
@@ -25,6 +26,8 @@ const VirtualizedList = memo<VirtualizedListProps>(({ mobile, dataSource, itemCo
   const virtuosoRef = useRef<VirtuosoHandle>(null);
   const [atBottom, setAtBottom] = useState(true);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const isScrollingToAnchor = useRef(false);
 
   const [id, isFirstLoading, isCurrentChatLoaded] = useChatStore((s) => [
     chatSelectors.currentChatKey(s),
@@ -66,7 +69,7 @@ const VirtualizedList = memo<VirtualizedListProps>(({ mobile, dataSource, itemCo
 
   return (
     <VirtuosoContext value={virtuosoRef}>
-      <Flexbox height={'100%'}>
+      <Flexbox height={'100%'} style={{ position: 'relative' }}>
         <Virtuoso
           atBottomStateChange={setAtBottom}
           atBottomThreshold={50 * (mobile ? 2 : 1)}
@@ -78,8 +81,33 @@ const VirtualizedList = memo<VirtualizedListProps>(({ mobile, dataSource, itemCo
           isScrolling={setIsScrolling}
           itemContent={itemContent}
           overscan={overscan}
+          rangeChanged={(range) => {
+            if (isScrollingToAnchor.current) return;
+
+            // If the last item is visible, highlight the last anchor
+            if (range.endIndex >= dataSource.length - 1) {
+              setActiveIndex(dataSource.length - 1);
+            } else {
+              setActiveIndex(range.startIndex);
+            }
+          }}
           ref={virtuosoRef}
         />
+        {!mobile && (
+          <MessageAnchor
+            activeIndex={activeIndex}
+            data={dataSource}
+            onScrollTo={(index) => {
+              isScrollingToAnchor.current = true;
+              setActiveIndex(index);
+              virtuosoRef.current?.scrollToIndex({ align: 'start', behavior: 'auto', index });
+              // Reset the flag after a short delay to allow scrolling to settle
+              setTimeout(() => {
+                isScrollingToAnchor.current = false;
+              }, 100);
+            }}
+          />
+        )}
         <AutoScroll
           atBottom={atBottom}
           isScrolling={isScrolling}
